@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@font-face {
+    font-family: "Kalame-Normal";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./assets/fonts/Kalameh\(FaNum\)-Regular.ttf");
+}
+@font-face {
+    font-family: "Kalame-Bold";
+    font-style: bold;
+    font-weight: 700;
+    src: url("./assets/fonts/Kalameh\(FaNum\)-Bold.ttf");
+}
+@tailwind utilities;
