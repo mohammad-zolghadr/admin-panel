@@ -12,4 +12,7 @@
     font-weight: 700;
     src: url("./assets/fonts/Kalameh\(FaNum\)-Bold.ttf");
 }
+*{
+    direction: rtl !important;
+}
 @tailwind utilities;
