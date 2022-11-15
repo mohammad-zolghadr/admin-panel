@@ -3,7 +3,7 @@
 Building ... <br/><br/>
 
 ```diff
-- Build Step => Navbar - Designing
+- Build Step => Login - Designing
 ```
 
 <br/>

@@ -16,3 +16,21 @@
   direction: rtl !important;
 }
 @tailwind utilities;
+
+@layer components {
+  .fcenter {
+    @apply flex items-center justify-center;
+  }
+  .fbetween {
+    @apply flex items-center justify-between;
+  }
+  .fstart {
+    @apply flex items-center justify-start;
+  }
+  .mhover {
+    @apply hover:opacity-50 duration-300;
+  }
+  .mtag {
+    @apply bg-purple-200 text-purple-500 font-bf text-sm;
+  }
+}

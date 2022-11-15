@@ -117,10 +117,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-gray-100 p-1">
-      <div className="flex justify-center py-4 px-4 gap-4 bg-white w-5/6 mx-auto my-8 rounded-xl shadow-lg">
-        <div className="flex items-center justify-between w-full px-6">
-          <div className="flex items-center justify-center gap-x-4 ">
-            <span className="w-16 h-16 p-2 bg-gray-400 rounded-full inline-block flex justify-center items-center">
+      <div className="fcenter py-4 px-4 gap-4 bg-white w-5/6 mx-auto my-8 rounded-xl shadow-lg">
+        <div className="fbetween w-full px-6">
+          <div className="fcenter gap-x-4 ">
+            <span className="fcenter w-16 h-16 p-2 bg-gray-400 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -133,16 +133,14 @@ const Navbar = () => {
                 />
               </svg>
             </span>
-            <div className="flex flex-col items-start justify-center gap-y-1">
+            <div className="fstart items-start flex-col  gap-y-1">
               <p className="font-bold text-gray-600">{data.name}</p>
-              <span className="inline-block bg-purple-200">
-                <p className="text-purple-500 font-bf text-sm">
-                  {data.rule === RULES.main ? "مدیر اصلی" : "بیننده"}
-                </p>
+              <span className="inline-block mtag">
+                {data.rule === RULES.main ? "مدیر اصلی" : "بیننده"}
               </span>
             </div>
           </div>
-          <div className="flex justify-center items-center gap-x-6 ">
+          <div className="fcenter gap-x-6 ">
             {changeRoute(location).map((e, index) => {
               const isMainAdmin = data.rule === RULES.main;
               if (!isMainAdmin && index > 1) return;
@@ -150,7 +148,7 @@ const Navbar = () => {
                 <Link
                   key={e.url}
                   to={e.url}
-                  className="flex flex-col gap-y-2 items-center justify-center hover:opacity-50 duration-300 text-gray-400 font-nf text-sm"
+                  className="fcenter flex-col gap-y-2 mhover text-gray-400 font-nf text-sm"
                 >
                   {e.image}
                   {e.name}
@@ -160,7 +158,7 @@ const Navbar = () => {
 
             <Link
               to="/login"
-              className="flex flex-col gap-y-2 items-center justify-center hover:opacity-50 duration-300 text-gray-400 font-nf text-sm"
+              className="fcenter flex-col gap-y-2 mhover text-gray-400 font-nf text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
