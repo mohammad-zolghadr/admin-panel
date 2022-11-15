@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 // Components
 import Home from "./components/Home";
-import Navbar from "./components/Admin/Navbar";
+import Admin from "./components/Admin/Admin";
 import Info from "./components/Admin/Info";
 import Login from "./components/Admin/Login";
 import Dashboard from "./components/Admin/Dashboard";
@@ -17,7 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="/admin/*" element={<Navbar />}>
+        <Route path="/admin/*" element={<Admin />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="posts" element={<Posts />} />
           <Route path="info" element={<Info />} />
