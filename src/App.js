@@ -16,8 +16,8 @@ const App = () => {
     <div className="font-nf">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
         <Route path="/admin/*" element={<Navbar />}>
-          <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="posts" element={<Posts />} />
           <Route path="info" element={<Info />} />

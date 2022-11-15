@@ -9,7 +9,7 @@ const Home = () => {
         می توانید به پنل ادمین دسترسی داشته باشید
       </p>
       <Link
-        to="/admin/login"
+        to="/login"
         className="bg-purple-600 text-md px-8 py-2 rounded-lg text-white hover:opacity-50 duration-300"
       >
         ورود به پنل ادمین

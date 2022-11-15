@@ -3,7 +3,7 @@
 Building ... <br/><br/>
 
 ```diff
-- Build Step => Create Routes - Designing
+- Build Step => Navbar - Designing
 ```
 
 <br/>

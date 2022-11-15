@@ -9,7 +9,7 @@ const Navbar = () => {
         <Link to="posts">پست ها</Link>
         <Link to="users">کاربران</Link>
         <Link to="info">اطلاعات وب</Link>
-        <Link to="login">خروج از حساب</Link>
+        <Link to="/login">خروج از حساب</Link>
         <Link to="/">خانه</Link>
       </div>
       <Outlet />
