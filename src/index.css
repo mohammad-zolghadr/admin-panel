@@ -31,7 +31,7 @@
     @apply hover:opacity-50 duration-300;
   }
   .mtag {
-    @apply bg-purple-200 text-purple-500 font-bf text-sm;
+    @apply bg-purple-200 text-purple-500 font-bf text-xs;
   }
   .primary-btn {
     @apply bg-purple-600 text-base px-8 py-1 pb-2 rounded-lg text-white;
