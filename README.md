@@ -3,7 +3,7 @@
 Building ... <br/><br/>
 
 ```diff
-- Build Step => Login - Designing
+- Build Step => Component Ui - Designing
 ```
 
 <br/>

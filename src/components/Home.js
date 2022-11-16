@@ -8,10 +8,7 @@ const Home = () => {
         در این صفحه، بخش اصلی وبسایت قرار خواهد گرفت و با کلیک بر روی دکمه زیر،
         می توانید به پنل ادمین دسترسی داشته باشید
       </p>
-      <Link
-        to="/login"
-        className="bg-purple-600 text-md px-8 py-2 rounded-lg text-white hover:opacity-50 duration-300"
-      >
+      <Link to="/login" className="primary-btn mhover">
         ورود به پنل ادمین
       </Link>
     </div>
