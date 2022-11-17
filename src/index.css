@@ -18,6 +18,9 @@
 @tailwind utilities;
 
 @layer components {
+  .mcontainer {
+    @apply w-5/6 mx-auto;
+  }
   .fcenter {
     @apply flex items-center justify-center;
   }
@@ -34,7 +37,10 @@
     @apply bg-purple-200 text-purple-500 font-bf text-xs;
   }
   .primary-btn {
-    @apply bg-purple-600 text-base px-8 py-1 pb-2 rounded-lg text-white;
+    @apply border-2 border-purple-600 bg-purple-600 text-base px-8 py-1 pb-2 rounded-lg text-white;
+  }
+  .secondary-btn {
+    @apply border-2 border-purple-600   text-base px-8 py-1 pb-2 rounded-lg text-purple-600;
   }
   .minput {
     @apply text-slate-800 border-none bg-gray-100 text-sm w-full rounded-md focus:ring-0 focus:bg-purple-100 focus:outline-purple-400;

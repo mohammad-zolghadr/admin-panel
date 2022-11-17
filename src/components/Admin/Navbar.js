@@ -117,7 +117,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-gray-100 p-1">
-      <div className="fcenter py-4 px-4 gap-4 bg-white w-5/6 mx-auto my-6 rounded-xl shadow-lg">
+      <div className="fcenter py-4 px-4 gap-4 bg-white mcontainer my-6 rounded-xl shadow-lg">
         <div className="fbetween w-full px-6">
           <div className="fcenter gap-x-4 ">
             <span className="fcenter w-14 h-14 p-2 bg-gray-400 rounded-full">
