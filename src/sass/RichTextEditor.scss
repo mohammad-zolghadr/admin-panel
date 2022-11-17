@@ -1,0 +1,98 @@
+@import "./fonts";
+@import "./mixins";
+@import "./variables";
+
+
+.richTextEditorContainer{
+    @include displayFlex(center);
+    width: 100%;
+    font-size: 0.85rem;
+    line-height: 200%;
+    position: relative;
+
+    .ck-toolbar{
+        background-color: $inputBg !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    .ck.ck-editor{
+        
+        width: 100%;
+    }
+
+    .ck-button__label{
+        font-family: nf !important;
+    }
+    
+    .ck-editor{
+        width: 100%;
+        margin: auto;
+    }
+    
+    
+    .ck-content{
+        height: 300px;
+        overflow-y: scroll;
+
+        ul{
+            margin-top: 10px;
+        }
+        li{
+            margin-right: 25px;
+            list-style: disc;
+            font-size: 0.8rem;
+            color: $textThree;
+        }
+
+    }
+}
+
+.ck.ck-editor__main>.ck-editor__editable{
+    background: $inputBg ;
+
+    &:focus{
+        background-color: rgb(243 , 232 , 255);
+        border: 1px solid #d2abab;
+        // outline: 2px solid #a22;
+    }
+}
+
+
+@mixin positionAbsolute {
+    position: absolute;
+    top: 0;
+    left : 0;
+}
+
+.newPostTextAreaContainer > div{
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    @include simpleHover();
+
+    div{
+        background-color: $primaryColor;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+         @include positionAbsolute();
+        animation : scalingAnimation 1s ease-in-out infinite;
+    }
+    
+    img{
+        width: 26px;
+        @include positionAbsolute();
+        z-index: 1;
+    }
+
+    @keyframes scalingAnimation {
+        from {
+            transform: scale(0 , 0);
+            opacity: 1;
+        }
+        to{
+            transform: scale(1.5 , 1.5);
+            opacity: 0;
+        }
+    }
+}

@@ -30,7 +30,7 @@ const Posts = () => {
           لیست همه مقاله ها
         </button>
       </div>
-      <div className="min-h-screen">
+      <div className="min-h-screen w-10/12">
         {whatComponentMustShow === "NewContent" ? (
           <Posts_NewContent />
         ) : (

@@ -1,0 +1,22 @@
+
+@mixin simpleHover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+     &:hover{
+        opacity: 0.4;
+     }
+}
+
+@mixin displayFlex($align){
+    display: flex;
+    align-items: center;
+    @if ($align == center){
+        justify-content: center;
+    }
+    @else if ($align == between){
+        justify-content: space-between;
+    }
+    @else if ($align == evenly){
+        justify-content: space-evenly;
+    }
+}
