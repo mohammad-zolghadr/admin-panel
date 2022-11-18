@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
 // Components
 import RichtextEditor from "./RichTextEditor";
@@ -12,6 +13,11 @@ const PostsNewContent = () => {
   const inputHandler = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
   };
+
+  const onDrop = useCallback((acceptedFiles) => {
+    // File Choosen
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div className="w-full md:w-10/12 lg:w-2/3 mx-auto">
@@ -57,7 +63,10 @@ const PostsNewContent = () => {
         <div className="w-full fcenter flex-col gap-8 lg:flex-row lg:gap-4 ">
           <div className="w-full fcenter flex-col">
             <span className="inputLabel">آپلود تصویر</span>
-            <div className="flex items-center justify-center w-full">
+            <div
+              className="flex items-center justify-center w-full"
+              {...getRootProps()}
+            >
               <label
                 forhtml="dropzone-file"
                 className="fcenter flex-col w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-100 hover:bg-gray-50 duration-300"
@@ -87,6 +96,7 @@ const PostsNewContent = () => {
                   </p>
                 </div>
                 <input
+                  {...getInputProps()}
                   id="dropzone-file"
                   type="file"
                   className="hidden"
