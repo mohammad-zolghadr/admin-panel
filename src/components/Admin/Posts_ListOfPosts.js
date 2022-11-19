@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Icons
 import pic from "../../assets/images/profile.svg";
 import trashIco from "../../assets/images/trash.svg";
 import editIco from "../../assets/images/edit.svg";
+import searchIco from "../../assets/images/search.svg";
+import arrowIco from "../../assets/images/arrow.svg";
 
 const PostsListOfPosts = () => {
   const tableData = [
@@ -37,11 +39,60 @@ const PostsListOfPosts = () => {
     },
   ];
 
+  const [showSortDropDown, setShowSortDropDown] = useState(false);
+
   return (
     <div>
       <h3 className="font-bf text-gray-700">لیست مقاله ها</h3>
 
-      <div>{/* Search - Filter */}</div>
+      <div className="fcenter justify-between">
+        <span></span>
+        <div className="fcenter gap-2">
+          <div className="fcenter bg-gray-100 rounded-md py-1 pr-2 pl-4 gap-1">
+            <input
+              type="text"
+              className="border-none text-xs focus:ring-0 bg-transparent"
+              placeholder="جستجو"
+            />
+            <img
+              src={searchIco}
+              className="bg-purple-600 w-6 h-6 rounded-full p-1 mhover"
+            />
+          </div>
+          <div className="relative">
+            <button
+              id="dropdownDefault"
+              data-dropdown-toggle="dropdown"
+              className="fcenter gap-2 text-gray-600 text-xs bg-gray-100 rounded-md py-3 px-3 hover:bg-gray-50 "
+              type="button"
+              onClick={(e) => {
+                setShowSortDropDown(!showSortDropDown);
+              }}
+            >
+              مرتب سازی بر اساس
+              <img src={arrowIco} className="w-3 h-3" />
+            </button>
+            {showSortDropDown && (
+              <div className="absolute top-12 w-full z-10 ">
+                <ul className=" bg-gray-100 rounded-b-lg shadow-lg shadow-purple-300 text-sm text-gray-700 py-2">
+                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                    <span>منتشر شده ها</span>
+                  </li>
+                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                    <span>پیش نویس ها</span>
+                  </li>
+                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                    <span>جدیدترین ها</span>
+                  </li>
+                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                    <span>قدیمی ها</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
       <div className="border border-gray-300 rounded-lg my-4">
         <table className="leading-normal w-full">
