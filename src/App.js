@@ -10,6 +10,8 @@ import Dashboard from "./components/Admin/Dashboard";
 import Posts from "./components/Admin/Posts";
 import Users from "./components/Admin/Users";
 import NotFound from "./components/Admin/NotFound";
+import PostsNewContent from "./components/Admin/Posts_NewContent";
+import PostsListOfPosts from "./components/Admin/Posts_ListOfPosts";
 
 const App = () => {
   return (
@@ -19,7 +21,11 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="/admin/*" element={<Admin />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="posts" element={<Posts />} />
+          <Route path="posts/*" element={<Posts />}>
+            <Route path="*" element={<Navigate to="new-content" />} />
+            <Route path="new-content" element={<PostsNewContent />} />
+            <Route path="list-of-posts" element={<PostsListOfPosts />} />
+          </Route>
           <Route path="info" element={<Info />} />
           <Route path="users" element={<Users />} />
           <Route path="not-found" element={<NotFound />} />

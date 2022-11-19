@@ -174,7 +174,7 @@ const PostsListOfPosts = () => {
 
 export default PostsListOfPosts;
 
-// Some Custom Tailwind Styles
+// Custom Tailwind Styles
 const filterItemsStyle =
   "text-xs cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1";
 const tableHeadItemStyle =
