@@ -14,7 +14,9 @@ const changeRoute = (routeUrl) => {
       name: (
         <p
           className={
-            routeUrl === "dashboard" ? colorActiveClass : colorDeactiveClass
+            routeUrl.includes("dashboard")
+              ? colorActiveClass
+              : colorDeactiveClass
           }
         >
           داشبورد
@@ -26,7 +28,7 @@ const changeRoute = (routeUrl) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           className={`${
-            routeUrl === "dashboard" ? fillActiveClass : fillDeactiveClass
+            routeUrl.includes("dashboard") ? fillActiveClass : fillDeactiveClass
           }  w-5`}
         >
           <path d="M6 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 111.5 0v7.5A.75.75 0 016 12zM18 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0118 12zM6.75 20.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM18.75 18.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 011.5 0zM12.75 5.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM12 21a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0112 21zM3.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0zM12 11.25a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM15.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0z" />
@@ -37,7 +39,7 @@ const changeRoute = (routeUrl) => {
       name: (
         <p
           className={
-            routeUrl === "posts" ? colorActiveClass : colorDeactiveClass
+            routeUrl.includes("posts") ? colorActiveClass : colorDeactiveClass
           }
         >
           مقاله ها
@@ -49,7 +51,7 @@ const changeRoute = (routeUrl) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           className={`${
-            routeUrl === "posts" ? fillActiveClass : fillDeactiveClass
+            routeUrl.includes("posts") ? fillActiveClass : fillDeactiveClass
           }  w-5`}
         >
           <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
@@ -61,7 +63,7 @@ const changeRoute = (routeUrl) => {
       name: (
         <p
           className={
-            routeUrl === "users" ? colorActiveClass : colorDeactiveClass
+            routeUrl.includes("users") ? colorActiveClass : colorDeactiveClass
           }
         >
           کاربران
@@ -73,7 +75,7 @@ const changeRoute = (routeUrl) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           className={`${
-            routeUrl === "users" ? fillActiveClass : fillDeactiveClass
+            routeUrl.includes("users") ? fillActiveClass : fillDeactiveClass
           }  w-5`}
         >
           <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
@@ -84,7 +86,7 @@ const changeRoute = (routeUrl) => {
       name: (
         <p
           className={
-            routeUrl === "info" ? colorActiveClass : colorDeactiveClass
+            routeUrl.includes("info") ? colorActiveClass : colorDeactiveClass
           }
         >
           اطلاعات وب
@@ -96,7 +98,7 @@ const changeRoute = (routeUrl) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           className={`${
-            routeUrl === "info" ? fillActiveClass : fillDeactiveClass
+            routeUrl.includes("info") ? fillActiveClass : fillDeactiveClass
           }  w-5`}
         >
           <path
@@ -115,7 +117,7 @@ const Navbar = () => {
   // it must get from server
   const data = { name: "محمد ذوالقدر", rule: RULES.main };
   let location = useLocation().pathname.split("/");
-  location = location[location.length - 1];
+  // location = location[location.length - 1];
 
   return (
     <div className="bg-gray-100 p-1">
