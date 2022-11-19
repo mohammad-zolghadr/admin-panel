@@ -45,6 +45,7 @@ const PostsListOfPosts = () => {
     <div>
       <h3 className="font-bf text-gray-700">لیست مقاله ها</h3>
 
+      {/* Seacrh & Filter */}
       <div className="fcenter justify-between">
         <span></span>
         <div className="fcenter gap-2">
@@ -94,6 +95,7 @@ const PostsListOfPosts = () => {
         </div>
       </div>
 
+      {/* Table */}
       <div className="border border-gray-300 rounded-lg my-4">
         <table className="leading-normal w-full">
           <thead>
@@ -164,6 +166,19 @@ const PostsListOfPosts = () => {
             })}
           </tbody>
         </table>
+        {/* Pagination */}
+        <div className="fcenter py-3">
+          <div className="fcenter text-gray-400 border rounded-md overflow-hidden">
+            <button className="bg-gray-200 px-2 pr-3 border-l">1</button>
+            <button className="hover:bg-gray-100 px-2 border-l">2</button>
+            <button className="hover:bg-gray-100 px-2 border-l">3</button>
+            <button className="hover:bg-gray-100 px-2 border-l">4</button>
+            <button className="hover:bg-gray-100 px-2 border-l">5</button>
+            <button className="fcenter w-6 h-6 hover:bg-gray-100">
+              <img src={arrowIco} className="w-3 rotate-90" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
