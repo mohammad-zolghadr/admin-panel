@@ -61,7 +61,7 @@ const PostsNewContent = () => {
         </div>
 
         <div className="w-full fcenter flex-col gap-8 lg:flex-row lg:gap-4 ">
-          <div className="w-full fcenter flex-col">
+          <div className="w-full fcenter flex-col shadow-lg">
             <span className="inputLabel">آپلود تصویر</span>
             <div
               className="flex items-center justify-center w-full"

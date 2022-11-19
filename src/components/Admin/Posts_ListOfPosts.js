@@ -76,16 +76,16 @@ const PostsListOfPosts = () => {
             {showSortDropDown && (
               <div className="absolute top-12 w-full z-10 ">
                 <ul className=" bg-gray-100 rounded-b-lg shadow-lg shadow-purple-300 text-sm text-gray-700 py-2">
-                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                  <li className={filterItemsStyle}>
                     <span>منتشر شده ها</span>
                   </li>
-                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                  <li className={filterItemsStyle}>
                     <span>پیش نویس ها</span>
                   </li>
-                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                  <li className={filterItemsStyle}>
                     <span>جدیدترین ها</span>
                   </li>
-                  <li className="text-sm cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1">
+                  <li className={filterItemsStyle}>
                     <span>قدیمی ها</span>
                   </li>
                 </ul>
@@ -100,28 +100,16 @@ const PostsListOfPosts = () => {
         <table className="leading-normal w-full">
           <thead>
             <tr>
-              <th
-                scope="col"
-                className="font-normal border-b border-gray-300 text-right text-gray-500 text-sm px-4 py-3"
-              >
+              <th scope="col" className={`${tableHeadItemStyle} text-start`}>
                 عنوان
               </th>
-              <th
-                scope="col"
-                className="font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3"
-              >
+              <th scope="col" className={tableHeadItemStyle}>
                 وضعیت
               </th>
-              <th
-                scope="col"
-                className="font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3"
-              >
+              <th scope="col" className={tableHeadItemStyle}>
                 ایجاد شده در
               </th>
-              <th
-                scope="col"
-                className="font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3"
-              >
+              <th scope="col" className={tableHeadItemStyle}>
                 اقدامات بیشتر
               </th>
             </tr>
@@ -185,3 +173,9 @@ const PostsListOfPosts = () => {
 };
 
 export default PostsListOfPosts;
+
+// Some Custom Tailwind Styles
+const filterItemsStyle =
+  "text-xs cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1";
+const tableHeadItemStyle =
+  "font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3";
