@@ -31,10 +31,19 @@
     @apply flex items-center justify-start;
   }
   .mhover {
-    @apply hover:opacity-50 duration-300;
+    @apply hover:opacity-50 duration-300 cursor-pointer;
   }
   .mtag {
     @apply bg-purple-200 text-purple-500 font-bf text-xs;
+  }
+  .mactive {
+    @apply bg-green-200 text-green-500 font-bf text-xs px-2;
+  }
+  .mdarft {
+    @apply bg-gray-200 text-gray-500 font-bf text-xs px-2;
+  }
+  .mdeactive {
+    @apply bg-red-200 text-red-500 font-bf text-xs px-2;
   }
   .primary-btn {
     @apply border-2 border-purple-600 bg-purple-600 text-base px-8 py-1 pb-2 rounded-lg text-white;
