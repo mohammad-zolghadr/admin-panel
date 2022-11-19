@@ -3,7 +3,7 @@
 Building ... <br/><br/>
 
 ```diff
-- Build Step => Component Posts_ListOfPosts - Designing
+- Build Step => Component Portfolio Info (Info) - Designing
 ```
 
 <br/>
