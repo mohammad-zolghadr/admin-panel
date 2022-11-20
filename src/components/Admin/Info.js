@@ -7,6 +7,7 @@ import githubIco from "../../assets/images/github.png";
 import gmailIco from "../../assets/images/gmail.png";
 import whatsappIco from "../../assets/images/whatsapp.png";
 import instagramIco from "../../assets/images/instagram.png";
+import InfoProjectList from "./Info_ProjectList";
 
 const Info = () => {
   const {
@@ -81,15 +82,67 @@ const Info = () => {
       link: "",
     },
   ];
+  const projects = [
+    {
+      id: 1,
+      title: "پنل ادمین با تیلویند",
+      isMain: true,
+      description:
+        "این پنل ادمین به صورت فول استک با React.js و تیلویند ساخته شده است",
+      technologies:
+        "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 2,
+      title: "پنل ادمین با تیلویند",
+      isMain: true,
+      description:
+        "این پنل ادمین به صورت فول استک با React.js و تیلویند ساخته شده است",
+      technologies:
+        "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 3,
+      title: "سومین پروژه تستی من",
+      isMain: false,
+      description:
+        "این پنل ادمین به صورت فول استک با React.js و تیلویند ساخته شده است",
+      technologies:
+        "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 4,
+      title: "پنل ادمین با تیلویند",
+      isMain: true,
+      description:
+        "این پنل ادمین به صورت فول استک با React.js و تیلویند ساخته شده است",
+      technologies:
+        "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 5,
+      title: "پروژه برای موسسه خیریه",
+      isMain: false,
+      description:
+        "پروژه ای کاربردی با دیزاین شکیل که با فیگما طراحی شده است و با React.js پیاده سازی شده است",
+      technologies:
+        "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+  ];
 
   return (
     <div className="mwrapper">
       {/* Main Info */}
-      <div className="mx-6 fcenter flex-col mb-10">
+      <div className="w-[90%] mx-auto fcenter flex-col mb-10">
         <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
           اطلاعات کلی
         </span>
-        <div className="w-full fcenter flex-col gap-12 p-6 pb-20 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
+        <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
           {/* Name, Position and Resume */}
           <div className="w-full fcenter justify-between ">
             <div className="flex flex-col items-start flex-grow">
@@ -162,7 +215,7 @@ const Info = () => {
             ></textarea>
           </div>
           {/* Social */}
-          <div className="w-full fcenter mt-8 gap-4 gap-y-14 flex-wrap">
+          <div className="w-full fcenter mt-8 gap-2 gap-y-14 flex-wrap">
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
               <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
                 <img src={linkedinIco} className="w-3/5" />
@@ -224,6 +277,27 @@ const Info = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Project List */}
+      <div className="w-[90%] mx-auto fcenter flex-col mb-10">
+        <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
+          لیست پروژه ها
+        </span>
+        <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
+          <div className="fcenter gap-4 flex-wrap">
+            {projects.map((e) => {
+              return <InfoProjectList key={e.id} data={e} />;
+            })}
+            <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
+              <img className="w-10 opacity-60" src={plusIco} />
+              <p className="text-sm text-gray-500">مشاهده پروژه های بیشتر</p>
+            </div>
+          </div>
+          <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
+            اضافه کردن پروژه جدید
+          </button>
         </div>
       </div>
     </div>
