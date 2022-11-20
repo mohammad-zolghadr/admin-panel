@@ -196,7 +196,7 @@ const Info = () => {
   ];
 
   return (
-    <div className="mwrapper">
+    <div className="mwrapper py-20">
       {/* Main Info */}
       <div className="w-[90%] mx-auto fcenter flex-col mb-10">
         <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
@@ -373,7 +373,7 @@ const Info = () => {
             })}
             <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
               <img className="w-10 opacity-60" src={plusIco} />
-              <p className="text-sm text-gray-500">مشاهده پروژه های بیشتر</p>
+              <p className="text-sm text-gray-500">مشاهده آموزش های بیشتر</p>
             </div>
           </div>
           <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
@@ -381,6 +381,8 @@ const Info = () => {
           </button>
         </div>
       </div>
+
+      <button className="primary-btn mhover px-14">ذخیره اطلاعات</button>
     </div>
   );
 };

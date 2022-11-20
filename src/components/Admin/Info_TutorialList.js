@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // icons
 import editIco from "../../assets/images/edit_red.svg";
@@ -9,9 +9,17 @@ const InfoProjectList = (props) => {
   const { title, imageLink, time, platform, isMain, description, link } =
     props.data;
   return (
-    <div className="basis-60 flex-grow fcenter flex-col  bg-white gap-4 p-4 shadow-lg shadow-gray-300 rounded-lg">
+    <div className="basis-60 flex-grow fcenter flex-col  bg-white gap-4 p-4 shadow-lg shadow-gray-300 rounded-lg relative">
+      <div className="fcenter justify-end flex-grow gap-1 absolute top-0 left-0 py-1 bg-gray-50 px-3  rounded-br-lg rounded-tl-lg">
+        <img className="w-[20px] mb-[3px] mhover" src={editIco} />
+        <img
+          className="w-[20px] mhover"
+          src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
+        />
+      </div>
+
       <div className="w-full fcenter justify-between">
-        <div className="fcenter gap-2">
+        <div className="fcenter gap-2 mt-4">
           {imageLink ? (
             <img className="block w-12 h-12 rounded-full " src={imageLink} />
           ) : (
@@ -21,13 +29,6 @@ const InfoProjectList = (props) => {
             <h3 className="font-bf flex-grow text-gray-600 text-sm">{title}</h3>
             <p className="text-xs text-gray-400 font-bf">{`پلتفرم : ${platform}   |   زمان : ${time}`}</p>
           </div>
-        </div>
-        <div className="fcenter justify-end flex-grow gap-2 ">
-          <img className="w-[24px] mb-[3px] mhover" src={editIco} />
-          <img
-            className="w-[24px] mhover"
-            src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
-          />
         </div>
       </div>
       <div className="w-full ">
