@@ -290,17 +290,15 @@ const Info = () => {
             </div>
           </div>
           {/* Cover Letter */}
-          <div className="fcenter gap-1">
-            <p className="text-sm text-justify leading-5 text-gray-500">
-              {inputCoverLetter ? inputCoverLetter : coverLetter}
-            </p>
+          <p className="text-sm text-justify leading-5 text-gray-500">
+            {inputCoverLetter ? inputCoverLetter : coverLetter}{" "}
             <img
               name="coverLetter"
               onClick={editHandler}
-              className="w-4 mhover"
+              className="w-4 mhover inline"
               src={editIco}
             />
-          </div>
+          </p>
           {/* Technologies */}
           <div className="fcenter justify-start flex-wrap gap-4 w-full">
             {technologies.map((e) => {
