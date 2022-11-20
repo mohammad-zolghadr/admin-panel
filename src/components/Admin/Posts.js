@@ -6,7 +6,7 @@ const Posts = () => {
   location = location[location.length - 1];
 
   return (
-    <div className="fcenter flex-col gap-10 mcontainer bg-white rounded-xl shadow-lg mt-8 mb-16 py-8">
+    <div className="mwrapper">
       <div>
         <Link
           name="NewContent"
@@ -27,7 +27,7 @@ const Posts = () => {
           لیست همه مقاله ها
         </Link>
       </div>
-      <div className="min-h-screen w-10/12">
+      <div className="w-10/12">
         <Outlet />
       </div>
     </div>

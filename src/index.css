@@ -21,6 +21,9 @@
   .mcontainer {
     @apply w-5/6 mx-auto;
   }
+  .mwrapper {
+    @apply fcenter flex-col gap-10 mcontainer min-h-screen bg-white rounded-xl shadow-lg mt-8 mb-16 py-8;
+  }
   .fcenter {
     @apply flex items-center justify-center;
   }
