@@ -7,7 +7,10 @@ import githubIco from "../../assets/images/github.png";
 import gmailIco from "../../assets/images/gmail.png";
 import whatsappIco from "../../assets/images/whatsapp.png";
 import instagramIco from "../../assets/images/instagram.png";
+
+// Components
 import InfoProjectList from "./Info_ProjectList";
+import InfoTutorialList from "./Info_TutorialList";
 
 const Info = () => {
   const {
@@ -131,6 +134,63 @@ const Info = () => {
         "پروژه ای کاربردی با دیزاین شکیل که با فیگما طراحی شده است و با React.js پیاده سازی شده است",
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+  ];
+  const tutorials = [
+    {
+      id: 1,
+      title: "آموزش ارتباط با API در React.js",
+      time: "5 ساعت",
+      platform: "فرادرس",
+      imageLink: "",
+      isMain: true,
+      description:
+        "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 2,
+      title: "آموزش ارتباط با API در React.js",
+      time: "5 ساعت",
+      platform: "فرادرس",
+      imageLink: "",
+      isMain: true,
+      description:
+        "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 3,
+      title: "آموزش ارتباط با API در React.js",
+      time: "5 ساعت",
+      platform: "فرادرس",
+      imageLink: "",
+      isMain: true,
+      description:
+        "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 4,
+      title: "آموزش ارتباط با API در React.js",
+      time: "5 ساعت",
+      platform: "فرادرس",
+      imageLink: "",
+      isMain: true,
+      description:
+        "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
+      link: "https://github.com/mohammad-zolghadr/admin-panel",
+    },
+    {
+      id: 5,
+      title: "آموزش ارتباط با API در React.js",
+      time: "5 ساعت",
+      platform: "فرادرس",
+      imageLink: "",
+      isMain: true,
+      description:
+        "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
     },
   ];
@@ -297,6 +357,27 @@ const Info = () => {
           </div>
           <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
             اضافه کردن پروژه جدید
+          </button>
+        </div>
+      </div>
+
+      {/* Tutorial List */}
+      <div className="w-[90%] mx-auto fcenter flex-col mb-10">
+        <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
+          لیست آموزش ها
+        </span>
+        <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
+          <div className="fcenter gap-4 flex-wrap">
+            {tutorials.map((e) => {
+              return <InfoTutorialList key={e.id} data={e} />;
+            })}
+            <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
+              <img className="w-10 opacity-60" src={plusIco} />
+              <p className="text-sm text-gray-500">مشاهده پروژه های بیشتر</p>
+            </div>
+          </div>
+          <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
+            اضافه کردن آموزش جدید
           </button>
         </div>
       </div>
