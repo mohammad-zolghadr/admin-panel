@@ -7,12 +7,22 @@ import githubIco from "../../assets/images/github.png";
 import gmailIco from "../../assets/images/gmail.png";
 import whatsappIco from "../../assets/images/whatsapp.png";
 import instagramIco from "../../assets/images/instagram.png";
+import editIco from "../../assets/images/edit_red.svg";
 
 // Components
 import InfoProjectList from "./Info_ProjectList";
 import InfoTutorialList from "./Info_TutorialList";
+import OneField from "./dialog-editInfo/OneField";
+import { useState } from "react";
 
 const Info = () => {
+  const [showOneField, setShowOneField] = useState(false);
+  const [inputTitle, setInputTitle] = useState();
+  const [inputPosition, setInputPosition] = useState();
+  const [inputCoverLetter, setInputCoverLetter] = useState();
+  const [inputUniversity, setInputUniversity] = useState();
+  const [inputDegree, setInputDegree] = useState();
+  const [inputEducationTime, setInputEducationTime] = useState();
   const {
     name,
     position,
@@ -195,10 +205,41 @@ const Info = () => {
     },
   ];
 
+  const editHandler = (e) => {
+    setShowOneField(e.target.name);
+  };
+
+  const getEditableInput = () => {
+    switch (showOneField) {
+      case "title":
+        return setInputTitle;
+      case "position":
+        return setInputPosition;
+      case "coverLetter":
+        return setInputCoverLetter;
+      case "university":
+        return setInputUniversity;
+      case "degree":
+        return setInputDegree;
+      case "educationTime":
+        return setInputEducationTime;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="mwrapper py-20">
       {/* Main Info */}
       <div className="w-[90%] mx-auto fcenter flex-col mb-10">
+        {showOneField && (
+          <OneField
+            data={{
+              setShowOneField: setShowOneField,
+              setInputValue: getEditableInput(),
+            }}
+          />
+        )}
         <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
           اطلاعات کلی
         </span>
@@ -206,8 +247,28 @@ const Info = () => {
           {/* Name, Position and Resume */}
           <div className="w-full fcenter justify-between ">
             <div className="flex flex-col items-start flex-grow">
-              <span className="font-bf text-sm text-gray-600">{name}</span>
-              <span className="text-xs text-gray-500">{position}</span>
+              <div className="fcenter gap-1">
+                <span className="font-bf text-sm text-gray-600">
+                  {inputTitle ? inputTitle : name}
+                </span>
+                <img
+                  name="title"
+                  onClick={editHandler}
+                  className="w-4 mhover"
+                  src={editIco}
+                />
+              </div>
+              <div className="fcenter gap-1">
+                <span className="text-xs text-gray-500">
+                  {inputPosition ? inputPosition : position}
+                </span>
+                <img
+                  name="position"
+                  onClick={editHandler}
+                  className="w-4 mhover"
+                  src={editIco}
+                />
+              </div>
             </div>
             <div className="fcenter justify-between px-4 py-2 gap-8 bg-white shadow-lg shadow-gray-300 rounded-lg ">
               <label forhtml="choose-resume" className="mhover">
@@ -229,9 +290,17 @@ const Info = () => {
             </div>
           </div>
           {/* Cover Letter */}
-          <p className="text-sm text-justify leading-5 text-gray-500">
-            {coverLetter}
-          </p>
+          <div className="fcenter gap-1">
+            <p className="text-sm text-justify leading-5 text-gray-500">
+              {inputCoverLetter ? inputCoverLetter : coverLetter}
+            </p>
+            <img
+              name="coverLetter"
+              onClick={editHandler}
+              className="w-4 mhover"
+              src={editIco}
+            />
+          </div>
           {/* Technologies */}
           <div className="fcenter justify-start flex-wrap gap-4 w-full">
             {technologies.map((e) => {
@@ -251,22 +320,48 @@ const Info = () => {
           {/* University and Soft Skills */}
           <div className="w-full fcenter justify-between gap-4 flex-wrap">
             <div className="flex flex-col items-start gap-3 flex-grow">
-              <span className="text-xs text-gray-500">
-                {`دانشگاه : `}
-                <span className="font-bf text-sm text-gray-600">
-                  {university}
+              <div className="fcenter gap-1">
+                <span className="text-xs text-gray-500">
+                  {`دانشگاه : `}
+                  <span className="font-bf text-sm text-gray-600">
+                    {inputUniversity ? inputUniversity : university}
+                  </span>
                 </span>
-              </span>
-              <span className="text-xs text-gray-500">
-                {`مدرک : `}
-                <span className="font-bf text-sm text-gray-600">{degree}</span>
-              </span>
-              <span className="text-xs text-gray-500">
-                {`سال تحصیل : `}
-                <span className="font-bf text-sm text-gray-600">
-                  {educationTime}
+                <img
+                  onClick={editHandler}
+                  name="university"
+                  className="w-4 mhover"
+                  src={editIco}
+                />
+              </div>
+              <div className="fcenter gap-1">
+                <span className="text-xs text-gray-500">
+                  {`مدرک : `}
+                  <span className="font-bf text-sm text-gray-600">
+                    {inputDegree ? inputDegree : degree}
+                  </span>
                 </span>
-              </span>
+                <img
+                  onClick={editHandler}
+                  name="degree"
+                  className="w-4 mhover"
+                  src={editIco}
+                />
+              </div>
+              <div className="fcenter gap-1">
+                <span className="text-xs text-gray-500">
+                  {`سال تحصیل : `}
+                  <span className="font-bf text-sm text-gray-600">
+                    {inputEducationTime ? inputEducationTime : educationTime}
+                  </span>
+                </span>
+                <img
+                  onClick={editHandler}
+                  name="educationTime"
+                  className="w-4 mhover"
+                  src={editIco}
+                />
+              </div>
             </div>
             <textarea
               className="minput bg-gray-200 shadow-md w-3/5 h-32 flex-grow resize-none"
@@ -277,7 +372,7 @@ const Info = () => {
           {/* Social */}
           <div className="w-full fcenter mt-8 gap-2 gap-y-14 flex-wrap">
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
-              <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
+              <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={linkedinIco} className="w-3/5" />
               </div>
               <div className="pt-5">
@@ -289,7 +384,7 @@ const Info = () => {
               </div>
             </div>
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
-              <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
+              <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={githubIco} className="w-3/5" />
               </div>
               <div className="pt-5">
@@ -301,7 +396,7 @@ const Info = () => {
               </div>
             </div>
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
-              <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
+              <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={gmailIco} className="w-3/5" />
               </div>
               <div className="pt-5">
@@ -313,7 +408,7 @@ const Info = () => {
               </div>
             </div>
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
-              <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
+              <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={whatsappIco} className="w-3/5" />
               </div>
               <div className="pt-5">
@@ -325,7 +420,7 @@ const Info = () => {
               </div>
             </div>
             <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
-              <div className="w-14 h-14 fcenter absolute top-[-2rem]  bg-gray-500 rounded-full">
+              <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={instagramIco} className="w-3/5" />
               </div>
               <div className="pt-5">
