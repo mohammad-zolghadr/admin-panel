@@ -40,16 +40,42 @@ const PostsListOfPosts = () => {
   ];
 
   const [showSortDropDown, setShowSortDropDown] = useState(false);
+  const [selectedDropDownItem, setSelectedDropDownItem] = useState("");
+
+  const dropdownHandler = (name) => {
+    switch (name) {
+      case "publish":
+        setSelectedDropDownItem("منتشرشده ها");
+        // Update Data
+        break;
+      case "draft":
+        setSelectedDropDownItem("پیش‌نویس ها");
+        // Update Data
+        break;
+      case "newest":
+        setSelectedDropDownItem("جدید ترین");
+        // Update Data
+        break;
+      case "oldest":
+        setSelectedDropDownItem("قدیمی‌ ترین");
+        // Update Data
+        break;
+
+      default:
+        break;
+    }
+    setShowSortDropDown(false);
+  };
 
   return (
     <div>
-      <h3 className="font-bf text-gray-700">لیست مقاله ها</h3>
+      <h3 className="font-bf my-8 text-gray-700">لیست مقاله ها</h3>
 
       {/* Seacrh & Filter */}
-      <div className="fcenter justify-between">
+      <div className="fcenter justify-between mb-6">
         <span></span>
-        <div className="fcenter gap-2">
-          <div className="fcenter bg-gray-100 rounded-md py-1 pr-2 pl-4 gap-1">
+        <div className="fcenter flex-wrap gap-2">
+          <div className="fcenter justify-between bg-gray-100 flex-grow rounded-md py-1 pr-2 pl-4 gap-1">
             <input
               type="text"
               className="border-none text-xs focus:ring-0 bg-transparent"
@@ -60,33 +86,47 @@ const PostsListOfPosts = () => {
               className="bg-purple-600 w-6 h-6 rounded-full p-1 mhover"
             />
           </div>
-          <div className="relative">
+          <div className="relative fcenter flex-grow min-w-[140px]">
             <button
               id="dropdownDefault"
               data-dropdown-toggle="dropdown"
-              className="fcenter gap-2 text-gray-600 text-xs bg-gray-100 rounded-md py-3 px-3 hover:bg-gray-50 "
+              className="fcenter justify-between gap-2 text-gray-600 text-xs w-full bg-gray-100 rounded-md py-3 px-3 hover:bg-gray-50 "
               type="button"
               onClick={(e) => {
                 setShowSortDropDown(!showSortDropDown);
               }}
             >
-              مرتب سازی بر اساس
+              {selectedDropDownItem
+                ? selectedDropDownItem
+                : "مرتب سازی بر اساس"}
               <img src={arrowIco} className="w-3 h-3" />
             </button>
             {showSortDropDown && (
               <div className="absolute top-12 w-full z-10 ">
                 <ul className=" bg-gray-100 rounded-b-lg shadow-lg shadow-purple-300 text-sm text-gray-700 py-2">
-                  <li className={filterItemsStyle}>
-                    <span>منتشر شده ها</span>
+                  <li
+                    onClick={() => dropdownHandler("publish")}
+                    className={filterItemsStyle}
+                  >
+                    <span>منتشرشده ها</span>
                   </li>
-                  <li className={filterItemsStyle}>
-                    <span>پیش نویس ها</span>
+                  <li
+                    onClick={() => dropdownHandler("draft")}
+                    className={filterItemsStyle}
+                  >
+                    <span>پیش‌نویس ها</span>
                   </li>
-                  <li className={filterItemsStyle}>
-                    <span>جدیدترین ها</span>
+                  <li
+                    onClick={() => dropdownHandler("newest")}
+                    className={filterItemsStyle}
+                  >
+                    <span>جدید ترین</span>
                   </li>
-                  <li className={filterItemsStyle}>
-                    <span>قدیمی ها</span>
+                  <li
+                    onClick={() => dropdownHandler("oldest")}
+                    className={filterItemsStyle}
+                  >
+                    <span>قدیمی ترین</span>
                   </li>
                 </ul>
               </div>
