@@ -14,11 +14,15 @@ import InfoProjectList from "./Info_ProjectList";
 import InfoTutorialList from "./Info_TutorialList";
 import OneField from "./dialog-editInfo/OneField";
 import TechnologyAddOrEdit from "./dialog-editInfo/TechnologyAddOrEdit";
+import TutorialDialog from "./dialog-editInfo/TutorialDialog";
+import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
 const Info = () => {
   const [showOneField, setShowOneField] = useState(false);
   const [showDialogTechnologyAddOrEdit, setShowDialogTechnologyAddOrEdit] =
     useState(false);
+  const [showDialogTutorial, setShowDialogTutorial] = useState(false);
+  const [showDialogProject, setShowDialogProject] = useState(false);
   const [inputTitle, setInputTitle] = useState();
   const [inputPosition, setInputPosition] = useState();
   const [inputCoverLetter, setInputCoverLetter] = useState();
@@ -251,6 +255,12 @@ const Info = () => {
             data={{ setShowDialog: setShowDialogTechnologyAddOrEdit }}
           />
         )}
+        {showDialogTutorial && (
+          <TutorialDialog data={{ setShowDialog: setShowDialogTutorial }} />
+        )}
+        {showDialogProject && (
+          <ProjectDialog data={{ setShowDialog: setShowDialogProject }} />
+        )}
         <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
           اطلاعات کلی
         </span>
@@ -465,7 +475,10 @@ const Info = () => {
               <p className="text-sm text-gray-500">مشاهده پروژه های بیشتر</p>
             </div>
           </div>
-          <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
+          <button
+            onClick={() => setShowDialogProject(true)}
+            className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover"
+          >
             اضافه کردن پروژه جدید
           </button>
         </div>
@@ -486,7 +499,10 @@ const Info = () => {
               <p className="text-sm text-gray-500">مشاهده آموزش های بیشتر</p>
             </div>
           </div>
-          <button className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover">
+          <button
+            onClick={() => setShowDialogTutorial(true)}
+            className="bg-gray-200 px-20 py-4 rounded-lg font-bf text-sm text-gray-500 mhover"
+          >
             اضافه کردن آموزش جدید
           </button>
         </div>
