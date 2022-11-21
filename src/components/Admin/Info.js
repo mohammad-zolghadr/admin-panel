@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // icons
 import plusIco from "../../assets/images/plus.svg";
@@ -13,10 +13,12 @@ import editIco from "../../assets/images/edit_red.svg";
 import InfoProjectList from "./Info_ProjectList";
 import InfoTutorialList from "./Info_TutorialList";
 import OneField from "./dialog-editInfo/OneField";
-import { useState } from "react";
+import TechnologyAddOrEdit from "./dialog-editInfo/TechnologyAddOrEdit";
 
 const Info = () => {
   const [showOneField, setShowOneField] = useState(false);
+  const [showDialogTechnologyAddOrEdit, setShowDialogTechnologyAddOrEdit] =
+    useState(false);
   const [inputTitle, setInputTitle] = useState();
   const [inputPosition, setInputPosition] = useState();
   const [inputCoverLetter, setInputCoverLetter] = useState();
@@ -228,6 +230,10 @@ const Info = () => {
     }
   };
 
+  const openTechnologyAddOrEditDialog = (name, data) => {
+    setShowDialogTechnologyAddOrEdit(true);
+  };
+
   return (
     <div className="mwrapper py-20">
       {/* Main Info */}
@@ -238,6 +244,11 @@ const Info = () => {
               setShowOneField: setShowOneField,
               setInputValue: getEditableInput(),
             }}
+          />
+        )}
+        {showDialogTechnologyAddOrEdit && (
+          <TechnologyAddOrEdit
+            data={{ setShowDialog: setShowDialogTechnologyAddOrEdit }}
           />
         )}
         <span className="bg-gray-400 px-8 py-1 rounded-t-xl font-bf text-sm text-white">
@@ -304,6 +315,9 @@ const Info = () => {
             {technologies.map((e) => {
               return (
                 <div
+                  onClick={(event) =>
+                    openTechnologyAddOrEditDialog("tech-edit", e)
+                  }
                   key={e.name}
                   className="w-16 h-16 rounded-full bg-white shadow-lg mhover "
                 >
@@ -311,7 +325,10 @@ const Info = () => {
                 </div>
               );
             })}
-            <div className="w-16 h-16 fcenter rounded-full bg-purple-500 shadow-lg mhover ">
+            <div
+              onClick={(event) => openTechnologyAddOrEditDialog("tech-add", "")}
+              className="w-16 h-16 fcenter rounded-full bg-purple-500 shadow-lg mhover "
+            >
               <img className="w-2/3" src={plusIco} />
             </div>
           </div>

@@ -16,7 +16,7 @@ const OneField = (props) => {
       <div className="bg-white px-8 py-6 rounded-lg fcenter flex-col gap-4 z-20">
         <input
           value={inputFieldeValue}
-          className="minput w-56 shadow-md"
+          className="minput w-72 shadow-md ph py-3 text-xs"
           placeholder="مقدار جدید را اینجا وارد کنید"
           type="text"
           onChange={(e) => {

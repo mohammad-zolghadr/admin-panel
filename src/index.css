@@ -57,6 +57,9 @@
   .minput {
     @apply text-slate-800 border-none bg-gray-100 text-sm w-full rounded-md focus:ring-0 focus:bg-purple-100 focus:outline-purple-400;
   }
+  .ph {
+    @apply placeholder:text-gray-400;
+  }
   .inputLabel {
     @apply bg-gray-300 font-bf rounded-t-xl px-6 text-xs text-gray-500;
   }
