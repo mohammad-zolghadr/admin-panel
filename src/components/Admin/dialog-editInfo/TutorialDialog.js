@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-const ProjectDialog = (props) => {
+const TutorialDialog = (props) => {
   const { setShowDialog } = props.data;
   const [inputFieldeValue, setInputFieldValue] = useState({
     title: "",
+    time: "",
+    image: "",
     link: "",
     description: "",
     technologies: "",
@@ -19,6 +21,7 @@ const ProjectDialog = (props) => {
       ...inputFieldeValue,
       [e.target.name]: e.target.value,
     });
+    console.log(inputFieldeValue);
   };
 
   return (
@@ -31,20 +34,28 @@ const ProjectDialog = (props) => {
         <div className="fcenter gap-2">
           <input
             value={inputFieldeValue.title}
-            className="minput w-36 md:w-56 shadow-md py-3 ph text-xs"
-            placeholder="عنوان پروژه"
+            className="minput w-32 md:w-56 shadow-md py-3 ph text-xs"
+            placeholder="عنوان آموزش"
             type="text"
             name="title"
             onChange={inputHandler}
           />
           <input
-            value={inputFieldeValue.link}
-            className="minput w-36 md:w-56 shadow-md py-3 ph text-xs"
-            placeholder="لینک مرتبط"
+            value={inputFieldeValue.time}
+            className="minput w-20 md:w-40 shadow-md py-3 ph text-xs"
+            placeholder="زمان آموزش (به ساعت)"
             type="text"
-            name="link"
+            name="time"
             onChange={inputHandler}
           />
+          <div className="bg-gray-100 py-1 px-2 rounded-md shadow-md">
+            <label className="fcenter" forhtml="choosePicture">
+              <span className="bg-gray-200 font-bf text-xs text-gray-400 px-2 py-2 rounded-md mhover ">
+                انتخاب عکس
+              </span>
+              <input id="choosePicture" type="file" className="hidden" />
+            </label>
+          </div>
         </div>
         <input
           value={inputFieldeValue.description}
@@ -55,11 +66,11 @@ const ProjectDialog = (props) => {
           onChange={inputHandler}
         />
         <input
-          value={inputFieldeValue.technologies}
+          value={inputFieldeValue.link}
           className="minput w-full shadow-md py-3 ph text-xs"
-          placeholder="اسم تکنولوژی ها را اینجا وارد کنید و با - از هم جدا کنید"
+          placeholder="لینک آموزش"
           type="text"
-          name="technologies"
+          name="link"
           onChange={inputHandler}
         />
         <div className="fcenter gap-2">
@@ -83,4 +94,4 @@ const ProjectDialog = (props) => {
   );
 };
 
-export default ProjectDialog;
+export default TutorialDialog;

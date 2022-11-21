@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 // icons
 import editIco from "../../assets/images/edit_red.svg";
 import checkboxActiveIco from "../../assets/images/checkbox_active.svg";
 import checkboxDeactiveIco from "../../assets/images/checkbox_deactive.svg";
 
+// Components
+import TutorialDialog from "./dialog-editInfo/TutorialDialog";
+
 const InfoProjectList = (props) => {
   const { title, imageLink, time, platform, isMain, description, link } =
     props.data;
+  const [showEditDialog, setShowEditDialog] = useState(false);
   return (
     <div className="basis-60 flex-grow fcenter flex-col  bg-white gap-4 p-4 shadow-lg shadow-gray-300 rounded-lg relative">
+      {showEditDialog && (
+        <TutorialDialog data={{ setShowDialog: setShowEditDialog }} />
+      )}
       <div className="fcenter justify-end flex-grow gap-1 absolute top-0 left-0 py-1 bg-gray-50 px-3  rounded-br-lg rounded-tl-lg">
-        <img className="w-[20px] mb-[3px] mhover" src={editIco} />
+        <img
+          onClick={() => setShowEditDialog(true)}
+          className="w-[20px] mb-[3px] mhover"
+          src={editIco}
+        />
         <img
           className="w-[20px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
