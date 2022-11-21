@@ -8,7 +8,6 @@ import Info from "./components/Admin/Info";
 import Login from "./components/Admin/Login";
 import Dashboard from "./components/Admin/Dashboard";
 import Posts from "./components/Admin/Posts";
-import Users from "./components/Admin/Users";
 import NotFound from "./components/Admin/NotFound";
 import PostsNewContent from "./components/Admin/Posts_NewContent";
 import PostsListOfPosts from "./components/Admin/Posts_ListOfPosts";
@@ -27,7 +26,6 @@ const App = () => {
             <Route path="list-of-posts" element={<PostsListOfPosts />} />
           </Route>
           <Route path="info" element={<Info />} />
-          <Route path="users" element={<Users />} />
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Route>
