@@ -27,7 +27,7 @@ const Posts = () => {
           لیست همه مقاله ها
         </Link>
       </div>
-      <div className="w-10/12">
+      <div className="w-10/12 min-h-screen">
         <Outlet />
       </div>
     </div>
@@ -38,6 +38,6 @@ export default Posts;
 
 // Custom Tailwind Style
 const classActiveButton =
-  "primary-btn shadow-md shadow-purple-300 font-bf md:text-sm text-xs py-2 px-6 md:mx-4 mx-2 mhover";
+  "primary-btn shadow-sm shadow-purple-300 font-bf md:text-sm text-xs py-2 px-6 md:mx-4 mx-2 mhover";
 const classDeactiveBtn =
-  "secondary-btn shadow-md shadow-purple-300 font-bf md:text-sm text-xs py-2 px-6 md:mx-4 mx-2 mhover";
+  "secondary-btn shadow-sm shadow-purple-300 font-bf md:text-sm text-xs py-2 px-6 md:mx-4 mx-2 mhover";
