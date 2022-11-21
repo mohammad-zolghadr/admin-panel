@@ -300,7 +300,7 @@ const Info = () => {
                   id="choose-resume"
                   type="file"
                   className="hidden"
-                  accept="application/pdf,application/vnd.ms-excel"
+                  accept="application/pdf , .docx , .doc"
                 />
               </label>
               {!resumeFile && (
