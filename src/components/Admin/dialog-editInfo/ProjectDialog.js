@@ -1,17 +1,25 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const TechnologyAddOrEdit = (props) => {
+const ProjectDialog = (props) => {
   const { setShowDialog } = props.data;
   const [inputFieldeValue, setInputFieldValue] = useState({
     title: "",
-    image: "",
+    link: "",
+    description: "",
     technologies: "",
   });
 
   const clickHandler = (e) => {
     setShowDialog(false);
     // Redux Update Data
+  };
+
+  const inputHandler = (e) => {
+    setInputFieldValue({
+      ...inputFieldeValue,
+      [e.target.name]: e.target.value,
+    });
+    console.log(inputFieldeValue);
   };
 
   return (
@@ -25,35 +33,35 @@ const TechnologyAddOrEdit = (props) => {
           <input
             value={inputFieldeValue.title}
             className="minput w-56 shadow-md py-3 ph text-xs"
-            placeholder="اسم تخصص را اینجا وارد کنید"
+            placeholder="عنوان پروژه"
             type="text"
-            onChange={(e) => {
-              setInputFieldValue({
-                ...inputFieldeValue,
-                title: e.target.value,
-              });
-            }}
+            name="title"
+            onChange={inputHandler}
           />
-          <div className="bg-gray-100 py-1 px-2 rounded-md shadow-md">
-            <label className="fcenter" forhtml="choosePicture">
-              <span className="bg-gray-200 font-bf text-xs text-gray-400 px-3 py-2 rounded-md mhover ">
-                انتخاب عکس
-              </span>
-              <input id="choosePicture" type="file" className="hidden" />
-            </label>
-          </div>
+          <input
+            value={inputFieldeValue.link}
+            className="minput w-56 shadow-md py-3 ph text-xs"
+            placeholder="لینک مرتبط"
+            type="text"
+            name="link"
+            onChange={inputHandler}
+          />
         </div>
+        <input
+          value={inputFieldeValue.description}
+          className="minput w-full shadow-md py-3 ph text-xs"
+          placeholder="توضیحات"
+          type="text"
+          name="description"
+          onChange={inputHandler}
+        />
         <input
           value={inputFieldeValue.technologies}
           className="minput w-full shadow-md py-3 ph text-xs"
           placeholder="اسم تکنولوژی ها را اینجا وارد کنید و با - از هم جدا کنید"
           type="text"
-          onChange={(e) => {
-            setInputFieldValue({
-              ...inputFieldeValue,
-              technologies: e.target.value,
-            });
-          }}
+          name="technologies"
+          onChange={inputHandler}
         />
         <div className="fcenter gap-2">
           <button
@@ -76,4 +84,4 @@ const TechnologyAddOrEdit = (props) => {
   );
 };
 
-export default TechnologyAddOrEdit;
+export default ProjectDialog;
