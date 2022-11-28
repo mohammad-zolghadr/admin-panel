@@ -8,6 +8,7 @@ import userIco from "../../assets/images/users.svg";
 import messageIco from "../../assets/images/message.svg";
 import postIco from "../../assets/images/posts.svg";
 
+// Chart Data
 const labels = [
   "شنبه",
   "یکشنبه",
@@ -17,7 +18,6 @@ const labels = [
   "پنجشنبه",
   "جمعه",
 ];
-
 const weekChartData = {
   labels,
   datasets: [
@@ -30,7 +30,6 @@ const weekChartData = {
     },
   ],
 };
-
 const postsChartData = {
   labels,
   datasets: [
@@ -44,17 +43,22 @@ const postsChartData = {
   ],
 };
 
+// Calculate numbers in array
 const calculateNumbers = (array) => {
   const calc = array.reduce((a, b) => a + b);
-  let result = calc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return result;
+  return separateNumbers(calc);
+};
+
+// Separate numbers
+const separateNumbers = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 const Dashboard = () => {
   const [showWhichChart, setShowWhichChart] = useState("week");
 
   return (
-    <div className="mwrapper">
+    <div className="mwrapper gap-20">
       {/* Top Header */}
       <div className="fcenter mcontainer gap-2 lg:gap-5 flex-wrap">
         <div
@@ -62,7 +66,7 @@ const Dashboard = () => {
           name="week"
           onClick={() => setShowWhichChart("week")}
         >
-          <img className="w-8 lg:w-14" src={userIco} />
+          <img className="w-8 lg:w-10" src={userIco} />
           <div className="fcenter flex-col items-start">
             <span className={classTopHeaderCounter}>
               {calculateNumbers(weekChartData.datasets[0].data)}
@@ -75,7 +79,7 @@ const Dashboard = () => {
           name="post"
           onClick={() => setShowWhichChart("post")}
         >
-          <img className="w-8 lg:w-14" src={postIco} />
+          <img className="w-8 lg:w-10" src={postIco} />
           <div className="fcenter flex-col items-start">
             <span className={classTopHeaderCounter}>
               {calculateNumbers(postsChartData.datasets[0].data)}
@@ -84,7 +88,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className={`${classTopHeader} shadow-red-500 bg-red-700`}>
-          <img className="w-8 lg:w-14" src={messageIco} />
+          <img className="w-8 lg:w-10" src={messageIco} />
           <div className="fcenter flex-col items-start">
             <span className={classTopHeaderCounter}>142,458</span>
             <span className={classTopHeaderTitle}>پیام مستقیم</span>
@@ -93,7 +97,7 @@ const Dashboard = () => {
       </div>
 
       {/* Chart */}
-      <div className="fcenter w-10/12 h-64 lg:h-80 lg:mt-10">
+      <div className="fcenter w-10/12 h-64 lg:h-80">
         {showWhichChart === "week" ? (
           <AreaChart data={weekChartData} />
         ) : (
@@ -108,6 +112,6 @@ export default Dashboard;
 
 // Custom Tailwind Style
 const classTopHeader =
-  "fcenter gap-2 md:gap-6 h-20 lg:h-32 flex-grow rounded-lg shadow-lg px-4 mhover";
+  "fcenter gap-2 md:gap-6 h-20 lg:h-24 flex-grow rounded-lg shadow-lg px-4 mhover";
 const classTopHeaderCounter = "text-sm lg:text-base text-white";
 const classTopHeaderTitle = "text-xs lg:text-sm text-white";
