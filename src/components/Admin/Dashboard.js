@@ -1,26 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
+
+// Components
+import AreaChart from "./AreaChart";
 
 // Icons
 import userIco from "../../assets/images/users.svg";
 import messageIco from "../../assets/images/message.svg";
 import postIco from "../../assets/images/posts.svg";
 
+const labels = [
+  "شنبه",
+  "یکشنبه",
+  "دوشنبه",
+  "سه شنبه",
+  "چهارشنبه",
+  "پنجشنبه",
+  "جمعه",
+];
+
+const weekChartData = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: "بازدید هفتگی به تفکیک روز",
+      data: [1264, 2424, 9754, 3796, 2849, 4560, 3940],
+      borderColor: "#7E22CE",
+      backgroundColor: "#7E22CE77",
+    },
+  ],
+};
+
+const postsChartData = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: "مقالات منتشر شده در این هفته",
+      data: [26, 12, 54, 21, 86, 72, 42],
+      borderColor: "#334155",
+      backgroundColor: "#33415577",
+    },
+  ],
+};
+
+const calculateNumbers = (array) => {
+  const calc = array.reduce((a, b) => a + b);
+  let result = calc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return result;
+};
+
 const Dashboard = () => {
+  const [showWhichChart, setShowWhichChart] = useState("week");
+
   return (
     <div className="mwrapper">
       {/* Top Header */}
       <div className="fcenter mcontainer gap-2 lg:gap-5 flex-wrap">
-        <div className={`${classTopHeader} shadow-purple-500 bg-purple-700`}>
+        <div
+          className={`${classTopHeader} shadow-purple-500 bg-purple-700`}
+          name="week"
+          onClick={() => setShowWhichChart("week")}
+        >
           <img className="w-8 lg:w-14" src={userIco} />
           <div className="fcenter flex-col items-start">
-            <span className={classTopHeaderCounter}>142,458</span>
-            <span className={classTopHeaderTitle}>بازدید روزانه</span>
+            <span className={classTopHeaderCounter}>
+              {calculateNumbers(weekChartData.datasets[0].data)}
+            </span>
+            <span className={classTopHeaderTitle}>بازدید هفتگی</span>
           </div>
         </div>
-        <div className={`${classTopHeader} shadow-slate-500 bg-slate-700`}>
+        <div
+          className={`${classTopHeader} shadow-slate-500 bg-slate-700`}
+          name="post"
+          onClick={() => setShowWhichChart("post")}
+        >
           <img className="w-8 lg:w-14" src={postIco} />
           <div className="fcenter flex-col items-start">
-            <span className={classTopHeaderCounter}>142,458</span>
+            <span className={classTopHeaderCounter}>
+              {calculateNumbers(postsChartData.datasets[0].data)}
+            </span>
             <span className={classTopHeaderTitle}>مقاله در سایت</span>
           </div>
         </div>
@@ -32,6 +91,15 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Chart */}
+      <div className="fcenter w-10/12 h-64 lg:h-80 lg:mt-10">
+        {showWhichChart === "week" ? (
+          <AreaChart data={weekChartData} />
+        ) : (
+          <AreaChart data={postsChartData} />
+        )}
+      </div>
     </div>
   );
 };
@@ -40,6 +108,6 @@ export default Dashboard;
 
 // Custom Tailwind Style
 const classTopHeader =
-  "fcenter gap-2 md:gap-6 h-20 lg:h-32 flex-grow rounded-lg shadow-lg px-4";
+  "fcenter gap-2 md:gap-6 h-20 lg:h-32 flex-grow rounded-lg shadow-lg px-4 mhover";
 const classTopHeaderCounter = "text-sm lg:text-base text-white";
 const classTopHeaderTitle = "text-xs lg:text-sm text-white";
