@@ -9,6 +9,7 @@ import {
   Tooltip,
   Filler,
   Legend,
+  defaults,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -31,6 +32,8 @@ export const options = {
     },
   },
 };
+
+defaults.font.family = "bf";
 
 const AreaChart = (props) => {
   const data = props.data;
