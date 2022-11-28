@@ -57,13 +57,20 @@ const separateNumbers = (num) => {
 const Dashboard = () => {
   const [showWhichChart, setShowWhichChart] = useState("week");
 
+  // Chart or Message Component Showing
+  const whichComponentMustShow = () => {
+    if (showWhichChart === "week") return <AreaChart data={weekChartData} />;
+    else if (showWhichChart === "post")
+      return <AreaChart data={postsChartData} />;
+    else if (showWhichChart === "message") return <h2>لیست پیام ها</h2>;
+  };
+
   return (
     <div className="mwrapper gap-20">
       {/* Top Header */}
       <div className="fcenter mcontainer gap-2 lg:gap-5 flex-wrap">
         <div
           className={`${classTopHeader} shadow-purple-500 bg-purple-700`}
-          name="week"
           onClick={() => setShowWhichChart("week")}
         >
           <img className="w-8 lg:w-10" src={userIco} />
@@ -76,7 +83,6 @@ const Dashboard = () => {
         </div>
         <div
           className={`${classTopHeader} shadow-slate-500 bg-slate-700`}
-          name="post"
           onClick={() => setShowWhichChart("post")}
         >
           <img className="w-8 lg:w-10" src={postIco} />
@@ -87,22 +93,21 @@ const Dashboard = () => {
             <span className={classTopHeaderTitle}>مقاله در سایت</span>
           </div>
         </div>
-        <div className={`${classTopHeader} shadow-red-500 bg-red-700`}>
+        <div
+          className={`${classTopHeader} shadow-red-500 bg-red-700`}
+          onClick={() => setShowWhichChart("message")}
+        >
           <img className="w-8 lg:w-10" src={messageIco} />
           <div className="fcenter flex-col items-start">
-            <span className={classTopHeaderCounter}>142,458</span>
+            <span className={classTopHeaderCounter}>142</span>
             <span className={classTopHeaderTitle}>پیام مستقیم</span>
           </div>
         </div>
       </div>
 
-      {/* Chart */}
+      {/* Chart or Message */}
       <div className="fcenter w-10/12 h-64 lg:h-80">
-        {showWhichChart === "week" ? (
-          <AreaChart data={weekChartData} />
-        ) : (
-          <AreaChart data={postsChartData} />
-        )}
+        {whichComponentMustShow()}
       </div>
     </div>
   );
