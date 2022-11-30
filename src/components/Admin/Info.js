@@ -34,13 +34,14 @@ const Info = () => {
     useState(false);
   const [showDialogTutorial, setShowDialogTutorial] = useState(false);
   const [showDialogProject, setShowDialogProject] = useState(false);
+  const [resumeFile, setResumeFile] = useState();
 
   // Redux Data
   const reduxData = useSelector((state) => state.admin_infoReducer);
+  const dispatch = useDispatch();
   const {
     name,
     position,
-    resumeFile,
     coverLetter,
     university,
     degree,
@@ -50,7 +51,6 @@ const Info = () => {
   } = {
     name: reduxData.name,
     position: reduxData.skill,
-    resumeFile: "",
     coverLetter: reduxData.coverLetter,
     university: reduxData.university,
     degree: reduxData.degree,
@@ -117,7 +117,7 @@ const Info = () => {
         </span>
         <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
           {/* Name, Position and Resume */}
-          <div className="w-full fcenter justify-between ">
+          <div className="w-full fcenter justify-between flex-col gap-8 md:flex-row ">
             <div className="flex flex-col items-start flex-grow">
               <div className="fcenter gap-1">
                 <span className="font-bf text-sm text-gray-600">{name}</span>
@@ -138,9 +138,9 @@ const Info = () => {
                 />
               </div>
             </div>
-            <div className="fcenter justify-between px-4 py-2 gap-8 bg-white shadow-lg shadow-gray-300 rounded-lg ">
+            <div className="fcenter justify-between px-4 py-2 gap-2 bg-white shadow-lg shadow-gray-300 rounded-lg ">
               <label forhtml="choose-resume" className="mhover">
-                <span className="inline-block primary-btn text-xs px-4 ">
+                <span className="inline-block w-max text-center primary-btn text-xs px-4 ">
                   انتخاب فایل رزومه
                 </span>
                 <input
@@ -148,12 +148,13 @@ const Info = () => {
                   type="file"
                   className="hidden"
                   accept="application/pdf , .docx , .doc"
+                  onChange={(e) => {
+                    setResumeFile(e.target.files[0]);
+                  }}
                 />
               </label>
-              {!resumeFile && (
-                <span className="text-sm text-gray-400">
-                  {resumeFile.name}Resume.pdf
-                </span>
+              {resumeFile && (
+                <span className="text-xs text-gray-400">{resumeFile.name}</span>
               )}
             </div>
           </div>

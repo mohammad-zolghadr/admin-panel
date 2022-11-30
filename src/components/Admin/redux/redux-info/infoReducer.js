@@ -169,12 +169,14 @@ const initState = {
 };
 
 const infoReducer = (state = initState, action) => {
+  console.log(state);
   switch (action.type) {
     case "CHANGE_NAME":
       return { ...state, name: action.payload };
     case "CHANGE_SKILL":
       return { ...state, skill: action.payload };
     case "CHANGE_RESUME":
+      // non-serilize file
       return { ...state, resume: action.payload };
     case "CHANGE_COVER_LETTER":
       return { ...state, coverLetter: action.payload };
