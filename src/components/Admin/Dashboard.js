@@ -96,14 +96,17 @@ const Dashboard = () => {
       return <AreaChart data={postsChartData} />;
     else if (showWhichChart === "message")
       return (
-        <div className="w-full border border-gray-300 rounded-lg mt-32 md:mt-0">
+        <div className="w-full border border-gray-300 bg-white rounded-lg mt-10">
           <table className="w-full leading-normal">
             <thead>
               <tr>
                 <th scope="col" className={`${tableHeadItemStyle} text-start`}>
                   متن پیام
                 </th>
-                <th scope="col" className={tableHeadItemStyle}>
+                <th
+                  scope="col"
+                  className={`${tableHeadItemStyle} hidden md:table-cell`}
+                >
                   ارسال شده توسط
                 </th>
                 <th scope="col" className={tableHeadItemStyle}>
@@ -125,7 +128,7 @@ const Dashboard = () => {
                         </p>
                       </div>
                     </td>
-                    <td className="">
+                    <td className="hidden md:table-cell">
                       <div className="fcenter">
                         <span className="text-xs text-gray-400">{e.email}</span>
                       </div>
@@ -139,11 +142,11 @@ const Dashboard = () => {
                       <div className="fcenter gap-2">
                         <img
                           src={replyIco}
-                          className="w-6 bg-green-700 rounded-full p-1 mhover"
+                          className="w-5 md:w-6 bg-green-700 rounded-full p-1 mhover"
                         />
                         <img
                           src={trashIco}
-                          className="w-6 bg-red-600 rounded-full p-1 mhover"
+                          className="w-5 md:w-6 bg-red-600 rounded-full p-1 mhover"
                         />
                       </div>
                     </td>
@@ -168,7 +171,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="mwrapper gap-20">
+    <div className="mwrapper gap-10 pb-32 md:pb-0">
       {/* Top Header */}
       <div className="fcenter mcontainer gap-2 lg:gap-5 flex-wrap">
         <div
@@ -208,7 +211,7 @@ const Dashboard = () => {
       </div>
 
       {/* Chart or Message */}
-      <div className="fcenter w-10/12 h-64 lg:h-80">
+      <div className="fcenter flex-1 w-10/12 pb-20">
         {whichComponentMustShow()}
       </div>
     </div>
@@ -223,4 +226,4 @@ const classTopHeader =
 const classTopHeaderCounter = "text-sm lg:text-base text-white";
 const classTopHeaderTitle = "text-xs lg:text-sm text-white";
 const tableHeadItemStyle =
-  "font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3";
+  "font-normal border-b text-center text-gray-500 text-xs py-3 px-2 ";
