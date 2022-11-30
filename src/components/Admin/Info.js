@@ -17,7 +17,11 @@ import TechnologyAddOrEdit from "./dialog-editInfo/TechnologyAddOrEdit";
 import TutorialDialog from "./dialog-editInfo/TutorialDialog";
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+
 const Info = () => {
+  const reduxData = useSelector((state) => state.admin_infoReducer);
   const [showOneField, setShowOneField] = useState(false);
   const [showDialogTechnologyAddOrEdit, setShowDialogTechnologyAddOrEdit] =
     useState(false);

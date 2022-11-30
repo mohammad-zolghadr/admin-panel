@@ -5,6 +5,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^35.3.0",
     "@ckeditor/ckeditor5-react": "^5.0.2",
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,9 +16,11 @@
     "react-chartjs-2": "^5.0.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "react-speech-recognition": "^3.10.0",
+    "redux": "^4.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
