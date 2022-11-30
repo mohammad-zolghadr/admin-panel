@@ -28,8 +28,8 @@ const weekChartData = {
       fill: true,
       label: "بازدید هفتگی به تفکیک روز",
       data: [1264, 2424, 9754, 3796, 2849, 4560, 3940],
-      borderColor: "#7E22CE",
-      backgroundColor: "#7E22CE77",
+      borderColor: "#0891B2",
+      backgroundColor: "#0891B277",
     },
   ],
 };
@@ -40,8 +40,8 @@ const postsChartData = {
       fill: true,
       label: "مقالات منتشر شده در این هفته",
       data: [26, 12, 54, 21, 86, 72, 42],
-      borderColor: "#334155",
-      backgroundColor: "#33415577",
+      borderColor: "#DC2626",
+      backgroundColor: "#DC262677",
     },
   ],
 };
@@ -173,9 +173,9 @@ const Dashboard = () => {
   return (
     <div className="mwrapper gap-10 pb-32 md:pb-0">
       {/* Top Header */}
-      <div className="fcenter mcontainer gap-2 lg:gap-5 flex-wrap">
+      <div className="fcenter mcontainer lg:w-2/3 gap-2 lg:gap-5 flex-wrap">
         <div
-          className={`${classTopHeader} shadow-purple-500 bg-purple-700`}
+          className={`${classTopHeader}  shadow-md bg-cyan-600`}
           onClick={() => setShowWhichChart("week")}
         >
           <img className="w-8 lg:w-10" src={userIco} />
@@ -187,7 +187,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div
-          className={`${classTopHeader} shadow-slate-500 bg-slate-700`}
+          className={`${classTopHeader}  shadow-md bg-red-600`}
           onClick={() => setShowWhichChart("post")}
         >
           <img className="w-8 lg:w-10" src={postIco} />
@@ -199,7 +199,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div
-          className={`${classTopHeader} shadow-red-500 bg-red-700`}
+          className={`${classTopHeader}  shadow-md bg-amber-500`}
           onClick={() => setShowWhichChart("message")}
         >
           <img className="w-8 lg:w-10" src={messageIco} />
@@ -222,7 +222,7 @@ export default Dashboard;
 
 // Custom Tailwind Style
 const classTopHeader =
-  "fcenter gap-2 md:gap-6 h-20 lg:h-24 flex-grow rounded-lg shadow-lg px-4 mhover";
+  "fcenter gap-2 md:gap-6 h-20 lg:h-24 rounded flex-grow  shadow-lg px-4 mhover";
 const classTopHeaderCounter = "text-sm lg:text-base text-white";
 const classTopHeaderTitle = "text-xs lg:text-sm text-white";
 const tableHeadItemStyle =

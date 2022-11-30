@@ -37,7 +37,11 @@ defaults.font.family = "bf";
 
 const AreaChart = (props) => {
   const data = props.data;
-  return <Line options={options} data={data} />;
+  return (
+    <div className="w-full fcenter h-[350px]">
+      <Line options={options} data={data} />
+    </div>
+  );
 };
 
 export default AreaChart;
