@@ -2,13 +2,17 @@ import React from "react";
 import { useState } from "react";
 
 const OneField = (props) => {
-  const { setInputValue, setShowOneField } = props.data;
-  const [inputFieldeValue, setInputFieldValue] = useState();
+  const { changeValue, setShowOneField } = props.data;
+  const [inputFieldeValue, setInputFieldValue] = useState("");
+
+  const dispatch = changeValue.dispatch();
 
   const clickHandler = (e) => {
     setShowOneField(false);
+
     // Redux Update Data
-    // e.target.name === "confirm" && setInputValue(inputFieldeValue);
+    e.target.name === "confirm" &&
+      dispatch(changeValue.action(inputFieldeValue));
   };
 
   return (

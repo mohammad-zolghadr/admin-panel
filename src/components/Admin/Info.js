@@ -19,6 +19,14 @@ import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
+import {
+  changeCoverLetter,
+  changeDegree,
+  changeEducationTime,
+  changeName,
+  changeSkill,
+  changeUniversity,
+} from "./redux/redux-info/infoActions";
 
 const Info = () => {
   const [showOneField, setShowOneField] = useState(false);
@@ -26,12 +34,6 @@ const Info = () => {
     useState(false);
   const [showDialogTutorial, setShowDialogTutorial] = useState(false);
   const [showDialogProject, setShowDialogProject] = useState(false);
-  const [inputTitle, setInputTitle] = useState();
-  const [inputPosition, setInputPosition] = useState();
-  const [inputCoverLetter, setInputCoverLetter] = useState();
-  const [inputUniversity, setInputUniversity] = useState();
-  const [inputDegree, setInputDegree] = useState();
-  const [inputEducationTime, setInputEducationTime] = useState();
 
   // Redux Data
   const reduxData = useSelector((state) => state.admin_infoReducer);
@@ -67,17 +69,17 @@ const Info = () => {
   const getEditableInput = () => {
     switch (showOneField) {
       case "title":
-        return setInputTitle;
+        return { dispatch: useDispatch, action: changeName };
       case "position":
-        return setInputPosition;
+        return { dispatch: useDispatch, action: changeSkill };
       case "coverLetter":
-        return setInputCoverLetter;
+        return { dispatch: useDispatch, action: changeCoverLetter };
       case "university":
-        return setInputUniversity;
+        return { dispatch: useDispatch, action: changeUniversity };
       case "degree":
-        return setInputDegree;
+        return { dispatch: useDispatch, action: changeDegree };
       case "educationTime":
-        return setInputEducationTime;
+        return { dispatch: useDispatch, action: changeEducationTime };
       default:
         break;
     }
@@ -95,7 +97,7 @@ const Info = () => {
           <OneField
             data={{
               setShowOneField: setShowOneField,
-              setInputValue: getEditableInput(),
+              changeValue: getEditableInput(),
             }}
           />
         )}
@@ -118,9 +120,7 @@ const Info = () => {
           <div className="w-full fcenter justify-between ">
             <div className="flex flex-col items-start flex-grow">
               <div className="fcenter gap-1">
-                <span className="font-bf text-sm text-gray-600">
-                  {inputTitle ? inputTitle : name}
-                </span>
+                <span className="font-bf text-sm text-gray-600">{name}</span>
                 <img
                   name="title"
                   onClick={editHandler}
@@ -129,9 +129,7 @@ const Info = () => {
                 />
               </div>
               <div className="fcenter gap-1">
-                <span className="text-xs text-gray-500">
-                  {inputPosition ? inputPosition : position}
-                </span>
+                <span className="text-xs text-gray-500">{position}</span>
                 <img
                   name="position"
                   onClick={editHandler}
@@ -161,7 +159,7 @@ const Info = () => {
           </div>
           {/* Cover Letter */}
           <p className="text-sm text-justify leading-5 text-gray-500">
-            {inputCoverLetter ? inputCoverLetter : coverLetter}{" "}
+            {coverLetter}
             <img
               name="coverLetter"
               onClick={editHandler}
@@ -198,7 +196,7 @@ const Info = () => {
                 <span className="text-xs text-gray-500">
                   {`دانشگاه : `}
                   <span className="font-bf text-sm text-gray-600">
-                    {inputUniversity ? inputUniversity : university}
+                    {university}
                   </span>
                 </span>
                 <img
@@ -212,7 +210,7 @@ const Info = () => {
                 <span className="text-xs text-gray-500">
                   {`مدرک : `}
                   <span className="font-bf text-sm text-gray-600">
-                    {inputDegree ? inputDegree : degree}
+                    {degree}
                   </span>
                 </span>
                 <img
@@ -226,7 +224,7 @@ const Info = () => {
                 <span className="text-xs text-gray-500">
                   {`سال تحصیل : `}
                   <span className="font-bf text-sm text-gray-600">
-                    {inputEducationTime ? inputEducationTime : educationTime}
+                    {educationTime}
                   </span>
                 </span>
                 <img
@@ -240,7 +238,7 @@ const Info = () => {
             <textarea
               className="minput bg-gray-200 shadow-md w-3/5 h-32 flex-grow resize-none"
               placeholder="مهارت های نرم : با - از هم جدا کنید"
-              value={softSkills}
+              defaultValue={softSkills}
             ></textarea>
           </div>
           {/* Social */}

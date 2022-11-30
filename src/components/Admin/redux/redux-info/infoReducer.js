@@ -171,17 +171,13 @@ const initState = {
 const infoReducer = (state = initState, action) => {
   switch (action.type) {
     case "CHANGE_NAME":
-      // do sth
-      break;
+      return { ...state, name: action.payload };
     case "CHANGE_SKILL":
-      // do sth
-      break;
+      return { ...state, skill: action.payload };
     case "CHANGE_RESUME":
-      // do sth
-      break;
+      return { ...state, resume: action.payload };
     case "CHANGE_COVER_LETTER":
-      // do sth
-      break;
+      return { ...state, coverLetter: action.payload };
     case "GET_LIST_OF_TECHNOLOGIES":
       // do sth
       break;
@@ -189,17 +185,13 @@ const infoReducer = (state = initState, action) => {
       // do sth
       break;
     case "CHANGE_UNIVERSITY":
-      // do sth
-      break;
+      return { ...state, university: action.payload };
     case "CHANGE_DEGREE":
-      // do sth
-      break;
+      return { ...state, degree: action.payload };
     case "CHANGE_EDUCATION_TIME":
-      // do sth
-      break;
+      return { ...state, educationTime: action.payload };
     case "CHANGE_SOFT_SKILLS":
-      // do sth
-      break;
+      return { ...state, softSkills: action.payload };
     case "CHANGE_LINKS":
       // do sth
       break;
