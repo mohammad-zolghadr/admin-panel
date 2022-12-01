@@ -8,6 +8,7 @@ import gmailIco from "../../assets/images/gmail.png";
 import whatsappIco from "../../assets/images/whatsapp.png";
 import instagramIco from "../../assets/images/instagram.png";
 import editIco from "../../assets/images/edit_red.svg";
+import confirmIco from "../../assets/images/checkbox_active.svg";
 
 // Components
 import InfoProjectList from "./Info_ProjectList";
@@ -25,8 +26,10 @@ import {
   changeEducationTime,
   changeName,
   changeSkill,
+  changeSoftSkills,
   changeUniversity,
 } from "./redux/redux-info/infoActions";
+import { useEffect } from "react";
 
 const Info = () => {
   const [showOneField, setShowOneField] = useState(false);
@@ -35,6 +38,7 @@ const Info = () => {
   const [showDialogTutorial, setShowDialogTutorial] = useState(false);
   const [showDialogProject, setShowDialogProject] = useState(false);
   const [resumeFile, setResumeFile] = useState();
+  const [inputSoftSkills, setInputSoftSkills] = useState();
 
   // Redux Data
   const reduxData = useSelector((state) => state.admin_infoReducer);
@@ -236,11 +240,21 @@ const Info = () => {
                 />
               </div>
             </div>
-            <textarea
-              className="minput bg-gray-200 shadow-md w-3/5 h-32 flex-grow resize-none"
-              placeholder="مهارت های نرم : با - از هم جدا کنید"
-              defaultValue={softSkills}
-            ></textarea>
+            <div className="relative w-3/5 h-32 flex-grow bg-gray-200 shadow-md">
+              <textarea
+                className="minput h-full bg-transparent resize-none"
+                placeholder="مهارت های نرم : با - از هم جدا کنید"
+                value={inputSoftSkills}
+                onChange={(e) => {
+                  setInputSoftSkills(e.target.value);
+                }}
+              />
+              <img
+                className={`w-6 absolute bottom-2 left-2 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                src={confirmIco}
+                onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+              />
+            </div>
           </div>
           {/* Social */}
           <div className="w-full fcenter mt-8 gap-2 gap-y-14 flex-wrap">
@@ -362,3 +376,7 @@ const Info = () => {
 };
 
 export default Info;
+
+// Custom Tailwind Css
+const circleAnim =
+  "active:bg-green-600 rounded-full active:animate-[ping_0.2s_ease-in-out]";

@@ -49,7 +49,7 @@ const initState = {
   university: "سلمان فارسی کازرون",
   degree: "کارشناسی",
   educationTime: "مهر 1396 تا خرداد 1401",
-  softSkills: "مسئولیت پذیری - مدیریت زمان - مدیریت بحران",
+  softSkills: "مسئولیت پذیری - مدیریت زمان",
   links: {
     linkedin: "https://www.linkedin.com/in/mohammad-zolghadr/",
     github: "https://github.com/mohammad-zolghadr",
