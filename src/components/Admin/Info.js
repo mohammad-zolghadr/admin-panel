@@ -39,6 +39,7 @@ const Info = () => {
   const [showDialogProject, setShowDialogProject] = useState(false);
   const [resumeFile, setResumeFile] = useState();
   const [inputSoftSkills, setInputSoftSkills] = useState();
+  const [linksInputFocused, setLinksInputFocused] = useState("");
 
   // Redux Data
   const reduxData = useSelector((state) => state.admin_infoReducer);
@@ -66,6 +67,10 @@ const Info = () => {
   const projects = reduxData.listOfProjects;
   const tutorials = reduxData.listOfTutorials;
 
+  useEffect(() => {
+    console.log(linksInputFocused);
+  }, [linksInputFocused]);
+
   const editHandler = (e) => {
     setShowOneField(e.target.name);
   };
@@ -91,6 +96,14 @@ const Info = () => {
 
   const openTechnologyAddOrEditDialog = (name, data) => {
     setShowDialogTechnologyAddOrEdit(true);
+  };
+
+  const inputFocusHandler = (inputName) => {
+    let result;
+    linksInputFocused === inputName
+      ? (result = `${styleSocialContainer} w-64`)
+      : (result = styleSocialContainer);
+    return result;
   };
 
   return (
@@ -249,73 +262,130 @@ const Info = () => {
                   setInputSoftSkills(e.target.value);
                 }}
               />
-              <img
-                className={`w-6 absolute bottom-2 left-2 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
-                src={confirmIco}
-                onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
-              />
+              {inputSoftSkills && (
+                <img
+                  className={`w-6 absolute bottom-2 left-2 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                  src={confirmIco}
+                  onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                />
+              )}
             </div>
           </div>
           {/* Social */}
           <div className="w-full fcenter mt-8 gap-2 gap-y-14 flex-wrap">
-            <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
+            <div className={inputFocusHandler("linkedin")}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={linkedinIco} className="w-3/5" />
               </div>
-              <div className="pt-5">
+              <div className="w-full pt-5">
                 <input
                   type="text"
                   placeholder="https://exapmle.com"
-                  className="minput rounded-full text-left text-xs placeholder:text-gray-400"
+                  className={styleSocialInput}
+                  onFocus={() => {
+                    setLinksInputFocused("linkedin");
+                  }}
+                  onBlur={() => setLinksInputFocused("")}
                 />
+                {linksInputFocused === "linkedin" && (
+                  <img
+                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    src={confirmIco}
+                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                  />
+                )}
               </div>
             </div>
-            <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
+            <div className={inputFocusHandler("github")}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={githubIco} className="w-3/5" />
               </div>
-              <div className="pt-5">
+              <div className="w-full pt-5">
                 <input
                   type="text"
                   placeholder="https://exapmle.com"
-                  className="minput rounded-full text-left text-xs placeholder:text-gray-400"
+                  className={styleSocialInput}
+                  onFocus={() => {
+                    setLinksInputFocused("github");
+                  }}
+                  onBlur={() => setLinksInputFocused("")}
                 />
+                {linksInputFocused === "github" && (
+                  <img
+                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    src={confirmIco}
+                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                  />
+                )}
               </div>
             </div>
-            <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
+            <div className={inputFocusHandler("gmail")}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={gmailIco} className="w-3/5" />
               </div>
-              <div className="pt-5">
+              <div className="w-full pt-5">
                 <input
                   type="text"
                   placeholder="https://exapmle.com"
-                  className="minput rounded-full text-left text-xs placeholder:text-gray-400"
+                  className={styleSocialInput}
+                  onFocus={() => {
+                    setLinksInputFocused("gmail");
+                  }}
+                  onBlur={() => setLinksInputFocused("")}
                 />
+                {linksInputFocused === "gmail" && (
+                  <img
+                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    src={confirmIco}
+                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                  />
+                )}
               </div>
             </div>
-            <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
+            <div className={inputFocusHandler("whatsapp")}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={whatsappIco} className="w-3/5" />
               </div>
-              <div className="pt-5">
+              <div className="w-full pt-5">
                 <input
                   type="text"
                   placeholder="https://exapmle.com"
-                  className="minput rounded-full text-left text-xs placeholder:text-gray-400"
+                  className={styleSocialInput}
+                  onFocus={() => {
+                    setLinksInputFocused("whatsapp");
+                  }}
+                  onBlur={() => setLinksInputFocused("")}
                 />
+                {linksInputFocused === "whatsapp" && (
+                  <img
+                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    src={confirmIco}
+                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                  />
+                )}
               </div>
             </div>
-            <div className="bg-white fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative">
+            <div className={inputFocusHandler("instagram")}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={instagramIco} className="w-3/5" />
               </div>
-              <div className="pt-5">
+              <div className="w-full pt-5">
                 <input
                   type="text"
                   placeholder="https://exapmle.com"
-                  className="minput rounded-full text-left text-xs placeholder:text-gray-400"
+                  className={styleSocialInput}
+                  onFocus={() => {
+                    setLinksInputFocused("instagram");
+                  }}
+                  onBlur={() => setLinksInputFocused("")}
                 />
+                {linksInputFocused === "instagram" && (
+                  <img
+                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    src={confirmIco}
+                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -380,3 +450,7 @@ export default Info;
 // Custom Tailwind Css
 const circleAnim =
   "active:bg-green-600 rounded-full active:animate-[ping_0.2s_ease-in-out]";
+const styleSocialContainer =
+  "bg-white relative fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative duration-400";
+const styleSocialInput =
+  "minput w-full rounded-full text-left text-xs placeholder:text-gray-300 duration-400";
