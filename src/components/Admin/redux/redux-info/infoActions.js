@@ -30,7 +30,6 @@ const changeSoftSkills = (newSoftSkills) => {
   return { type: "CHANGE_SOFT_SKILLS", payload: newSoftSkills };
 };
 const changeLinks = (newLinks) => {
-  console.log(newLinks);
   return { type: "CHANGE_LINKS", payload: newLinks };
 };
 

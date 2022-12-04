@@ -115,6 +115,14 @@ const Info = () => {
     return result;
   };
 
+  const socialInputChange = (e) => {
+    setInputLinks({ ...inputLinks, [e.target.name]: e.target.value });
+  };
+
+  const focusSocialInput = (e) => {
+    setLinksInputFocused(e.target.name);
+  };
+
   return (
     <div className="mwrapper py-20">
       {/* Main Info */}
@@ -273,7 +281,7 @@ const Info = () => {
               />
               {inputSoftSkills && (
                 <img
-                  className={`w-6 absolute bottom-2 left-2 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                  className={`${styleConfirmIcon} ${circleAnim}`}
                   src={confirmIco}
                   onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
                 />
@@ -289,23 +297,19 @@ const Info = () => {
               <div className="w-full pt-5">
                 <input
                   value={inputLinks.linkedin}
-                  onChange={(e) =>
-                    setInputLinks({ ...inputLinks, linkedin: e.target.value })
-                  }
+                  onChange={socialInputChange}
                   type="text"
+                  name="linkedin"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
-                  onFocus={() => {
-                    setLinksInputFocused("linkedin");
-                  }}
+                  onFocus={focusSocialInput}
                   onBlur={() => setLinksInputFocused("")}
                 />
                 {inputLinks.linkedin.length > 0 && (
                   <img
-                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`${styleConfirmIcon} bg-white ${circleAnim}`}
                     src={confirmIco}
                     onClick={() => {
-                      console.log(inputLinks);
                       dispatch(changeLinks(inputLinks));
                     }}
                   />
@@ -319,20 +323,17 @@ const Info = () => {
               <div className="w-full pt-5">
                 <input
                   value={inputLinks.github}
-                  onChange={(e) =>
-                    setInputLinks({ ...inputLinks, github: e.target.value })
-                  }
+                  onChange={socialInputChange}
                   type="text"
+                  name="github"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
-                  onFocus={() => {
-                    setLinksInputFocused("github");
-                  }}
+                  onFocus={focusSocialInput}
                   onBlur={() => setLinksInputFocused("")}
                 />
                 {inputLinks.github.length > 0 && (
                   <img
-                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`${styleConfirmIcon} bg-white ${circleAnim}`}
                     src={confirmIco}
                     onClick={() => dispatch(changeLinks(inputLinks))}
                   />
@@ -346,20 +347,17 @@ const Info = () => {
               <div className="w-full pt-5">
                 <input
                   value={inputLinks.gmail}
-                  onChange={(e) =>
-                    setInputLinks({ ...inputLinks, gmail: e.target.value })
-                  }
+                  onChange={socialInputChange}
                   type="text"
+                  name="gmail"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
-                  onFocus={() => {
-                    setLinksInputFocused("gmail");
-                  }}
+                  onFocus={focusSocialInput}
                   onBlur={() => setLinksInputFocused("")}
                 />
                 {inputLinks.gmail.length > 0 && (
                   <img
-                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`${styleConfirmIcon} bg-white ${circleAnim}`}
                     src={confirmIco}
                     onClick={() => dispatch(changeLinks(inputLinks))}
                   />
@@ -373,20 +371,17 @@ const Info = () => {
               <div className="w-full pt-5">
                 <input
                   value={inputLinks.whatsapp}
-                  onChange={(e) =>
-                    setInputLinks({ ...inputLinks, whatsapp: e.target.value })
-                  }
+                  onChange={socialInputChange}
                   type="text"
+                  name="whatsapp"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
-                  onFocus={() => {
-                    setLinksInputFocused("whatsapp");
-                  }}
+                  onFocus={focusSocialInput}
                   onBlur={() => setLinksInputFocused("")}
                 />
                 {inputLinks.whatsapp.length > 0 && (
                   <img
-                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`${styleConfirmIcon} bg-white ${circleAnim}`}
                     src={confirmIco}
                     onClick={() => dispatch(changeLinks(inputLinks))}
                   />
@@ -400,20 +395,17 @@ const Info = () => {
               <div className="w-full pt-5">
                 <input
                   value={inputLinks.instagram}
-                  onChange={(e) =>
-                    setInputLinks({ ...inputLinks, instagram: e.target.value })
-                  }
+                  onChange={socialInputChange}
                   type="text"
+                  name="instagram"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
-                  onFocus={() => {
-                    setLinksInputFocused("instagram");
-                  }}
+                  onFocus={focusSocialInput}
                   onBlur={() => setLinksInputFocused("")}
                 />
                 {inputLinks.instagram.length > 0 && (
                   <img
-                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`${styleConfirmIcon} bg-white ${circleAnim}`}
                     src={confirmIco}
                     onClick={() => dispatch(changeLinks(inputLinks))}
                   />
@@ -482,6 +474,8 @@ export default Info;
 // Custom Tailwind Css
 const circleAnim =
   "active:bg-green-600 rounded-full active:animate-[ping_0.2s_ease-in-out]";
+const styleConfirmIcon =
+  "w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all";
 const styleSocialContainer =
   "bg-white relative fcenter p-3 rounded-lg shadow-md shadow-gray-300 flex-col relative duration-400";
 const styleSocialInput =
