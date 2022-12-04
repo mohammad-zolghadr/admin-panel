@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { addItemToListOfProject } from "../redux/redux-info/infoActions";
+
 const ProjectDialog = (props) => {
+  const dispatch = useDispatch();
   const { setShowDialog } = props.data;
   const [inputFieldeValue, setInputFieldValue] = useState({
     title: "",
@@ -11,7 +16,7 @@ const ProjectDialog = (props) => {
 
   const clickHandler = (e) => {
     setShowDialog(false);
-    // Redux Update Data
+    dispatch(addItemToListOfProject(inputFieldeValue));
   };
 
   const inputHandler = (e) => {

@@ -200,8 +200,15 @@ const infoReducer = (state = initState, action) => {
       // do sth
       break;
     case "ADD_ITEM_TO_LIST_OF_PROJECT":
-      // do sth
-      break;
+      let tempData = [
+        ...state.listOfProjects,
+        {
+          id: state.listOfProjects.length + 1,
+          isMain: false,
+          ...action.payload,
+        },
+      ];
+      return { ...state, listOfProjects: tempData };
     case "GET_LIST_OF_TUTORIAL":
       // do sth
       break;
