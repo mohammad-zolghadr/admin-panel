@@ -1,22 +1,40 @@
 import React, { useState } from "react";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToListOfProject } from "../redux/redux-info/infoActions";
 
 const ProjectDialog = (props) => {
   const dispatch = useDispatch();
-  const { setShowDialog } = props.data;
-  const [inputFieldeValue, setInputFieldValue] = useState({
-    title: "",
-    link: "",
-    description: "",
-    technologies: "",
-  });
+  const reduxData = useSelector((state) => state.admin_infoReducer);
+  const { setShowDialog, id = -1 } = props.data;
+  const setData = () => {
+    if (id === -1)
+      return {
+        title: "",
+        link: "",
+        description: "",
+        technologies: "",
+      };
+    else {
+      const findedItem = reduxData.listOfProjects.find(
+        (element) => element.id === id
+      );
+      return {
+        title: findedItem.title,
+        link: findedItem.link,
+        description: findedItem.description,
+        technologies: findedItem.technologies,
+      };
+    }
+  };
+
+  const [inputFieldeValue, setInputFieldValue] = useState(setData());
 
   const clickHandler = (e) => {
     setShowDialog(false);
-    dispatch(addItemToListOfProject(inputFieldeValue));
+    e.target.name === "confirm" &&
+      dispatch(addItemToListOfProject(inputFieldeValue));
   };
 
   const inputHandler = (e) => {

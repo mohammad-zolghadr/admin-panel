@@ -9,14 +9,14 @@ import checkboxDeactiveIco from "../../assets/images/checkbox_deactive.svg";
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
 const InfoProjectList = (props) => {
-  const { title, isMain, description, technologies, link } = props.data;
+  const { id, title, isMain, description, technologies, link } = props.data;
   const [maxDescriptionCharShow, setMaxDesciptionCharShow] = useState(70);
   const [showEditDialog, setShowEditDialog] = useState(false);
 
   return (
     <div className="basis-60 flex-grow fcenter flex-col  bg-white gap-4 p-4 shadow-lg shadow-gray-300 rounded-lg relative">
       {showEditDialog && (
-        <ProjectDialog data={{ setShowDialog: setShowEditDialog }} />
+        <ProjectDialog data={{ setShowDialog: setShowEditDialog, id }} />
       )}
       <div className="fcenter justify-end py-1 flex-grow gap-1 absolute top-0 left-0 bg-gray-50 px-3  rounded-br-lg rounded-tl-lg">
         <img
