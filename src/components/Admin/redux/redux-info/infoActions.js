@@ -39,6 +39,9 @@ const getListOfProject = () => {
 const addItemToListOfProject = (newListOfProject) => {
   return { type: "ADD_ITEM_TO_LIST_OF_PROJECT", payload: newListOfProject };
 };
+const editItemOfProject = (editedItem) => {
+  return { type: "EDIT_ITEM_OF_PROJECT", payload: editedItem };
+};
 
 const getListOfTutorial = () => {
   return { type: "GET_LIST_OF_TUTORIAL" };
@@ -62,6 +65,7 @@ export {
   changeLinks,
   getListOfProject,
   addItemToListOfProject,
+  editItemOfProject,
   getListOfTutorial,
   addItemToListOfTutorial,
 };

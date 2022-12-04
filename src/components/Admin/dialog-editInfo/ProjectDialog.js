@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToListOfProject } from "../redux/redux-info/infoActions";
+import {
+  addItemToListOfProject,
+  editItemOfProject,
+} from "../redux/redux-info/infoActions";
 
 const ProjectDialog = (props) => {
   const dispatch = useDispatch();
@@ -11,6 +14,7 @@ const ProjectDialog = (props) => {
   const setData = () => {
     if (id === -1)
       return {
+        id: "-1",
         title: "",
         link: "",
         description: "",
@@ -21,10 +25,12 @@ const ProjectDialog = (props) => {
         (element) => element.id === id
       );
       return {
+        id: id,
         title: findedItem.title,
         link: findedItem.link,
         description: findedItem.description,
         technologies: findedItem.technologies,
+        isMain: reduxData.isMain,
       };
     }
   };
@@ -33,8 +39,10 @@ const ProjectDialog = (props) => {
 
   const clickHandler = (e) => {
     setShowDialog(false);
-    e.target.name === "confirm" &&
-      dispatch(addItemToListOfProject(inputFieldeValue));
+    if (e.target.name === "confirm")
+      id === -1
+        ? dispatch(addItemToListOfProject(inputFieldeValue))
+        : dispatch(editItemOfProject(inputFieldeValue));
   };
 
   const inputHandler = (e) => {
