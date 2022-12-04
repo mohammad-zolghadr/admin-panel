@@ -203,9 +203,9 @@ const infoReducer = (state = initState, action) => {
       let tempData = [
         ...state.listOfProjects,
         {
+          ...action.payload,
           id: state.listOfProjects.length + 1,
           isMain: false,
-          ...action.payload,
         },
       ];
       return { ...state, listOfProjects: tempData };
