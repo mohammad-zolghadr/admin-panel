@@ -101,8 +101,8 @@ const Info = () => {
   const inputFocusHandler = (inputName) => {
     let result;
     linksInputFocused === inputName
-      ? (result = `${styleSocialContainer} w-64`)
-      : (result = styleSocialContainer);
+      ? (result = `${styleSocialContainer} animate-[increaseWidth_0.5s_ease-in-out] w-[256px]`)
+      : (result = `${styleSocialContainer} animate-[decreaseWidth_0.5s_ease-in-out] w-[200px]`);
     return result;
   };
 
@@ -273,7 +273,7 @@ const Info = () => {
           </div>
           {/* Social */}
           <div className="w-full fcenter mt-8 gap-2 gap-y-14 flex-wrap">
-            <div className={inputFocusHandler("linkedin")}>
+            <div className={`${inputFocusHandler("linkedin")}`}>
               <div className="w-14 h-14 fcenter absolute top-[-2rem]   bg-gray-500 rounded-full">
                 <img src={linkedinIco} className="w-3/5" />
               </div>
