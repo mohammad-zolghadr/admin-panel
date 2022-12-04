@@ -9,12 +9,12 @@ module.exports = {
     extend: {
       keyframes: {
         increaseWidth: {
-          "0%": { width: "200px" },
-          "100%": { width: "256px" },
+          "0%": { width: "240px" },
+          "100%": { width: "300px" },
         },
         decreaseWidth: {
-          "0%": { width: "256px" },
-          "100%": { width: "200px" },
+          "0%": { width: "300px" },
+          "100%": { width: "240px" },
         },
       },
     },

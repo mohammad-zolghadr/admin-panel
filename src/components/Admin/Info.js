@@ -28,6 +28,7 @@ import {
   changeSkill,
   changeSoftSkills,
   changeUniversity,
+  changeLinks,
 } from "./redux/redux-info/infoActions";
 import { useEffect } from "react";
 
@@ -39,6 +40,7 @@ const Info = () => {
   const [showDialogProject, setShowDialogProject] = useState(false);
   const [resumeFile, setResumeFile] = useState();
   const [inputSoftSkills, setInputSoftSkills] = useState();
+
   const [linksInputFocused, setLinksInputFocused] = useState("");
 
   // Redux Data
@@ -66,9 +68,16 @@ const Info = () => {
   const technologies = reduxData.listOfTechnologies;
   const projects = reduxData.listOfProjects;
   const tutorials = reduxData.listOfTutorials;
+  const [inputLinks, setInputLinks] = useState({
+    linkedin: links.linkedin,
+    github: links.github,
+    gmail: links.gmail,
+    whatsapp: links.whatsapp,
+    instagram: links.instagram,
+  });
 
   useEffect(() => {
-    console.log(linksInputFocused);
+    // console.log(linksInputFocused);
   }, [linksInputFocused]);
 
   const editHandler = (e) => {
@@ -101,8 +110,8 @@ const Info = () => {
   const inputFocusHandler = (inputName) => {
     let result;
     linksInputFocused === inputName
-      ? (result = `${styleSocialContainer} animate-[increaseWidth_0.5s_ease-in-out] w-[256px]`)
-      : (result = `${styleSocialContainer} animate-[decreaseWidth_0.5s_ease-in-out] w-[200px]`);
+      ? (result = `${styleSocialContainer} animate-[increaseWidth_0.5s_ease-in-out] w-[300px]`)
+      : (result = `${styleSocialContainer} animate-[decreaseWidth_0.5s_ease-in-out] w-[240px]`);
     return result;
   };
 
@@ -279,6 +288,10 @@ const Info = () => {
               </div>
               <div className="w-full pt-5">
                 <input
+                  value={inputLinks.linkedin}
+                  onChange={(e) =>
+                    setInputLinks({ ...inputLinks, linkedin: e.target.value })
+                  }
                   type="text"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
@@ -287,11 +300,14 @@ const Info = () => {
                   }}
                   onBlur={() => setLinksInputFocused("")}
                 />
-                {linksInputFocused === "linkedin" && (
+                {inputLinks.linkedin.length > 0 && (
                   <img
-                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
                     src={confirmIco}
-                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                    onClick={() => {
+                      console.log(inputLinks);
+                      dispatch(changeLinks(inputLinks));
+                    }}
                   />
                 )}
               </div>
@@ -302,6 +318,10 @@ const Info = () => {
               </div>
               <div className="w-full pt-5">
                 <input
+                  value={inputLinks.github}
+                  onChange={(e) =>
+                    setInputLinks({ ...inputLinks, github: e.target.value })
+                  }
                   type="text"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
@@ -310,11 +330,11 @@ const Info = () => {
                   }}
                   onBlur={() => setLinksInputFocused("")}
                 />
-                {linksInputFocused === "github" && (
+                {inputLinks.github.length > 0 && (
                   <img
-                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
                     src={confirmIco}
-                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                    onClick={() => dispatch(changeLinks(inputLinks))}
                   />
                 )}
               </div>
@@ -325,6 +345,10 @@ const Info = () => {
               </div>
               <div className="w-full pt-5">
                 <input
+                  value={inputLinks.gmail}
+                  onChange={(e) =>
+                    setInputLinks({ ...inputLinks, gmail: e.target.value })
+                  }
                   type="text"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
@@ -333,11 +357,11 @@ const Info = () => {
                   }}
                   onBlur={() => setLinksInputFocused("")}
                 />
-                {linksInputFocused === "gmail" && (
+                {inputLinks.gmail.length > 0 && (
                   <img
-                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
                     src={confirmIco}
-                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                    onClick={() => dispatch(changeLinks(inputLinks))}
                   />
                 )}
               </div>
@@ -348,6 +372,10 @@ const Info = () => {
               </div>
               <div className="w-full pt-5">
                 <input
+                  value={inputLinks.whatsapp}
+                  onChange={(e) =>
+                    setInputLinks({ ...inputLinks, whatsapp: e.target.value })
+                  }
                   type="text"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
@@ -356,11 +384,11 @@ const Info = () => {
                   }}
                   onBlur={() => setLinksInputFocused("")}
                 />
-                {linksInputFocused === "whatsapp" && (
+                {inputLinks.whatsapp.length > 0 && (
                   <img
-                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
                     src={confirmIco}
-                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                    onClick={() => dispatch(changeLinks(inputLinks))}
                   />
                 )}
               </div>
@@ -371,6 +399,10 @@ const Info = () => {
               </div>
               <div className="w-full pt-5">
                 <input
+                  value={inputLinks.instagram}
+                  onChange={(e) =>
+                    setInputLinks({ ...inputLinks, instagram: e.target.value })
+                  }
                   type="text"
                   placeholder="https://exapmle.com"
                   className={styleSocialInput}
@@ -379,11 +411,11 @@ const Info = () => {
                   }}
                   onBlur={() => setLinksInputFocused("")}
                 />
-                {linksInputFocused === "instagram" && (
+                {inputLinks.instagram.length > 0 && (
                   <img
-                    className={`w-5 absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
+                    className={`w-5 bg-white absolute bottom-5 right-5 cursor-pointer hover:scale-75 transition-all ${circleAnim}`}
                     src={confirmIco}
-                    onClick={() => dispatch(changeSoftSkills(inputSoftSkills))}
+                    onClick={() => dispatch(changeLinks(inputLinks))}
                   />
                 )}
               </div>

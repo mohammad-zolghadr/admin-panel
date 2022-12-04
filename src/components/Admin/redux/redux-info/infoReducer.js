@@ -195,7 +195,7 @@ const infoReducer = (state = initState, action) => {
     case "CHANGE_SOFT_SKILLS":
       return { ...state, softSkills: action.payload };
     case "CHANGE_LINKS":
-      // do sth
+      return { ...state, links: action.payload };
       break;
     case "GET_LIST_OF_PROJECT":
       // do sth
