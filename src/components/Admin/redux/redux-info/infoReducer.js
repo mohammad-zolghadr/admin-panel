@@ -213,9 +213,10 @@ const infoReducer = (state = initState, action) => {
       const filteredItems = state.listOfProjects.filter(
         (e) => e.id !== action.payload.id
       );
+      const tempEditedData = [...filteredItems, { ...action.payload }];
       return {
         ...state,
-        listOfProjects: [...filteredItems, { ...action.payload }],
+        listOfProjects: tempEditedData,
       };
     case "GET_LIST_OF_TUTORIAL":
       // do sth
