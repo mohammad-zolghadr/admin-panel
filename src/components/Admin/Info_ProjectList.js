@@ -10,7 +10,7 @@ import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { editItemOfProject } from "./redux/redux-info/infoActions";
+import { changeIsMainOfProject } from "./redux/redux-info/infoActions";
 
 const InfoProjectList = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const InfoProjectList = (props) => {
           className="w-[20px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
           onClick={() =>
-            dispatch(editItemOfProject({ ...props.data, isMain: !isMain }))
+            dispatch(changeIsMainOfProject({ ...props.data, isMain: !isMain }))
           }
         />
       </div>

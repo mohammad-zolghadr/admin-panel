@@ -428,6 +428,10 @@ const Info = () => {
           لیست پروژه ها
         </span>
         <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
+          <p className="text-xs text-gray-400 text-center">
+            فقط 5 مورد از گزینه ها را میتوانید در حالت انتخاب قرار دهید که در
+            صفحه اصلی وبسایت، نمایش داده شود
+          </p>
           <div className="fcenter gap-4 flex-wrap">
             {projects
               .sort((a, b) => (a.id > b.id ? 1 : -1))

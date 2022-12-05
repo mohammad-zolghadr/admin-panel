@@ -219,6 +219,24 @@ const infoReducer = (state = initState, action) => {
         ...state,
         listOfProjects: tempEditedData,
       };
+
+    case "CHANGE_IS_MAIN_PROJECT":
+      let countOfChecked = 0;
+      state.listOfProjects.forEach((e) => e.isMain && ++countOfChecked);
+
+      if (countOfChecked >= 5 && action.payload.isMain) return state;
+      else {
+        const filteredItems_2 = state.listOfProjects.filter(
+          (e) => e.id !== action.payload.id
+        );
+        const tempEditedData_2 = [...filteredItems_2, { ...action.payload }];
+        return {
+          ...state,
+          listOfProjects: tempEditedData_2,
+        };
+      }
+
+      break;
     case "GET_LIST_OF_TUTORIAL":
       // do sth
       break;
