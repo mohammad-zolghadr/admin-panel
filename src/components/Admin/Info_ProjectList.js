@@ -8,7 +8,12 @@ import checkboxDeactiveIco from "../../assets/images/checkbox_deactive.svg";
 // Component
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { editItemOfProject } from "./redux/redux-info/infoActions";
+
 const InfoProjectList = (props) => {
+  const dispatch = useDispatch();
   const { id, title, isMain, description, technologies, link } = props.data;
   const [maxDescriptionCharShow, setMaxDesciptionCharShow] = useState(70);
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -27,6 +32,9 @@ const InfoProjectList = (props) => {
         <img
           className="w-[20px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
+          onClick={() =>
+            dispatch(editItemOfProject({ ...props.data, isMain: !isMain }))
+          }
         />
       </div>
       <div className="w-full fcenter justify-between">

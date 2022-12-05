@@ -209,6 +209,7 @@ const infoReducer = (state = initState, action) => {
         },
       ];
       return { ...state, listOfProjects: tempData };
+
     case "EDIT_ITEM_OF_PROJECT":
       const filteredItems = state.listOfProjects.filter(
         (e) => e.id !== action.payload.id
