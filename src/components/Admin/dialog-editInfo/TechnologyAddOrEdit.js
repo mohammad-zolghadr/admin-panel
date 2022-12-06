@@ -3,27 +3,48 @@ import { useState } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { addItemToListOfTechnologies } from "../redux/redux-info/infoActions";
+import {
+  addItemToListOfTechnologies,
+  editItemOfTechnologies,
+} from "../redux/redux-info/infoActions";
 import { uploadImage } from "../../../fakeBackendFuctions";
 
 const TechnologyAddOrEdit = (props) => {
-  const { setShowDialog } = props.data;
-  const [inputFieldValue, setInputFieldValue] = useState({
-    name: "",
-    link: "",
-    tech: "",
-  });
+  const { dialogFunction, dialogData } = props.data;
+  const setData = () => {
+    if (dialogData)
+      return {
+        name: dialogData.name,
+        link: dialogData.link,
+        tech: dialogData.tech,
+      };
+    else
+      return {
+        name: "",
+        link: "",
+        tech: "",
+      };
+  };
+  const [inputFieldValue, setInputFieldValue] = useState(setData());
   const dispatch = useDispatch();
 
   const clickHandler = (e) => {
-    setShowDialog(false);
+    dialogFunction({ isShow: false });
 
     if (e.target.name === "confirm") {
-      uploadImage(inputFieldValue.link).then((imageLink) =>
-        dispatch(
-          addItemToListOfTechnologies({ ...inputFieldValue, link: imageLink })
-        )
-      );
+      if (!dialogData)
+        uploadImage(inputFieldValue.link).then((imageLink) =>
+          dispatch(
+            addItemToListOfTechnologies({ ...inputFieldValue, link: imageLink })
+          )
+        );
+      else {
+        uploadImage(inputFieldValue.link).then((imageLink) =>
+          dispatch(
+            editItemOfTechnologies({ ...inputFieldValue, link: imageLink })
+          )
+        );
+      }
     }
   };
 
@@ -68,7 +89,7 @@ const TechnologyAddOrEdit = (props) => {
           </div>
         </div>
         <input
-          value={inputFieldValue.technologies}
+          value={inputFieldValue.tech}
           className="minput w-full shadow-md py-3 ph text-xs"
           placeholder="اسم تکنولوژی ها را اینجا وارد کنید و با - از هم جدا کنید"
           type="text"

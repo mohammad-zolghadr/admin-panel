@@ -30,12 +30,11 @@ import {
   changeUniversity,
   changeLinks,
 } from "./redux/redux-info/infoActions";
-import { useEffect } from "react";
 
 const Info = () => {
   const [showOneField, setShowOneField] = useState(false);
   const [showDialogTechnologyAddOrEdit, setShowDialogTechnologyAddOrEdit] =
-    useState(false);
+    useState({ isShow: false, data: "" });
   const [showDialogTutorial, setShowDialogTutorial] = useState(false);
   const [showDialogProject, setShowDialogProject] = useState(false);
   const [resumeFile, setResumeFile] = useState();
@@ -67,12 +66,6 @@ const Info = () => {
   };
   const technologies = reduxData.listOfTechnologies;
   const projects = reduxData.listOfProjects;
-  // console.log(
-  //   projects,
-  //   projects.sort((a, b) => {
-  //     return a.id < b.id ? a : b;
-  //   })
-  // );
   const tutorials = reduxData.listOfTutorials;
   const [inputLinks, setInputLinks] = useState({
     linkedin: links.linkedin,
@@ -81,10 +74,6 @@ const Info = () => {
     whatsapp: links.whatsapp,
     instagram: links.instagram,
   });
-
-  useEffect(() => {
-    // console.log(linksInputFocused);
-  }, [linksInputFocused]);
 
   const editHandler = (e) => {
     setShowOneField(e.target.name);
@@ -109,8 +98,8 @@ const Info = () => {
     }
   };
 
-  const openTechnologyAddOrEditDialog = (name, data) => {
-    setShowDialogTechnologyAddOrEdit(true);
+  const openTechnologyAddOrEditDialog = (data = "") => {
+    setShowDialogTechnologyAddOrEdit({ isShow: true, data: data });
   };
 
   const inputFocusHandler = (inputName) => {
@@ -141,9 +130,12 @@ const Info = () => {
             }}
           />
         )}
-        {showDialogTechnologyAddOrEdit && (
+        {showDialogTechnologyAddOrEdit.isShow && (
           <TechnologyAddOrEdit
-            data={{ setShowDialog: setShowDialogTechnologyAddOrEdit }}
+            data={{
+              dialogFunction: setShowDialogTechnologyAddOrEdit,
+              dialogData: showDialogTechnologyAddOrEdit.data,
+            }}
           />
         )}
         {showDialogTutorial && (
@@ -213,9 +205,7 @@ const Info = () => {
             {technologies.map((e) => {
               return (
                 <div
-                  onClick={(event) =>
-                    openTechnologyAddOrEditDialog("tech-edit", e)
-                  }
+                  onClick={(event) => openTechnologyAddOrEditDialog(e)}
                   key={e.name}
                   className="w-16 h-16 rounded-full bg-white shadow-lg mhover "
                 >
@@ -224,7 +214,7 @@ const Info = () => {
               );
             })}
             <div
-              onClick={(event) => openTechnologyAddOrEditDialog("tech-add", "")}
+              onClick={(event) => openTechnologyAddOrEditDialog("")}
               className="w-16 h-16 fcenter rounded-full bg-purple-500 shadow-lg mhover "
             >
               <img className="w-2/3" src={plusIco} />
