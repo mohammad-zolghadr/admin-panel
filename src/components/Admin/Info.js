@@ -202,17 +202,19 @@ const Info = () => {
           </p>
           {/* Technologies */}
           <div className="fcenter justify-start flex-wrap gap-4 w-full">
-            {technologies.map((e) => {
-              return (
-                <div
-                  onClick={(event) => openTechnologyAddOrEditDialog(e)}
-                  key={e.name}
-                  className="w-16 h-16 rounded-full bg-white shadow-lg mhover "
-                >
-                  <img src={e.link} />
-                </div>
-              );
-            })}
+            {technologies
+              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .map((e) => {
+                return (
+                  <div
+                    onClick={(event) => openTechnologyAddOrEditDialog(e)}
+                    key={e.name}
+                    className="w-16 h-16 rounded-full bg-white shadow-lg mhover "
+                  >
+                    <img src={e.link} />
+                  </div>
+                );
+              })}
             <div
               onClick={(event) => openTechnologyAddOrEditDialog("")}
               className="w-16 h-16 fcenter rounded-full bg-purple-500 shadow-lg mhover "
