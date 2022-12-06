@@ -6,41 +6,49 @@ const initState = {
     "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.",
   listOfTechnologies: [
     {
+      id: 1,
       name: "HTML",
       tech: "HTML 5 - Semantic Tags",
       link: "",
     },
     {
+      id: 2,
       name: "CSS",
       tech: "CSS 3",
       link: "",
     },
     {
+      id: 3,
       name: "Javascript",
       tech: "ES6",
       link: "",
     },
     {
+      id: 4,
       name: "React.js",
       tech: "React Hooks - React Router (SPA) - Redux - StyledComponents - Axios - REST",
       link: "",
     },
     {
+      id: 5,
       name: "SASS",
       tech: "SCSS",
       link: "",
     },
     {
+      id: 6,
       name: "Tailwind",
       tech: "Tailwind css V3.2.4",
       link: "",
     },
     {
+      id: 7,
       name: "Figma",
       tech: "UI/UX Design",
       link: "",
     },
     {
+      id: 8,
       name: "Github",
       tech: "github",
       link: "",
@@ -191,6 +199,16 @@ const infoReducer = (state = initState, action) => {
         },
       ];
       return { ...state, listOfTechnologies: tempTechnologiesData };
+
+    case "EDIT_ITEM_OF_TECHNOLOGIES":
+      const filteredTechItem = state.listOfTechnologies.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return {
+        ...state,
+        listOfTechnologies: [...filteredTechItem, { ...action.payload }],
+      };
+
     case "CHANGE_UNIVERSITY":
       return { ...state, university: action.payload };
     case "CHANGE_DEGREE":

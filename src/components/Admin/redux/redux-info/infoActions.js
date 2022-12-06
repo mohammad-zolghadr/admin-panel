@@ -16,6 +16,9 @@ const getListOfTechnologies = () => {
 const addItemToListOfTechnologies = (newTechnology) => {
   return { type: "ADD_ITEM_TO_LIST_OF_TECHNOLOGIES", payload: newTechnology };
 };
+const editItemOfTechnologies = (editedItem) => {
+  return { type: "EDIT_ITEM_OF_TECHNOLOGIES", payload: editedItem };
+};
 
 const changeUniversity = (newUniversity) => {
   return { type: "CHANGE_UNIVERSITY", payload: newUniversity };
@@ -61,6 +64,7 @@ export {
   changeCoverLetter,
   getListOfTechnologies,
   addItemToListOfTechnologies,
+  editItemOfTechnologies,
   changeUniversity,
   changeDegree,
   changeEducationTime,
