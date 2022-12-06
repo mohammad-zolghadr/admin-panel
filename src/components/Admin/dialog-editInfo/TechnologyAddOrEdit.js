@@ -1,17 +1,30 @@
 import React from "react";
 import { useState } from "react";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { addItemToListOfTechnologies } from "../redux/redux-info/infoActions";
+import { uploadImage } from "../../../fakeBackendFuctions";
+
 const TechnologyAddOrEdit = (props) => {
   const { setShowDialog } = props.data;
-  const [inputFieldeValue, setInputFieldValue] = useState({
+  const [inputFieldValue, setInputFieldValue] = useState({
     title: "",
     image: "",
     technologies: "",
   });
+  const dispatch = useDispatch();
 
   const clickHandler = (e) => {
     setShowDialog(false);
-    // Redux Update Data
+
+    if (e.target.name === "confirm") {
+      uploadImage(inputFieldValue.image).then((imageLink) =>
+        dispatch(
+          addItemToListOfTechnologies({ ...inputFieldValue, image: imageLink })
+        )
+      );
+    }
   };
 
   return (
@@ -23,13 +36,13 @@ const TechnologyAddOrEdit = (props) => {
       <div className="bg-white px-8 py-6 rounded-lg fcenter flex-col gap-4 z-20">
         <div className="fcenter gap-2">
           <input
-            value={inputFieldeValue.title}
+            value={inputFieldValue.title}
             className="minput w-56 shadow-md py-3 ph text-xs"
             placeholder="اسم تخصص را اینجا وارد کنید"
             type="text"
             onChange={(e) => {
               setInputFieldValue({
-                ...inputFieldeValue,
+                ...inputFieldValue,
                 title: e.target.value,
               });
             }}
@@ -39,18 +52,29 @@ const TechnologyAddOrEdit = (props) => {
               <span className="bg-gray-200 font-bf text-xs text-gray-400 px-3 py-2 rounded-md mhover ">
                 انتخاب عکس
               </span>
-              <input id="choosePicture" type="file" className="hidden" />
+              <input
+                id="choosePicture"
+                type="file"
+                className="hidden"
+                accept="image/jpeg , image/png , .svg"
+                onChange={(e) => {
+                  setInputFieldValue({
+                    ...inputFieldValue,
+                    image: e.target.files[0],
+                  });
+                }}
+              />
             </label>
           </div>
         </div>
         <input
-          value={inputFieldeValue.technologies}
+          value={inputFieldValue.technologies}
           className="minput w-full shadow-md py-3 ph text-xs"
           placeholder="اسم تکنولوژی ها را اینجا وارد کنید و با - از هم جدا کنید"
           type="text"
           onChange={(e) => {
             setInputFieldValue({
-              ...inputFieldeValue,
+              ...inputFieldValue,
               technologies: e.target.value,
             });
           }}
