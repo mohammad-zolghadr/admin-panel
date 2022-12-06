@@ -184,8 +184,13 @@ const infoReducer = (state = initState, action) => {
       // do sth
       break;
     case "ADD_ITEM_TO_LIST_OF_TECHNOLOGIES":
-      // do sth
-      break;
+      let tempTechnologiesData = [
+        ...state.listOfTechnologies,
+        {
+          ...action.payload,
+        },
+      ];
+      return { ...state, listOfTechnologies: tempTechnologiesData };
     case "CHANGE_UNIVERSITY":
       return { ...state, university: action.payload };
     case "CHANGE_DEGREE":

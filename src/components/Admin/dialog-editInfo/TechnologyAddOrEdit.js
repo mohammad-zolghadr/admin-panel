@@ -9,9 +9,9 @@ import { uploadImage } from "../../../fakeBackendFuctions";
 const TechnologyAddOrEdit = (props) => {
   const { setShowDialog } = props.data;
   const [inputFieldValue, setInputFieldValue] = useState({
-    title: "",
-    image: "",
-    technologies: "",
+    name: "",
+    link: "",
+    tech: "",
   });
   const dispatch = useDispatch();
 
@@ -19,9 +19,9 @@ const TechnologyAddOrEdit = (props) => {
     setShowDialog(false);
 
     if (e.target.name === "confirm") {
-      uploadImage(inputFieldValue.image).then((imageLink) =>
+      uploadImage(inputFieldValue.link).then((imageLink) =>
         dispatch(
-          addItemToListOfTechnologies({ ...inputFieldValue, image: imageLink })
+          addItemToListOfTechnologies({ ...inputFieldValue, link: imageLink })
         )
       );
     }
@@ -36,14 +36,14 @@ const TechnologyAddOrEdit = (props) => {
       <div className="bg-white px-8 py-6 rounded-lg fcenter flex-col gap-4 z-20">
         <div className="fcenter gap-2">
           <input
-            value={inputFieldValue.title}
+            value={inputFieldValue.name}
             className="minput w-56 shadow-md py-3 ph text-xs"
             placeholder="اسم تخصص را اینجا وارد کنید"
             type="text"
             onChange={(e) => {
               setInputFieldValue({
                 ...inputFieldValue,
-                title: e.target.value,
+                name: e.target.value,
               });
             }}
           />
@@ -60,7 +60,7 @@ const TechnologyAddOrEdit = (props) => {
                 onChange={(e) => {
                   setInputFieldValue({
                     ...inputFieldValue,
-                    image: e.target.files[0],
+                    link: e.target.files[0],
                   });
                 }}
               />
@@ -75,7 +75,7 @@ const TechnologyAddOrEdit = (props) => {
           onChange={(e) => {
             setInputFieldValue({
               ...inputFieldValue,
-              technologies: e.target.value,
+              tech: e.target.value,
             });
           }}
         />
