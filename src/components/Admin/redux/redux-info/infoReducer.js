@@ -196,6 +196,7 @@ const infoReducer = (state = initState, action) => {
         ...state.listOfTechnologies,
         {
           ...action.payload,
+          id: state.listOfTechnologies.length + 1,
         },
       ];
       return { ...state, listOfTechnologies: tempTechnologiesData };

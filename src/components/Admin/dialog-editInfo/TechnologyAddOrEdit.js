@@ -41,7 +41,11 @@ const TechnologyAddOrEdit = (props) => {
       else {
         uploadImage(inputFieldValue.link).then((imageLink) =>
           dispatch(
-            editItemOfTechnologies({ ...inputFieldValue, link: imageLink })
+            editItemOfTechnologies({
+              ...inputFieldValue,
+              link: imageLink,
+              id: dialogData.id,
+            })
           )
         );
       }
