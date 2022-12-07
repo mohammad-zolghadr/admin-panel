@@ -1,32 +1,66 @@
 import React, { useState } from "react";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToListOfTutorial } from "../redux/redux-info/infoActions";
 import { uploadImage } from "../../../fakeBackendFuctions";
 
 const TutorialDialog = (props) => {
-  const { setShowDialog } = props.data;
+  const { setShowDialog, id = -1 } = props.data;
   const dispatch = useDispatch();
-  const [inputFieldValue, setInputFieldValue] = useState({
-    title: "",
-    time: "",
-    imageLink: "",
-    link: "",
-    description: "",
-    technologies: "",
-    platform: "",
-  });
+  const reduxData = useSelector((state) => state.admin_infoReducer);
+  const setData = () => {
+    if (id === -1)
+      return {
+        id: -1,
+        title: "",
+        time: "",
+        imageLink: "",
+        link: "",
+        description: "",
+        technologies: "",
+        platform: "",
+      };
+    else {
+      const findedItem = reduxData.listOfTutorials.find(
+        (element) => element.id === id
+      );
+      return {
+        id: id,
+        title: findedItem.title,
+        time: findedItem.time,
+        imageLink: findedItem.imageLink,
+        link: findedItem.link,
+        description: findedItem.description,
+        technologies: findedItem.technologies,
+        platform: findedItem.platform,
+      };
+    }
+  };
+  const [inputFieldValue, setInputFieldValue] = useState(setData());
 
   const clickHandler = (e) => {
     setShowDialog(false);
 
     if (e.target.name === "confirm")
-      uploadImage(inputFieldValue.image).then((imageLink) => {
-        dispatch(
-          addItemToListOfTutorial({ ...inputFieldValue, imageLink: imageLink })
-        );
-      });
+      if (id === -1)
+        uploadImage(inputFieldValue.image).then((imageLink) => {
+          dispatch(
+            addItemToListOfTutorial({
+              ...inputFieldValue,
+              imageLink: imageLink,
+            })
+          );
+        });
+      else
+        uploadImage(inputFieldValue.image).then((imageLink) => {
+          dispatch(
+            addItemToListOfTutorial({
+              ...inputFieldValue,
+              imageLink: imageLink,
+            })
+          );
+        });
   };
 
   const inputHandler = (e) => {
