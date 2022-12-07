@@ -59,6 +59,9 @@ const addItemToListOfTutorial = (newListOfTutorial) => {
 const editItemOfTutorial = (editedItem) => {
   return { type: "EDIT_ITEM_OF_TUTORIAL", payload: editedItem };
 };
+const changeIsMainOfTutorial = (item) => {
+  return { type: "CHANGE_IS_MAIN_TUTORIAL", payload: item };
+};
 
 export {
   changeName,
@@ -80,4 +83,5 @@ export {
   getListOfTutorial,
   addItemToListOfTutorial,
   editItemOfTutorial,
+  changeIsMainOfTutorial,
 };

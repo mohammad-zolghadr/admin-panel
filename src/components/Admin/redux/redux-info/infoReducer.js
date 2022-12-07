@@ -249,14 +249,11 @@ const infoReducer = (state = initState, action) => {
         const filteredItems_2 = state.listOfProjects.filter(
           (e) => e.id !== action.payload.id
         );
-        const tempEditedData_2 = [...filteredItems_2, { ...action.payload }];
         return {
           ...state,
-          listOfProjects: tempEditedData_2,
+          listOfProjects: [...filteredItems_2, { ...action.payload }],
         };
       }
-
-      break;
     case "GET_LIST_OF_TUTORIAL":
       // do sth
       break;
@@ -278,7 +275,22 @@ const infoReducer = (state = initState, action) => {
         ...state,
         listOfTutorials: [...filteredTutorialItems, { ...action.payload }],
       };
+    case "CHANGE_IS_MAIN_TUTORIAL":
+      let countOfTutorialChecked = 0;
+      state.listOfTutorials.forEach(
+        (e) => e.isMain && ++countOfTutorialChecked
+      );
 
+      if (countOfTutorialChecked >= 5 && action.payload.isMain) return state;
+      else {
+        const filteredItems_2 = state.listOfTutorials.filter(
+          (e) => e.id !== action.payload.id
+        );
+        return {
+          ...state,
+          listOfTutorials: [...filteredItems_2, { ...action.payload }],
+        };
+      }
     default:
       return state;
   }
