@@ -265,8 +265,14 @@ const infoReducer = (state = initState, action) => {
       // do sth
       break;
     case "ADD_ITEM_TO_LIST_OF_TUTORIAL":
-      // do sth
-      break;
+      let tempTutorialItem = [
+        ...state.listOfTutorials,
+        {
+          ...action.payload,
+          id: state.listOfTutorials.length + 1,
+        },
+      ];
+      return { ...state, listOfTutorials: tempTutorialItem };
 
     default:
       return state;
