@@ -8,10 +8,15 @@ import checkboxDeactiveIco from "../../assets/images/checkbox_deactive.svg";
 // Components
 import TutorialDialog from "./dialog-editInfo/TutorialDialog";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { changeIsMainOfTutorial } from "./redux/redux-info/infoActions";
+
 const InfoProjectList = (props) => {
   const { id, title, imageLink, time, platform, isMain, description, link } =
     props.data;
   const [showEditDialog, setShowEditDialog] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div className="basis-60 flex-grow fcenter flex-col  bg-white gap-4 p-4 shadow-lg shadow-gray-300 rounded-lg relative">
       {showEditDialog && (
@@ -26,6 +31,9 @@ const InfoProjectList = (props) => {
         <img
           className="w-[20px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
+          onClick={() =>
+            dispatch(changeIsMainOfTutorial({ ...props.data, isMain: !isMain }))
+          }
         />
       </div>
 
