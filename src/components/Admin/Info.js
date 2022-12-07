@@ -451,9 +451,11 @@ const Info = () => {
         </span>
         <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
           <div className="fcenter gap-4 flex-wrap">
-            {tutorials.map((e) => {
-              return <InfoTutorialList key={e.id} data={e} />;
-            })}
+            {tutorials
+              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .map((e) => {
+                return <InfoTutorialList key={e.id} data={e} />;
+              })}
             <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
               <img className="w-10 opacity-60" src={plusIco} />
               <p className="text-sm text-gray-500">مشاهده آموزش های بیشتر</p>

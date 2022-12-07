@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToListOfTutorial } from "../redux/redux-info/infoActions";
+import {
+  addItemToListOfTutorial,
+  editItemOfTutorial,
+} from "../redux/redux-info/infoActions";
 import { uploadImage } from "../../../fakeBackendFuctions";
 
 const TutorialDialog = (props) => {
@@ -55,7 +58,7 @@ const TutorialDialog = (props) => {
       else
         uploadImage(inputFieldValue.image).then((imageLink) => {
           dispatch(
-            addItemToListOfTutorial({
+            editItemOfTutorial({
               ...inputFieldValue,
               imageLink: imageLink,
             })
