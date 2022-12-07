@@ -11,10 +11,11 @@ const TutorialDialog = (props) => {
   const [inputFieldValue, setInputFieldValue] = useState({
     title: "",
     time: "",
-    image: "",
+    imageLink: "",
     link: "",
     description: "",
     technologies: "",
+    platform: "",
   });
 
   const clickHandler = (e) => {
@@ -23,7 +24,7 @@ const TutorialDialog = (props) => {
     if (e.target.name === "confirm")
       uploadImage(inputFieldValue.image).then((imageLink) => {
         dispatch(
-          addItemToListOfTutorial({ ...inputFieldValue, image: imageLink })
+          addItemToListOfTutorial({ ...inputFieldValue, imageLink: imageLink })
         );
       });
   };
@@ -41,11 +42,11 @@ const TutorialDialog = (props) => {
         onClick={clickHandler}
         className="block absolute w-full h-screen z-20 bg-black opacity-80"
       ></span>
-      <div className="bg-white px-8 py-6 rounded-lg fcenter flex-col gap-4 z-20">
+      <div className="bg-white px-8 py-6 mx-4 rounded-lg fcenter flex-col gap-4 z-20">
         <div className="fcenter gap-2">
           <input
             value={inputFieldValue.title}
-            className="minput w-32 md:w-56 shadow-md py-3 ph text-xs"
+            className="minput w-5/12 shadow-md py-3 ph text-xs"
             placeholder="عنوان آموزش"
             type="text"
             name="title"
@@ -53,13 +54,13 @@ const TutorialDialog = (props) => {
           />
           <input
             value={inputFieldValue.time}
-            className="minput w-20 md:w-40 shadow-md py-3 ph text-xs"
+            className="minput w-4/12 shadow-md py-3 ph text-xs"
             placeholder="زمان آموزش (به ساعت)"
             type="text"
             name="time"
             onChange={inputHandler}
           />
-          <div className="bg-gray-100 py-1 px-2 rounded-md shadow-md">
+          <div className="w-3/12 bg-gray-100 py-1 px-2 rounded-md shadow-md">
             <label className="fcenter" forhtml="choosePicture">
               <span className="bg-gray-200 font-bf text-xs text-gray-400 px-2 py-2 rounded-md mhover ">
                 انتخاب عکس
@@ -72,7 +73,7 @@ const TutorialDialog = (props) => {
                 onChange={(e) => {
                   setInputFieldValue({
                     ...inputFieldValue,
-                    image: e.target.files[0],
+                    imageLink: e.target.files[0],
                   });
                 }}
               />
@@ -87,14 +88,24 @@ const TutorialDialog = (props) => {
           name="description"
           onChange={inputHandler}
         />
-        <input
-          value={inputFieldValue.link}
-          className="minput w-full shadow-md py-3 ph text-xs"
-          placeholder="لینک آموزش"
-          type="text"
-          name="link"
-          onChange={inputHandler}
-        />
+        <div className="w-full fcenter gap-2 ">
+          <input
+            value={inputFieldValue.link}
+            className="minput w-2/3 shadow-md py-3 ph text-xs"
+            placeholder="لینک آموزش"
+            type="text"
+            name="link"
+            onChange={inputHandler}
+          />
+          <input
+            value={inputFieldValue.platform}
+            className="minput w-1/3 shadow-md py-3 ph text-xs"
+            placeholder="پلتفرم"
+            type="text"
+            name="platform"
+            onChange={inputHandler}
+          />
+        </div>
         <div className="fcenter gap-2">
           <button
             name="cancel"

@@ -270,6 +270,7 @@ const infoReducer = (state = initState, action) => {
         {
           ...action.payload,
           id: state.listOfTutorials.length + 1,
+          isMain: false,
         },
       ];
       return { ...state, listOfTutorials: tempTutorialItem };
