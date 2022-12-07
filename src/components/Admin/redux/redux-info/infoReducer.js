@@ -200,7 +200,6 @@ const infoReducer = (state = initState, action) => {
         },
       ];
       return { ...state, listOfTechnologies: tempTechnologiesData };
-
     case "EDIT_ITEM_OF_TECHNOLOGIES":
       const filteredTechItem = state.listOfTechnologies.filter(
         (e) => e.id !== action.payload.id
@@ -209,7 +208,6 @@ const infoReducer = (state = initState, action) => {
         ...state,
         listOfTechnologies: [...filteredTechItem, { ...action.payload }],
       };
-
     case "CHANGE_UNIVERSITY":
       return { ...state, university: action.payload };
     case "CHANGE_DEGREE":
@@ -233,7 +231,6 @@ const infoReducer = (state = initState, action) => {
         },
       ];
       return { ...state, listOfProjects: tempData };
-
     case "EDIT_ITEM_OF_PROJECT":
       const filteredItems = state.listOfProjects.filter(
         (e) => e.id !== action.payload.id
@@ -243,7 +240,6 @@ const infoReducer = (state = initState, action) => {
         ...state,
         listOfProjects: tempEditedData,
       };
-
     case "CHANGE_IS_MAIN_PROJECT":
       let countOfChecked = 0;
       state.listOfProjects.forEach((e) => e.isMain && ++countOfChecked);
@@ -274,6 +270,14 @@ const infoReducer = (state = initState, action) => {
         },
       ];
       return { ...state, listOfTutorials: tempTutorialItem };
+    case "EDIT_ITEM_OF_TUTORIAL":
+      const filteredTutorialItems = state.listOfTutorials.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return {
+        ...state,
+        listOfTutorials: [...filteredTutorialItems, { ...action.payload }],
+      };
 
     default:
       return state;

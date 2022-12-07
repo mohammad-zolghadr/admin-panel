@@ -56,6 +56,9 @@ const getListOfTutorial = () => {
 const addItemToListOfTutorial = (newListOfTutorial) => {
   return { type: "ADD_ITEM_TO_LIST_OF_TUTORIAL", payload: newListOfTutorial };
 };
+const editItemOfTutorial = (editedItem) => {
+  return { type: "EDIT_ITEM_OF_TUTORIAL", payload: editedItem };
+};
 
 export {
   changeName,
@@ -76,4 +79,5 @@ export {
   changeIsMainOfProject,
   getListOfTutorial,
   addItemToListOfTutorial,
+  editItemOfTutorial,
 };
