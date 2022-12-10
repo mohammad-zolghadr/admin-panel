@@ -283,12 +283,12 @@ const infoReducer = (state = initState, action) => {
         listOfTutorials: [...filteredTutorialItems, { ...action.payload }],
       };
     case "REMOVE_ITEM_OF_TUTORIAL":
-      const removedTutorialItems = state.listOfProjects.filter(
+      const removedTutorialItems = state.listOfTutorials.filter(
         (e) => e.id !== action.payload.id
       );
       return {
         ...state,
-        listOfProjects: [...removedTutorialItems],
+        listOfTutorials: [...removedTutorialItems],
       };
     case "CHANGE_IS_MAIN_TUTORIAL":
       let countOfTutorialChecked = 0;

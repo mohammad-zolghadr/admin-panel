@@ -11,7 +11,10 @@ import TutorialDialog from "./dialog-editInfo/TutorialDialog";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { changeIsMainOfTutorial } from "./redux/redux-info/infoActions";
+import {
+  changeIsMainOfTutorial,
+  removeItemOfTutorial,
+} from "./redux/redux-info/infoActions";
 
 const InfoProjectList = (props) => {
   const { id, title, imageLink, time, platform, isMain, description, link } =
@@ -30,7 +33,7 @@ const InfoProjectList = (props) => {
           src={editIco}
         />
         <img
-          onClick={() => console.log("Remove Tutorial")}
+          onClick={() => dispatch(removeItemOfTutorial(props.data))}
           className="w-[20px] bg-red-600 rounded-full  p-[3px]  mhover"
           src={deleteIco}
         />
