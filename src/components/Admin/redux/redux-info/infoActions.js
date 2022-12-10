@@ -48,6 +48,9 @@ const changeIsMainOfProject = (item) => {
 const editItemOfProject = (editedItem) => {
   return { type: "EDIT_ITEM_OF_PROJECT", payload: editedItem };
 };
+const removeItemOfProject = (item) => {
+  return { type: "REMOVE_ITEM_OF_PROJECT", payload: item };
+};
 
 const getListOfTutorial = () => {
   return { type: "GET_LIST_OF_TUTORIAL" };

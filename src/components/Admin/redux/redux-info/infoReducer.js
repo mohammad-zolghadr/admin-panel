@@ -235,10 +235,17 @@ const infoReducer = (state = initState, action) => {
       const filteredItems = state.listOfProjects.filter(
         (e) => e.id !== action.payload.id
       );
-      const tempEditedData = [...filteredItems, { ...action.payload }];
       return {
         ...state,
-        listOfProjects: tempEditedData,
+        listOfProjects: [...filteredItems, { ...action.payload }],
+      };
+    case "REMOVE_ITEM_OF_PROJECT":
+      const removedItems = state.listOfProjects.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return {
+        ...state,
+        listOfProjects: [...removedItems],
       };
     case "CHANGE_IS_MAIN_PROJECT":
       let countOfChecked = 0;
