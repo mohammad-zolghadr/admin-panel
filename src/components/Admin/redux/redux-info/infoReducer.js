@@ -240,12 +240,12 @@ const infoReducer = (state = initState, action) => {
         listOfProjects: [...filteredItems, { ...action.payload }],
       };
     case "REMOVE_ITEM_OF_PROJECT":
-      const removedItems = state.listOfProjects.filter(
+      const removedProjectItems = state.listOfProjects.filter(
         (e) => e.id !== action.payload.id
       );
       return {
         ...state,
-        listOfProjects: [...removedItems],
+        listOfProjects: [...removedProjectItems],
       };
     case "CHANGE_IS_MAIN_PROJECT":
       let countOfChecked = 0;
@@ -281,6 +281,14 @@ const infoReducer = (state = initState, action) => {
       return {
         ...state,
         listOfTutorials: [...filteredTutorialItems, { ...action.payload }],
+      };
+    case "REMOVE_ITEM_OF_TUTORIAL":
+      const removedTutorialItems = state.listOfProjects.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return {
+        ...state,
+        listOfProjects: [...removedTutorialItems],
       };
     case "CHANGE_IS_MAIN_TUTORIAL":
       let countOfTutorialChecked = 0;

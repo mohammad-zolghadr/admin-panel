@@ -65,6 +65,9 @@ const editItemOfTutorial = (editedItem) => {
 const changeIsMainOfTutorial = (item) => {
   return { type: "CHANGE_IS_MAIN_TUTORIAL", payload: item };
 };
+const removeItemOfTutorial = (item) => {
+  return { type: "REMOVE_ITEM_OF_TUTORIAL", payload: item };
+};
 
 export {
   changeName,
@@ -88,4 +91,5 @@ export {
   addItemToListOfTutorial,
   editItemOfTutorial,
   changeIsMainOfTutorial,
+  removeItemOfTutorial,
 };
