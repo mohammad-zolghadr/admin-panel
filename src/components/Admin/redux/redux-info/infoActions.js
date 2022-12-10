@@ -83,6 +83,7 @@ export {
   addItemToListOfProject,
   editItemOfProject,
   changeIsMainOfProject,
+  removeItemOfProject,
   getListOfTutorial,
   addItemToListOfTutorial,
   editItemOfTutorial,

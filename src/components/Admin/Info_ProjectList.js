@@ -11,7 +11,10 @@ import ProjectDialog from "./dialog-editInfo/ProjectDialog";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { changeIsMainOfProject } from "./redux/redux-info/infoActions";
+import {
+  changeIsMainOfProject,
+  removeItemOfProject,
+} from "./redux/redux-info/infoActions";
 
 const InfoProjectList = (props) => {
   const dispatch = useDispatch();
@@ -31,7 +34,7 @@ const InfoProjectList = (props) => {
           src={editIco}
         />
         <img
-          onClick={() => console.log("Delete Project")}
+          onClick={() => dispatch(removeItemOfProject(props.data))}
           className="w-[20px] bg-red-600 rounded-full  p-[3px]  mhover"
           src={deleteIco}
         />
