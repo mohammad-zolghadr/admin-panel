@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 // icons
-import editIco from "../../assets/images/edit_red.svg";
+import editIco from "../../assets/images/edit_white.svg";
 import checkboxActiveIco from "../../assets/images/checkbox_active.svg";
 import checkboxDeactiveIco from "../../assets/images/checkbox_deactive.svg";
+import deleteIco from "../../assets/images/trash_white.svg";
 
 // Component
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
@@ -23,14 +24,19 @@ const InfoProjectList = (props) => {
       {showEditDialog && (
         <ProjectDialog data={{ setShowDialog: setShowEditDialog, id }} />
       )}
-      <div className="fcenter justify-end py-1 flex-grow gap-1 absolute top-0 left-0 bg-gray-50 px-3  rounded-br-lg rounded-tl-lg">
+      <div className="fcenter justify-end py-1 flex-grow gap-1 shadow-md shadow-gray-200 absolute top-0 left-0 bg-gray-50 px-3  rounded-br-lg rounded-tl-lg">
         <img
           onClick={() => setShowEditDialog(true)}
-          className="w-[20px] mb-[3px] mhover"
+          className="w-[20px] bg-blue-600 rounded-full  p-[3px] ml-[3px] mhover"
           src={editIco}
         />
         <img
-          className="w-[20px] mhover"
+          onClick={() => console.log("Delete Project")}
+          className="w-[20px] bg-red-600 rounded-full  p-[3px]  mhover"
+          src={deleteIco}
+        />
+        <img
+          className="w-[24px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
           onClick={() =>
             dispatch(changeIsMainOfProject({ ...props.data, isMain: !isMain }))
