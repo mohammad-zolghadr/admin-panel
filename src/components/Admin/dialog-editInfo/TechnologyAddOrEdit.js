@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 
+// Icon
+import trashIco from "../../../assets/images/trash_white.svg";
+
 // Redux
 import { useDispatch } from "react-redux";
 import {
   addItemToListOfTechnologies,
   editItemOfTechnologies,
+  removeItemFromTechnologies,
 } from "../redux/redux-info/infoActions";
 import { uploadImage } from "../../../fakeBackendFuctions";
 
@@ -35,25 +39,23 @@ const TechnologyAddOrEdit = (props) => {
   const clickHandler = (e) => {
     if (e.target.name === "confirm") {
       setIsLoading(true);
-      if (!dialogData)
-        uploadImage(inputFieldValue.link).then((imageLink) => {
-          dialogFunction({ isShow: false });
-          dispatch(
-            addItemToListOfTechnologies({ ...inputFieldValue, link: imageLink })
-          );
-        });
-      else {
-        uploadImage(inputFieldValue.link).then((imageLink) => {
-          dialogFunction({ isShow: false });
-          dispatch(
-            editItemOfTechnologies({
-              ...inputFieldValue,
-              link: imageLink,
-              id: dialogData.id,
-            })
-          );
-        });
-      }
+      uploadImage(inputFieldValue.link).then((imageLink) => {
+        dialogFunction({ isShow: false });
+        !dialogData
+          ? dispatch(
+              addItemToListOfTechnologies({
+                ...inputFieldValue,
+                link: imageLink,
+              })
+            )
+          : dispatch(
+              editItemOfTechnologies({
+                ...inputFieldValue,
+                link: imageLink,
+                id: dialogData.id,
+              })
+            );
+      });
     } else if (!isLoading) dialogFunction({ isShow: false });
   };
 
@@ -129,6 +131,16 @@ const TechnologyAddOrEdit = (props) => {
             >
               تایید
             </button>
+            {dialogData && (
+              <img
+                src={trashIco}
+                className="w-6 bg-red-600 rounded-full p-1 mhover"
+                onClick={() => {
+                  dialogFunction({ isShow: false });
+                  dispatch(removeItemFromTechnologies(dialogData));
+                }}
+              />
+            )}
           </div>
         </div>
       )}

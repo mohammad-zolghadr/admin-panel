@@ -208,6 +208,14 @@ const infoReducer = (state = initState, action) => {
         ...state,
         listOfTechnologies: [...filteredTechItem, { ...action.payload }],
       };
+    case "REMOVE_ITEM_OF_TECHNOLOGIES":
+      const removedTechnologiesItems = state.listOfTechnologies.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return {
+        ...state,
+        listOfTechnologies: [...removedTechnologiesItems],
+      };
     case "CHANGE_UNIVERSITY":
       return { ...state, university: action.payload };
     case "CHANGE_DEGREE":
