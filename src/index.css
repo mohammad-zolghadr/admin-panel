@@ -15,6 +15,10 @@
 * {
   direction: rtl !important;
 }
+.Toastify__toast-body {
+  font-family: nf !important;
+  font-size: 0.9rem;
+}
 @tailwind utilities;
 
 @layer components {
