@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 const initState = {
   name: "محمد ذوالقدر",
   skill: "توسعه دهنده فرانت",
@@ -259,8 +260,10 @@ const infoReducer = (state = initState, action) => {
       let countOfChecked = 0;
       state.listOfProjects.forEach((e) => e.isMain && ++countOfChecked);
 
-      if (countOfChecked >= 5 && action.payload.isMain) return state;
-      else {
+      if (countOfChecked >= 5 && action.payload.isMain) {
+        toast.error("فقط 5 تا از آیتم ها رو میتونی انتخاب کنی");
+        return state;
+      } else {
         const filteredItems_2 = state.listOfProjects.filter(
           (e) => e.id !== action.payload.id
         );
@@ -304,8 +307,10 @@ const infoReducer = (state = initState, action) => {
         (e) => e.isMain && ++countOfTutorialChecked
       );
 
-      if (countOfTutorialChecked >= 5 && action.payload.isMain) return state;
-      else {
+      if (countOfTutorialChecked >= 5 && action.payload.isMain) {
+        toast.error("فقط 5 تا از آیتم ها رو میتونی انتخاب کنی");
+        return state;
+      } else {
         const filteredItems_2 = state.listOfTutorials.filter(
           (e) => e.id !== action.payload.id
         );
