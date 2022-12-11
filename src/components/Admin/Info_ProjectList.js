@@ -42,11 +42,11 @@ const InfoProjectList = (props) => {
         />
         <Tooltip
           delayShow={500}
-          anchorId="isMainProjectTooltip"
+          anchorId={`isMainProjectTooltip${id}`}
           content="این پروژه را در صفحه اصلی وبسایت نشان دهد یا نه"
         />
         <img
-          id="isMainProjectTooltip"
+          id={`isMainProjectTooltip${id}`}
           className="w-[24px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
           onClick={() =>
