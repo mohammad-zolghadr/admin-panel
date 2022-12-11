@@ -8,6 +8,8 @@ import deleteIco from "../../assets/images/trash_white.svg";
 
 // Components
 import TutorialDialog from "./dialog-editInfo/TutorialDialog";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -37,7 +39,13 @@ const InfoProjectList = (props) => {
           className="w-[20px] bg-red-600 rounded-full  p-[3px]  mhover"
           src={deleteIco}
         />
+        <Tooltip
+          delayShow={500}
+          anchorId="isMainTutorialTooltip"
+          content="این آموزش را در صفحه اصلی وبسایت نشان دهد یا نه"
+        />
         <img
+          id="isMainTutorialTooltip"
           className="w-[24px] mhover"
           src={isMain ? checkboxActiveIco : checkboxDeactiveIco}
           onClick={() =>
