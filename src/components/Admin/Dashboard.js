@@ -14,6 +14,10 @@ import trashIco from "../../assets/images/trash_white.svg";
 import replyIco from "../../assets/images/reply_arrow.svg";
 import arrowIco from "../../assets/images/arrow.svg";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { getAllMessage } from "./redux/redux-dashboard/dashboardActions";
+
 // Chart Data
 const labels = [
   "شنبه",
@@ -49,35 +53,6 @@ const postsChartData = {
   ],
 };
 
-// Table Data
-const tableData = [
-  {
-    id: 1,
-    message: "متن پیام به صورت خلاصه شده...",
-    email: "exampla@gmail.com",
-    date: "1401/08/28",
-  },
-  {
-    id: 2,
-    message: "فلان قسمت مشکل داره داداش",
-    email: "exampla@gmail.com",
-    date: "1396/06/28",
-  },
-  {
-    id: 3,
-    message:
-      "این قسمت فقط برای پیام مستقیم به ادمین هست نه کامنت گذاشتن زیر مقاله ها و پست ها",
-    email: "exampla@gmail.com",
-    date: "1401/10/22",
-  },
-  {
-    id: 4,
-    message: "یه پیشنهاد جدید دارم برای شما",
-    email: "exampla@gmail.com",
-    date: "1403/04/02",
-  },
-];
-
 // Calculate numbers in array
 const calculateNumbers = (array) => {
   const calc = array.reduce((a, b) => a + b);
@@ -95,6 +70,10 @@ const Dashboard = () => {
     show: false,
     data: "",
   });
+  const dispatch = useDispatch();
+  const reduxData = useSelector((state) => state.admin_dashboardReducer);
+
+  const { messageData } = { messageData: reduxData.messageData };
 
   const replyToMessage = (data) => {
     setDialogReplyMesssage({ show: true, data });
@@ -129,7 +108,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((e) => {
+              {messageData.map((e) => {
                 return (
                   <tr key={e.id} className="w-full border-b border-gray-200">
                     <td className=" py-4 px-2">
