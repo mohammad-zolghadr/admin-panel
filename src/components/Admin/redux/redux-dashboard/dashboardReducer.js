@@ -36,8 +36,13 @@ const dashboardReducer = (state = initialState, action) => {
       // do sth
       break;
     case "REMOVE_MESSAGE":
-      // do sth
-      break;
+      const messageFiltered = state.messageData.filter(
+        (element) => element.id !== action.payload.id
+      );
+      return {
+        ...state,
+        messageData: messageFiltered,
+      };
     default:
       return state;
   }

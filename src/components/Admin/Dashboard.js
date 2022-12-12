@@ -16,6 +16,7 @@ import arrowIco from "../../assets/images/arrow.svg";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
+import { removeMessage } from "./redux/redux-dashboard/dashboardActions";
 
 // Chart Data
 const labels = [
@@ -143,6 +144,7 @@ const Dashboard = () => {
                           className="w-5 md:w-6 bg-green-700 rounded-full p-1 mhover"
                         />
                         <img
+                          onClick={() => dispatch(removeMessage(e))}
                           src={trashIco}
                           className="w-5 md:w-6 bg-red-600 rounded-full p-1 mhover"
                         />
