@@ -3,6 +3,8 @@ import React, { useState } from "react";
 // Components
 import AreaChart from "./AreaChart";
 import MessageReply from "./dialog-editInfo/MessageReply";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 // Icons
 import userIco from "../../assets/images/users.svg";
@@ -149,7 +151,13 @@ const Dashboard = () => {
                     </td>
                     <td>
                       <div className="fcenter gap-2">
+                        <Tooltip
+                          delayShow={500}
+                          anchorId={`dashboardMessageReplyTooltip${e.id}`}
+                          content="پاسخ به این پیام"
+                        />
                         <img
+                          id={`dashboardMessageReplyTooltip${e.id}`}
                           src={replyIco}
                           onClick={() => replyToMessage(e)}
                           className="w-5 md:w-6 bg-green-700 rounded-full p-1 mhover"
