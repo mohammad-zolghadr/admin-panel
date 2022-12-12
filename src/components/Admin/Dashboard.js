@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // Components
 import AreaChart from "./AreaChart";
+import MessageReply from "./dialog-editInfo/MessageReply";
 
 // Icons
 import userIco from "../../assets/images/users.svg";
@@ -88,6 +89,14 @@ const separateNumbers = (num) => {
 
 const Dashboard = () => {
   const [showWhichChart, setShowWhichChart] = useState("week");
+  const [dialogReplyMesssage, setDialogReplyMesssage] = useState({
+    show: false,
+    data: "",
+  });
+
+  const replyToMessage = (data) => {
+    setDialogReplyMesssage({ show: true, data });
+  };
 
   // Chart or Message Component Showing
   const whichComponentMustShow = () => {
@@ -142,6 +151,7 @@ const Dashboard = () => {
                       <div className="fcenter gap-2">
                         <img
                           src={replyIco}
+                          onClick={() => replyToMessage(e)}
                           className="w-5 md:w-6 bg-green-700 rounded-full p-1 mhover"
                         />
                         <img
@@ -172,6 +182,14 @@ const Dashboard = () => {
 
   return (
     <div className="mwrapper gap-10 pb-32 md:pb-0">
+      {dialogReplyMesssage.show && (
+        <MessageReply
+          data={{
+            setShowOneField: setDialogReplyMesssage,
+            data: dialogReplyMesssage.data,
+          }}
+        />
+      )}
       {/* Top Header */}
       <div className="fcenter mcontainer lg:w-2/3 gap-2 lg:gap-5 flex-wrap">
         <div
