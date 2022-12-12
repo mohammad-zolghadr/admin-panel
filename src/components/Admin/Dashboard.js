@@ -16,7 +16,6 @@ import arrowIco from "../../assets/images/arrow.svg";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { getAllMessage } from "./redux/redux-dashboard/dashboardActions";
 
 // Chart Data
 const labels = [
@@ -34,7 +33,7 @@ const weekChartData = {
     {
       fill: true,
       label: "بازدید هفتگی به تفکیک روز",
-      data: [1264, 2424, 9754, 3796, 2849, 4560, 3940],
+      data: [],
       borderColor: "#0891B2",
       backgroundColor: "#0891B277",
     },
@@ -46,7 +45,7 @@ const postsChartData = {
     {
       fill: true,
       label: "مقالات منتشر شده در این هفته",
-      data: [26, 12, 54, 21, 86, 72, 42],
+      data: [],
       borderColor: "#DC2626",
       backgroundColor: "#DC262677",
     },
@@ -74,6 +73,8 @@ const Dashboard = () => {
   const reduxData = useSelector((state) => state.admin_dashboardReducer);
 
   const { messageData } = { messageData: reduxData.messageData };
+  weekChartData.datasets[0].data = reduxData.weekChartData;
+  postsChartData.datasets[0].data = reduxData.postsChartData;
 
   const replyToMessage = (data) => {
     setDialogReplyMesssage({ show: true, data });

@@ -26,6 +26,8 @@ const initialState = {
       date: "1403/04/02",
     },
   ],
+  weekChartData: [1264, 2424, 9754, 3796, 2849, 4560, 3940],
+  postsChartData: [26, 12, 54, 21, 43, 72, 42],
 };
 
 const dashboardReducer = (state = initialState, action) => {
