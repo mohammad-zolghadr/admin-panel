@@ -34,6 +34,15 @@ const initState = {
 
 const postReducer = (state = initState, action) => {
   switch (action.type) {
+    case "REMOVE_POST":
+      const allItemsWithoutRemoved = state.postsList.filter(
+        (element) => element.id !== action.payload.id
+      );
+      return {
+        ...state,
+        postsList: allItemsWithoutRemoved,
+      };
+
     default:
       return state;
   }

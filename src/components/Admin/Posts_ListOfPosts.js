@@ -7,37 +7,14 @@ import editIco from "../../assets/images/edit.svg";
 import searchIco from "../../assets/images/search.svg";
 import arrowIco from "../../assets/images/arrow.svg";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { removePost } from "./redux/redux-post/postActions";
+
 const PostsListOfPosts = () => {
-  const tableData = [
-    {
-      id: 1,
-      title: "عنوان یک مقاله را اینجا می نویسیم",
-      image: pic,
-      status: "active",
-      date: "1401/08/28",
-    },
-    {
-      id: 2,
-      title: "زندگی را دوست بداریم",
-      image: pic,
-      status: "active",
-      date: "1396/06/28",
-    },
-    {
-      id: 3,
-      title: "آموزش برنامه نویسی فرانت اند",
-      image: pic,
-      status: "deactive",
-      date: "1401/10/22",
-    },
-    {
-      id: 4,
-      title: "یک آموزش جدید میخوام بسازم براتون",
-      image: pic,
-      status: "active",
-      date: "1403/04/02",
-    },
-  ];
+  const reduxData = useSelector((state) => state.admin_postReducer);
+  const dispatch = useDispatch();
+  const postsList = reduxData.postsList;
 
   const [showSortDropDown, setShowSortDropDown] = useState(false);
   const [selectedDropDownItem, setSelectedDropDownItem] = useState("");
@@ -155,7 +132,7 @@ const PostsListOfPosts = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((e) => {
+            {postsList.map((e) => {
               return (
                 <tr key={e.id} className="border-b border-gray-200">
                   <td className="py-4 px-2">
@@ -186,7 +163,13 @@ const PostsListOfPosts = () => {
                   <td>
                     <div className="fcenter gap-2">
                       <img src={editIco} className="w-5 mhover" />
-                      <img src={trashIco} className="w-5 mhover" />
+                      <img
+                        src={trashIco}
+                        onClick={() => {
+                          dispatch(removePost(e));
+                        }}
+                        className="w-5 mhover"
+                      />
                     </div>
                   </td>
                 </tr>
