@@ -16,14 +16,17 @@ import { randomNumber } from "../../functions";
 const PostsListOfPosts = () => {
   const reduxData = useSelector((state) => state.admin_postReducer);
   const dispatch = useDispatch();
-  const postsList = reduxData.postsList;
+  const { postsList, searchedList } = {
+    postsList: reduxData.postsList,
+    searchedList: reduxData.searchedPostList,
+  };
 
   const [inputSearchValue, setInputSearchValue] = useState("");
   const [showSortDropDown, setShowSortDropDown] = useState(false);
   const [selectedDropDownItem, setSelectedDropDownItem] = useState("");
 
   useEffect(() => {
-    inputSearchValue !== "" && dispatch(searchPost(inputSearchValue));
+    dispatch(searchPost(inputSearchValue));
   }, [inputSearchValue]);
 
   const dropdownHandler = (name) => {
@@ -49,6 +52,48 @@ const PostsListOfPosts = () => {
         break;
     }
     setShowSortDropDown(false);
+  };
+
+  const postsListUi = (e) => {
+    return (
+      <tr key={randomNumber()} className="border-b border-gray-200">
+        <td className="py-4 px-2">
+          <div className="fcenter justify-start gap-2">
+            <img
+              src={e.image}
+              className="hidden md:inline-block w-10 h-10 p-2 bg-gray-300 rounded-full"
+            ></img>
+            <p className="text-xs font-bf text-gray-500 ">{e.title}</p>
+          </div>
+        </td>
+        <td>
+          <div className="fcenter">
+            {e.status === "active" ? (
+              <span className="mactive">فعال</span>
+            ) : (
+              <span className="mdarft">پیش نویس</span>
+            )}
+          </div>
+        </td>
+        <td>
+          <div className="fcenter">
+            <span className="text-xs text-gray-400">{e.date}</span>
+          </div>
+        </td>
+        <td>
+          <div className="fcenter gap-2">
+            <img src={editIco} className="w-5 mhover" />
+            <img
+              src={trashIco}
+              onClick={() => {
+                dispatch(removePost(e));
+              }}
+              className="w-5 mhover"
+            />
+          </div>
+        </td>
+      </tr>
+    );
   };
 
   return (
@@ -142,48 +187,13 @@ const PostsListOfPosts = () => {
           </thead>
           <tbody>
             {postsList &&
+              inputSearchValue.length === 0 &&
               postsList.map((e) => {
-                return (
-                  <tr key={randomNumber()} className="border-b border-gray-200">
-                    <td className="py-4 px-2">
-                      <div className="fcenter justify-start gap-2">
-                        <img
-                          src={e.image}
-                          className="hidden md:inline-block w-10 h-10 p-2 bg-gray-300 rounded-full"
-                        ></img>
-                        <p className="text-xs font-bf text-gray-500 ">
-                          {e.title}
-                        </p>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="fcenter">
-                        {e.status === "active" ? (
-                          <span className="mactive">فعال</span>
-                        ) : (
-                          <span className="mdarft">پیش نویس</span>
-                        )}
-                      </div>
-                    </td>
-                    <td>
-                      <div className="fcenter">
-                        <span className="text-xs text-gray-400">{e.date}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="fcenter gap-2">
-                        <img src={editIco} className="w-5 mhover" />
-                        <img
-                          src={trashIco}
-                          onClick={() => {
-                            dispatch(removePost(e));
-                          }}
-                          className="w-5 mhover"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                );
+                return postsListUi(e);
+              })}
+            {inputSearchValue.length > 0 &&
+              searchedList.map((e) => {
+                return postsListUi(e);
               })}
           </tbody>
         </table>

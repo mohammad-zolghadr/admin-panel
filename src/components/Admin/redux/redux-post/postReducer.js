@@ -30,6 +30,7 @@ const initState = {
       date: "1403/04/02",
     },
   ],
+  searchedPostList: [],
 };
 
 const postReducer = (state = initState, action) => {
@@ -48,7 +49,7 @@ const postReducer = (state = initState, action) => {
       );
       return {
         ...state,
-        postsList: searchMatchedItem,
+        searchedPostList: searchMatchedItem,
       };
 
     default:
