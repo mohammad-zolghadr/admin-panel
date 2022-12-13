@@ -178,7 +178,6 @@ const initState = {
 };
 
 const infoReducer = (state = initState, action) => {
-  console.log(state);
   switch (action.type) {
     case "CHANGE_NAME":
       return { ...state, name: action.payload };
