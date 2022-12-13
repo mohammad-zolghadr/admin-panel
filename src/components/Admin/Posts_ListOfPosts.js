@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Icons
-import pic from "../../assets/images/profile.svg";
 import trashIco from "../../assets/images/trash.svg";
 import editIco from "../../assets/images/edit.svg";
 import searchIco from "../../assets/images/search.svg";
@@ -9,15 +8,23 @@ import arrowIco from "../../assets/images/arrow.svg";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { removePost } from "./redux/redux-post/postActions";
+import { removePost, searchPost } from "./redux/redux-post/postActions";
+
+// Functions
+import { randomNumber } from "../../functions";
 
 const PostsListOfPosts = () => {
   const reduxData = useSelector((state) => state.admin_postReducer);
   const dispatch = useDispatch();
   const postsList = reduxData.postsList;
 
+  const [inputSearchValue, setInputSearchValue] = useState("");
   const [showSortDropDown, setShowSortDropDown] = useState(false);
   const [selectedDropDownItem, setSelectedDropDownItem] = useState("");
+
+  useEffect(() => {
+    inputSearchValue !== "" && dispatch(searchPost(inputSearchValue));
+  }, [inputSearchValue]);
 
   const dropdownHandler = (name) => {
     switch (name) {
@@ -57,6 +64,8 @@ const PostsListOfPosts = () => {
               type="text"
               className="border-none text-xs focus:ring-0 bg-transparent"
               placeholder="جستجو"
+              value={inputSearchValue}
+              onChange={(e) => setInputSearchValue(e.target.value)}
             />
             <img
               src={searchIco}
@@ -132,49 +141,50 @@ const PostsListOfPosts = () => {
             </tr>
           </thead>
           <tbody>
-            {postsList.map((e) => {
-              return (
-                <tr key={e.id} className="border-b border-gray-200">
-                  <td className="py-4 px-2">
-                    <div className="fcenter justify-start gap-2">
-                      <img
-                        src={e.image}
-                        className="hidden md:inline-block w-10 h-10 p-2 bg-gray-300 rounded-full"
-                      ></img>
-                      <p className="text-xs font-bf text-gray-500 ">
-                        {e.title}
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="fcenter">
-                      {e.status === "active" ? (
-                        <span className="mactive">فعال</span>
-                      ) : (
-                        <span className="mdarft">پیش نویس</span>
-                      )}
-                    </div>
-                  </td>
-                  <td>
-                    <div className="fcenter">
-                      <span className="text-xs text-gray-400">{e.date}</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="fcenter gap-2">
-                      <img src={editIco} className="w-5 mhover" />
-                      <img
-                        src={trashIco}
-                        onClick={() => {
-                          dispatch(removePost(e));
-                        }}
-                        className="w-5 mhover"
-                      />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+            {postsList &&
+              postsList.map((e) => {
+                return (
+                  <tr key={randomNumber()} className="border-b border-gray-200">
+                    <td className="py-4 px-2">
+                      <div className="fcenter justify-start gap-2">
+                        <img
+                          src={e.image}
+                          className="hidden md:inline-block w-10 h-10 p-2 bg-gray-300 rounded-full"
+                        ></img>
+                        <p className="text-xs font-bf text-gray-500 ">
+                          {e.title}
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="fcenter">
+                        {e.status === "active" ? (
+                          <span className="mactive">فعال</span>
+                        ) : (
+                          <span className="mdarft">پیش نویس</span>
+                        )}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="fcenter">
+                        <span className="text-xs text-gray-400">{e.date}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="fcenter gap-2">
+                        <img src={editIco} className="w-5 mhover" />
+                        <img
+                          src={trashIco}
+                          onClick={() => {
+                            dispatch(removePost(e));
+                          }}
+                          className="w-5 mhover"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
         {/* Pagination */}

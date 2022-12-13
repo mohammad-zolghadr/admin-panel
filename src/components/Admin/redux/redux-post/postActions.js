@@ -6,4 +6,4 @@ const searchPost = (keyword) => {
   return { type: "SEARCH_POST", payload: keyword };
 };
 
-export { removePost };
+export { removePost, searchPost };

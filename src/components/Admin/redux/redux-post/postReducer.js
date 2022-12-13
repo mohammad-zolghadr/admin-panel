@@ -43,7 +43,7 @@ const postReducer = (state = initState, action) => {
         postsList: allItemsWithoutRemoved,
       };
     case "SEARCH_POST":
-      const searchMatchedItem = state.postsList.find((element) =>
+      const searchMatchedItem = state.postsList.filter((element) =>
         element.title.includes(action.payload)
       );
       return {
