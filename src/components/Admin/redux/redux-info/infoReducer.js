@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { randomNumber, getTodayDate } from "../../../../functions";
 const initState = {
   name: "محمد ذوالقدر",
   skill: "توسعه دهنده فرانت",
@@ -76,6 +77,7 @@ const initState = {
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/08/06 | 13:48:10",
     },
     {
       id: 2,
@@ -86,6 +88,7 @@ const initState = {
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/08/08 | 21:56:59",
     },
     {
       id: 3,
@@ -96,6 +99,7 @@ const initState = {
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/08/10 | 11:31:43",
     },
     {
       id: 4,
@@ -106,6 +110,7 @@ const initState = {
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/08/11 | 12:40:42",
     },
     {
       id: 5,
@@ -116,6 +121,7 @@ const initState = {
       technologies:
         "React.js - Node.js - Redux - React Router DOM (SPA) - Local Storage - Tailwindcss - SASS - Axios - Figma",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/08/12 | 12:05:08",
     },
   ],
   listOfTutorials: [
@@ -129,6 +135,7 @@ const initState = {
       description:
         "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/04/22 | 08:12:08",
     },
     {
       id: 2,
@@ -140,6 +147,7 @@ const initState = {
       description:
         "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/05/10 | 10:45:17",
     },
     {
       id: 3,
@@ -151,6 +159,7 @@ const initState = {
       description:
         "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/10/18 | 12:38:08",
     },
     {
       id: 4,
@@ -162,6 +171,7 @@ const initState = {
       description:
         "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/10/23 | 12:41:08",
     },
     {
       id: 5,
@@ -173,6 +183,7 @@ const initState = {
       description:
         "در این آموزش و با استفاده از پروتکل HTTP ما سعی کردیم که یک آموزش کامل از نحوه ارتباط با API ها با معماری REST در محیط React.js با استفاده از fetch و پکیج axios تهیه کنیم تا شما عزیزان بتوانید با ارتباط برقرار کردن با API ها، وبسایت های داینامیک و بهتری را بسازید. پیش نیاز این آموزش، آشنایی حداقلی با HTML و CSS و Javascript و React.js است. البته که اگر این موارد را خیلی ابتدایی هم بلد باشید کفایت میکند چون در این آموزش ما سعی کرده ایم که مباحث را از پایه ای ترین شکل ممکن آموزش دهیم.",
       link: "https://github.com/mohammad-zolghadr/admin-panel",
+      date: "1401/10/28 | 12:45:08",
     },
   ],
 };
@@ -234,8 +245,9 @@ const infoReducer = (state = initState, action) => {
         ...state.listOfProjects,
         {
           ...action.payload,
-          id: state.listOfProjects.length + 1,
+          id: randomNumber(),
           isMain: false,
+          date: getTodayDate(),
         },
       ];
       return { ...state, listOfProjects: tempData };
@@ -279,8 +291,9 @@ const infoReducer = (state = initState, action) => {
         ...state.listOfTutorials,
         {
           ...action.payload,
-          id: state.listOfTutorials.length + 1,
+          id: randomNumber(),
           isMain: false,
+          date: getTodayDate(),
         },
       ];
       return { ...state, listOfTutorials: tempTutorialItem };

@@ -17,8 +17,11 @@ import OneField from "./dialog-editInfo/OneField";
 import TechnologyAddOrEdit from "./dialog-editInfo/TechnologyAddOrEdit";
 import TutorialDialog from "./dialog-editInfo/TutorialDialog";
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Functions
+import { randomNumber } from "../../functions";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -429,9 +432,9 @@ const Info = () => {
           </p>
           <div className="fcenter gap-4 flex-wrap">
             {projects
-              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .sort((a, b) => (a.date < b.date ? 1 : -1))
               .map((e) => {
-                return <InfoProjectList key={e.id} data={e} />;
+                return <InfoProjectList key={randomNumber()} data={e} />;
               })}
             <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
               <img className="w-10 opacity-60" src={plusIco} />
@@ -455,7 +458,7 @@ const Info = () => {
         <div className="w-full fcenter flex-col gap-12 p-6 py-10 bg-gray-100 rounded-lg shadow-lg shadow-gray-300">
           <div className="fcenter gap-4 flex-wrap">
             {tutorials
-              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .sort((a, b) => (a.date < b.date ? 1 : -1))
               .map((e) => {
                 return <InfoTutorialList key={e.id} data={e} />;
               })}
