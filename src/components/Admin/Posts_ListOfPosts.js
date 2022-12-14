@@ -8,7 +8,11 @@ import arrowIco from "../../assets/images/arrow.svg";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { removePost, searchPost } from "./redux/redux-post/postActions";
+import {
+  removePost,
+  searchPost,
+  sortPost,
+} from "./redux/redux-post/postActions";
 
 // Functions
 import { randomNumber } from "../../functions";
@@ -16,9 +20,10 @@ import { randomNumber } from "../../functions";
 const PostsListOfPosts = () => {
   const reduxData = useSelector((state) => state.admin_postReducer);
   const dispatch = useDispatch();
-  const { postsList, searchedList } = {
+  const { postsList, searchedList, sortedList } = {
     postsList: reduxData.postsList,
     searchedList: reduxData.searchedPostList,
+    sortedList: reduxData.sortedPostList,
   };
 
   const [inputSearchValue, setInputSearchValue] = useState("");
@@ -33,19 +38,19 @@ const PostsListOfPosts = () => {
     switch (name) {
       case "publish":
         setSelectedDropDownItem("منتشرشده ها");
-        // Update Data
+        dispatch(sortPost("published"));
         break;
       case "draft":
         setSelectedDropDownItem("پیش‌نویس ها");
-        // Update Data
+        dispatch(sortPost("drafted"));
         break;
       case "newest":
         setSelectedDropDownItem("جدید ترین");
-        // Update Data
+        dispatch(sortPost("newest"));
         break;
       case "oldest":
         setSelectedDropDownItem("قدیمی‌ ترین");
-        // Update Data
+        dispatch(sortPost("oldest"));
         break;
 
       default:
@@ -188,7 +193,12 @@ const PostsListOfPosts = () => {
           <tbody>
             {postsList &&
               inputSearchValue.length === 0 &&
+              selectedDropDownItem === "" &&
               postsList.map((e) => {
+                return postsListUi(e);
+              })}
+            {selectedDropDownItem !== "" &&
+              sortedList.map((e) => {
                 return postsListUi(e);
               })}
             {inputSearchValue.length > 0 &&
