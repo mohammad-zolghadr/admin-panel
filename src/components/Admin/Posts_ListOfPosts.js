@@ -191,16 +191,20 @@ const PostsListOfPosts = () => {
             </tr>
           </thead>
           <tbody>
+            {/* List Of All Posts */}
             {postsList &&
               inputSearchValue.length === 0 &&
               selectedDropDownItem === "" &&
               postsList.map((e) => {
                 return postsListUi(e);
               })}
+            {/* List Of Sorted (Filtered) Posts */}
             {selectedDropDownItem !== "" &&
+              inputSearchValue.length === 0 &&
               sortedList.map((e) => {
                 return postsListUi(e);
               })}
+            {/* List Of Searched Posts */}
             {inputSearchValue.length > 0 &&
               searchedList.map((e) => {
                 return postsListUi(e);
