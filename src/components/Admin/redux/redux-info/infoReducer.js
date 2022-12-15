@@ -207,7 +207,7 @@ const infoReducer = (state = initState, action) => {
         ...state.listOfTechnologies,
         {
           ...action.payload,
-          id: state.listOfTechnologies.length + 1,
+          id: randomNumber(),
         },
       ];
       return { ...state, listOfTechnologies: tempTechnologiesData };

@@ -83,7 +83,9 @@ const PostsListOfPosts = () => {
         </td>
         <td>
           <div className="fcenter">
-            <span className="text-xs text-gray-400">{e.date}</span>
+            <span className="text-xs text-gray-400">
+              {e.date.split("|")[0]}
+            </span>
           </div>
         </td>
         <td>
