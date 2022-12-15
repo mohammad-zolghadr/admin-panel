@@ -1,5 +1,5 @@
 import pic from "../../../../assets/images/profile.svg";
-import { randomNumber } from "../../../../functions";
+import { getTodayDate, randomNumber } from "../../../../functions";
 const initState = {
   postsList: [
     {
@@ -54,11 +54,11 @@ const postReducer = (state = initState, action) => {
         ...state.postsList,
         {
           id: randomNumber(),
+          date: getTodayDate(),
           ...action.payload,
         },
       ];
       return { ...state, postsList: tempPostArray };
-
     case "REMOVE_POST":
       const allItemsWithoutRemoved = state.postsList.filter(
         (element) => element.id !== action.payload.id

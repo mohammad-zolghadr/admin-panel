@@ -2,14 +2,22 @@ import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useLocation } from "react-router-dom";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { addPost } from "./redux/redux-post/postActions";
+
 // Components
 import RichtextEditor from "./RichTextEditor";
 
+// Functions
+import { uploadImage } from "../../fakeBackendFuctions";
+
 const SUMMARY_LIMIT_CHAR = 120;
 
-const PostsNewContent = (props) => {
+const PostsNewContent = () => {
   const { state } = useLocation();
   const { id, title, summary, hashtag, image, body } = state ?? "";
+  const dispatch = useDispatch();
   const [ivBody, setIvBody] = useState(body);
   const [inputValue, setInputValue] = useState({
     title: title,
@@ -25,6 +33,22 @@ const PostsNewContent = (props) => {
     // File Choosen
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const formSubmited = (e) => {
+    e.preventDefault();
+    uploadImage().then((imageLink) => {
+      dispatch(
+        addPost({
+          title: inputValue.title,
+          body: ivBody,
+          summary: inputValue.summary,
+          image: imageLink,
+          hashtag: inputValue.hashtag,
+          status: e.target.name,
+        })
+      );
+    });
+  };
 
   return (
     <div className="w-full md:w-10/12 lg:w-2/3 mx-auto">
@@ -66,7 +90,9 @@ const PostsNewContent = (props) => {
                 color:
                   inputValue.summary?.length === SUMMARY_LIMIT_CHAR && "#a22",
               }}
-            >{`${inputValue.summary?.length}/${SUMMARY_LIMIT_CHAR}`}</span>
+            >{`${
+              inputValue.summary ? inputValue.summary.length : 0
+            }/${SUMMARY_LIMIT_CHAR}`}</span>
           </div>
         </div>
 
@@ -129,10 +155,20 @@ const PostsNewContent = (props) => {
         </div>
 
         <div className="fcenter gap-4 flex-wrap mt-10 mb-16">
-          <button className="secondary-btn rounded-full text-sm font-bf bg-gray-200 border-transparent text-gray-500 shadow-lg  mhover ">
+          <button
+            onClick={formSubmited}
+            type="submit"
+            name="deactive"
+            className="secondary-btn rounded-full text-sm font-bf bg-gray-200 border-transparent text-gray-500 shadow-lg  mhover "
+          >
             ذخیره پیش نویس
           </button>
-          <button className="primary-btn rounded-full text-sm font-bf shadow-lg shadow-purple-300 mhover flex-1">
+          <button
+            onClick={formSubmited}
+            type="submit"
+            name="active"
+            className="primary-btn rounded-full text-sm font-bf shadow-lg shadow-purple-300 mhover flex-1"
+          >
             انتشار محتوا
           </button>
         </div>
