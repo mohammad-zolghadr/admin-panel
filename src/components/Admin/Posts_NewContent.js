@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -44,25 +45,31 @@ const PostsNewContent = () => {
   const formSubmited = (e) => {
     e.preventDefault();
     setIsShowLoading(true);
-    uploadImage().then((imageLink) => {
-      dispatch(
-        addPost({
-          title: inputValue.title,
-          body: ivBody,
-          summary: inputValue.summary,
-          image: imageLink,
-          hashtag: inputValue.hashtag,
-          status: e.target.name,
-        })
+    uploadImage()
+      .then((imageLink) => {
+        dispatch(
+          addPost({
+            title: inputValue.title,
+            body: ivBody,
+            summary: inputValue.summary,
+            image: imageLink,
+            hashtag: inputValue.hashtag,
+            status: e.target.name,
+          })
+        );
+        toast.success("محتوای جدید با موفقیت آپلود شد");
+        resetInputs();
+        setIsShowLoading(false);
+      })
+      .catch((error) =>
+        toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!")
       );
-      resetInputs();
-      setIsShowLoading(false);
-    });
   };
 
   return (
     <div className="w-full md:w-10/12 lg:w-2/3 mx-auto">
       {isShowLoading && <Loading data={{ full: true }} />}
+      <ToastContainer position="bottom-left" />
       <form className="fcenter flex-col gap-12">
         <div className="w-full fcenter flex-col">
           <label className="inputLabel">عنوان مقاله</label>
