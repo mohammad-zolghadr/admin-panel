@@ -86,9 +86,7 @@ const TutorialDialog = (props) => {
         className="block absolute w-full h-screen z-20 bg-black opacity-80"
       ></span>
       {isLoading ? (
-        <div className="w-12 h-12 z-30">
-          <Loading />
-        </div>
+        <Loading />
       ) : (
         <div className="bg-white relative px-8 py-6 mx-4 overflow-hidden rounded-lg fcenter flex-col gap-4 z-20">
           <div className="fcenter gap-2">

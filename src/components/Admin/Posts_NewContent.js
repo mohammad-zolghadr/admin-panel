@@ -8,6 +8,7 @@ import { addPost } from "./redux/redux-post/postActions";
 
 // Components
 import RichtextEditor from "./RichTextEditor";
+import Loading from "../Loading";
 
 // Functions
 import { uploadImage } from "../../fakeBackendFuctions";
@@ -24,6 +25,7 @@ const PostsNewContent = () => {
     summary: summary,
     hashtag: hashtag,
   });
+  const [isShowLoading, setIsShowLoading] = useState(false);
 
   const inputHandler = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
@@ -34,8 +36,14 @@ const PostsNewContent = () => {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  const resetInputs = () => {
+    setIvBody("");
+    setInputValue({ title: "", summary: "", hashtag: "" });
+  };
+
   const formSubmited = (e) => {
     e.preventDefault();
+    setIsShowLoading(true);
     uploadImage().then((imageLink) => {
       dispatch(
         addPost({
@@ -47,11 +55,14 @@ const PostsNewContent = () => {
           status: e.target.name,
         })
       );
+      resetInputs();
+      setIsShowLoading(false);
     });
   };
 
   return (
     <div className="w-full md:w-10/12 lg:w-2/3 mx-auto">
+      {isShowLoading && <Loading data={{ full: true }} />}
       <form className="fcenter flex-col gap-12">
         <div className="w-full fcenter flex-col">
           <label className="inputLabel">عنوان مقاله</label>
