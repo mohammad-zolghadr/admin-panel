@@ -16,6 +16,7 @@ import {
 
 // Functions
 import { randomNumber } from "../../functions";
+import { Link } from "react-router-dom";
 
 const PostsListOfPosts = () => {
   const reduxData = useSelector((state) => state.admin_postReducer);
@@ -87,10 +88,13 @@ const PostsListOfPosts = () => {
         </td>
         <td>
           <div className="fcenter gap-2">
-            <img
-              src={editIco}
+            <Link
               className="w-5 mhover bg-blue-600 p-[3px] rounded-full"
-            />
+              to="/admin/posts/new-content"
+              state={e}
+            >
+              <img src={editIco} />
+            </Link>
             <img
               src={trashIco}
               onClick={() => {

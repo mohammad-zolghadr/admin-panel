@@ -1,14 +1,21 @@
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useLocation } from "react-router-dom";
 
 // Components
 import RichtextEditor from "./RichTextEditor";
 
 const SUMMARY_LIMIT_CHAR = 120;
 
-const PostsNewContent = () => {
-  const [ivBody, setIvBody] = useState("");
-  const [inputValue, setInputValue] = useState({ title: "", summary: "" });
+const PostsNewContent = (props) => {
+  const { state } = useLocation();
+  const { id, title, summary, hashtag, image, body } = state ?? "";
+  const [ivBody, setIvBody] = useState(body);
+  const [inputValue, setInputValue] = useState({
+    title: title,
+    summary: summary,
+    hashtag: hashtag,
+  });
 
   const inputHandler = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
@@ -25,8 +32,11 @@ const PostsNewContent = () => {
         <div className="w-full fcenter flex-col">
           <label className="inputLabel">عنوان مقاله</label>
           <input
+            value={inputValue.title}
             className="minput w-full shadow-lg text-xs py-4 focus:outline-none"
             type="text"
+            name="title"
+            onChange={inputHandler}
           />
         </div>
 
@@ -54,9 +64,9 @@ const PostsNewContent = () => {
               className="absolute left-5 bottom-4 text-[10px] text-gray-400 font-bf"
               style={{
                 color:
-                  inputValue.summary.length === SUMMARY_LIMIT_CHAR && "#a22",
+                  inputValue.summary?.length === SUMMARY_LIMIT_CHAR && "#a22",
               }}
-            >{`${inputValue.summary.length}/${SUMMARY_LIMIT_CHAR}`}</span>
+            >{`${inputValue.summary?.length}/${SUMMARY_LIMIT_CHAR}`}</span>
           </div>
         </div>
 
@@ -111,6 +121,9 @@ const PostsNewContent = () => {
               placeholder="هشتگ ها را با - از هم جدا کنید"
               className="minput placeholder:text-gray-400 w-full h-40 shadow-lg text-xs py-4 focus:outline-none resize-none"
               type="text"
+              name="hashtag"
+              value={inputValue.hashtag}
+              onChange={inputHandler}
             />
           </div>
         </div>
