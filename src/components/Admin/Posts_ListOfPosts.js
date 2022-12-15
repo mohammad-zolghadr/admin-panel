@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 // Icons
-import trashIco from "../../assets/images/trash.svg";
-import editIco from "../../assets/images/edit.svg";
+import trashIco from "../../assets/images/trash_white.svg";
+import editIco from "../../assets/images/edit_white.svg";
 import searchIco from "../../assets/images/search.svg";
 import arrowIco from "../../assets/images/arrow.svg";
 
@@ -87,13 +87,16 @@ const PostsListOfPosts = () => {
         </td>
         <td>
           <div className="fcenter gap-2">
-            <img src={editIco} className="w-5 mhover" />
+            <img
+              src={editIco}
+              className="w-5 mhover bg-blue-600 p-[3px] rounded-full"
+            />
             <img
               src={trashIco}
               onClick={() => {
                 dispatch(removePost(e));
               }}
-              className="w-5 mhover"
+              className="w-5 mhover bg-red-500 p-[3px] rounded-full"
             />
           </div>
         </td>
