@@ -10,4 +10,8 @@ const sortPost = (keyword) => {
   return { type: "SORT_POST", payload: keyword };
 };
 
-export { removePost, searchPost, sortPost };
+const addPost = (item) => {
+  return { type: "ADD_POST", payload: item };
+};
+
+export { removePost, searchPost, sortPost, addPost };
