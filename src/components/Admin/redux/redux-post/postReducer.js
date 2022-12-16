@@ -59,6 +59,14 @@ const postReducer = (state = initState, action) => {
         },
       ];
       return { ...state, postsList: tempPostArray };
+    case "EDIT_POST":
+      const tempAllPostWithoutEdited = state.postsList.filter(
+        (element) => element.id !== action.payload.id
+      );
+      return {
+        ...state,
+        postsList: [...tempAllPostWithoutEdited, action.payload],
+      };
     case "REMOVE_POST":
       const allItemsWithoutRemoved = state.postsList.filter(
         (element) => element.id !== action.payload.id

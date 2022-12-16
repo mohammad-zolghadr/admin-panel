@@ -14,4 +14,8 @@ const addPost = (item) => {
   return { type: "ADD_POST", payload: item };
 };
 
-export { removePost, searchPost, sortPost, addPost };
+const editPost = (item) => {
+  return { type: "EDIT_POST", payload: item };
+};
+
+export { removePost, searchPost, sortPost, addPost, editPost };
