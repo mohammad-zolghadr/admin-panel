@@ -71,6 +71,7 @@ const PostsNewContent = () => {
             toast.success("محتوای جدید با موفقیت ویرایش شد");
             resetInputs();
             setIsShowLoading(false);
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           })
           .catch((error) => {
             console.log(error);
@@ -94,6 +95,7 @@ const PostsNewContent = () => {
             toast.success("محتوای جدید با موفقیت آپلود شد");
             resetInputs();
             setIsShowLoading(false);
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           })
           .catch((error) => {
             setIsShowLoading(false);
