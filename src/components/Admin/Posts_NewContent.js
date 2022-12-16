@@ -45,54 +45,61 @@ const PostsNewContent = () => {
 
   const formSubmited = (e) => {
     e.preventDefault();
-    setIsShowLoading(true);
-    if (status) {
-      // Must Edit
-      uploadImage()
-        .then((imageLink) => {
-          dispatch(
-            editPost({
-              title: inputValue.title,
-              body: ivBody,
-              summary: inputValue.summary,
-              image: imageLink,
-              hashtag: inputValue.hashtag,
-              status: e.target.name,
-              date: date,
-              id: id,
-            })
-          );
-          toast.success("محتوای جدید با موفقیت آپلود شد");
-          resetInputs();
-          setIsShowLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsShowLoading(false);
-          toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
-        });
-    } else {
-      // Must Add
-      uploadImage()
-        .then((imageLink) => {
-          dispatch(
-            addPost({
-              title: inputValue.title,
-              body: ivBody,
-              summary: inputValue.summary,
-              image: imageLink,
-              hashtag: inputValue.hashtag,
-              status: e.target.name,
-            })
-          );
-          toast.success("محتوای جدید با موفقیت آپلود شد");
-          resetInputs();
-          setIsShowLoading(false);
-        })
-        .catch((error) => {
-          setIsShowLoading(false);
-          toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
-        });
+    console.log(inputValue.title, ivBody);
+    if (!inputValue.title || !ivBody || !inputValue.summary)
+      toast.error(
+        "پر کردن فیلد عنوان مقاله، متن پست و خلاصه کوتاه از پست اجباریست و نمیتواند خالی باشد"
+      );
+    else {
+      setIsShowLoading(true);
+      if (status) {
+        // Must Edit
+        uploadImage()
+          .then((imageLink) => {
+            dispatch(
+              editPost({
+                title: inputValue.title,
+                body: ivBody,
+                summary: inputValue.summary,
+                image: imageLink,
+                hashtag: inputValue.hashtag,
+                status: e.target.name,
+                date: date,
+                id: id,
+              })
+            );
+            toast.success("محتوای جدید با موفقیت ویرایش شد");
+            resetInputs();
+            setIsShowLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            setIsShowLoading(false);
+            toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
+          });
+      } else {
+        // Must Add
+        uploadImage()
+          .then((imageLink) => {
+            dispatch(
+              addPost({
+                title: inputValue.title,
+                body: ivBody,
+                summary: inputValue.summary,
+                image: imageLink,
+                hashtag: inputValue.hashtag,
+                status: e.target.name,
+              })
+            );
+            toast.success("محتوای جدید با موفقیت آپلود شد");
+            resetInputs();
+            setIsShowLoading(false);
+          })
+          .catch((error) => {
+            setIsShowLoading(false);
+            toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
+          });
+      }
     }
   };
 
