@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { addPost } from "./redux/redux-post/postActions";
+import { addPost, editPost } from "./redux/redux-post/postActions";
 
 // Components
 import RichtextEditor from "./RichTextEditor";
@@ -18,7 +18,8 @@ const SUMMARY_LIMIT_CHAR = 120;
 
 const PostsNewContent = () => {
   const { state } = useLocation();
-  const { id, title, summary, hashtag, image, body } = state ?? "";
+  const { id, title, summary, hashtag, image, body, status, date } =
+    state ?? "";
   const dispatch = useDispatch();
   const [ivBody, setIvBody] = useState(body);
   const [inputValue, setInputValue] = useState({
@@ -45,25 +46,54 @@ const PostsNewContent = () => {
   const formSubmited = (e) => {
     e.preventDefault();
     setIsShowLoading(true);
-    uploadImage()
-      .then((imageLink) => {
-        dispatch(
-          addPost({
-            title: inputValue.title,
-            body: ivBody,
-            summary: inputValue.summary,
-            image: imageLink,
-            hashtag: inputValue.hashtag,
-            status: e.target.name,
-          })
-        );
-        toast.success("محتوای جدید با موفقیت آپلود شد");
-        resetInputs();
-        setIsShowLoading(false);
-      })
-      .catch((error) =>
-        toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!")
-      );
+    if (status) {
+      // Must Edit
+      uploadImage()
+        .then((imageLink) => {
+          dispatch(
+            editPost({
+              title: inputValue.title,
+              body: ivBody,
+              summary: inputValue.summary,
+              image: imageLink,
+              hashtag: inputValue.hashtag,
+              status: e.target.name,
+              date: date,
+              id: id,
+            })
+          );
+          toast.success("محتوای جدید با موفقیت آپلود شد");
+          resetInputs();
+          setIsShowLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsShowLoading(false);
+          toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
+        });
+    } else {
+      // Must Add
+      uploadImage()
+        .then((imageLink) => {
+          dispatch(
+            addPost({
+              title: inputValue.title,
+              body: ivBody,
+              summary: inputValue.summary,
+              image: imageLink,
+              hashtag: inputValue.hashtag,
+              status: e.target.name,
+            })
+          );
+          toast.success("محتوای جدید با موفقیت آپلود شد");
+          resetInputs();
+          setIsShowLoading(false);
+        })
+        .catch((error) => {
+          setIsShowLoading(false);
+          toast.error("متاسفانه مشکلی پیش اومده و محتوای جدیدت آپلود نشد!");
+        });
+    }
   };
 
   return (
