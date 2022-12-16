@@ -24,21 +24,20 @@ const MessageReply = (props) => {
         onClick={clickHandler}
         className="block absolute w-full h-screen z-20 bg-black opacity-80"
       ></span>
-      <div className="bg-white px-8 py-6 rounded-lg fcenter flex-col gap-8 z-20">
-        <div className="fcenter gap-3 h-36">
-          <div className="block w-[2px] h-full  bg-purple-400"></div>
-          <div className="flex flex-col justify-between items-start h-full">
+      <div className="bg-white h-fit px-8 py-6 rounded-lg fcenter flex-col gap-8 z-20">
+        <div className="fcenter p-4 rounded-tl-xl bg-purple-100 border-r-2 border-purple-400">
+          <div className="flex flex-col gap-4 justify-between items-start h-full">
             <p className="w-72 text-justify text-xs pt-2 text-gray-500">
               <img
-                className="w-5 bg-gray-400 p-1 rounded-full ml-2 inline-block"
+                className="w-5 bg-purple-600 p-1 rounded-full ml-2 inline-block"
                 src={replyIco}
               />
-              <span className="text-gray-400">در پاسخ به</span>
-              {` : ${data.message.substring(0, 75)} ...`}
+              <span className="text-purple-600 font-bf">در پاسخ به</span>
+              {` : ${data.message}`}
             </p>
             <textarea
               value={inputFieldeValue}
-              className="minput w-72 h-20 shadow-md ph py-3 text-xs resize-none"
+              className="minput bg-white w-72 h-20 shadow-md ph py-3 text-xs resize-none"
               placeholder="متن پیام را اینجا وارد کنید"
               type="text"
               onChange={(e) => {
