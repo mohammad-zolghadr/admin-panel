@@ -43,7 +43,6 @@ const Info = () => {
   const [showDialogTutorial, setShowDialogTutorial] = useState(false);
   const [showDialogProject, setShowDialogProject] = useState(false);
   const [resumeFile, setResumeFile] = useState();
-  const [inputSoftSkills, setInputSoftSkills] = useState();
 
   const [linksInputFocused, setLinksInputFocused] = useState("");
 
@@ -79,6 +78,8 @@ const Info = () => {
     whatsapp: links.whatsapp,
     instagram: links.instagram,
   });
+
+  const [inputSoftSkills, setInputSoftSkills] = useState(softSkills);
 
   const editHandler = (e) => {
     setShowOneField(e.target.name);
@@ -436,10 +437,6 @@ const Info = () => {
               .map((e) => {
                 return <InfoProjectList key={randomNumber()} data={e} />;
               })}
-            <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
-              <img className="w-10 opacity-60" src={plusIco} />
-              <p className="text-sm text-gray-500">مشاهده پروژه های بیشتر</p>
-            </div>
           </div>
           <button
             onClick={() => setShowDialogProject(true)}
@@ -462,10 +459,6 @@ const Info = () => {
               .map((e) => {
                 return <InfoTutorialList key={e.id} data={e} />;
               })}
-            <div className="basis-60 flex-grow fcenter flex-col h-52 mhover bg-gray-300 gap-4 p-4  rounded-lg">
-              <img className="w-10 opacity-60" src={plusIco} />
-              <p className="text-sm text-gray-500">مشاهده آموزش های بیشتر</p>
-            </div>
           </div>
           <button
             onClick={() => setShowDialogTutorial(true)}
@@ -475,8 +468,6 @@ const Info = () => {
           </button>
         </div>
       </div>
-
-      <button className="primary-btn mhover px-14">ذخیره اطلاعات</button>
     </div>
   );
 };
