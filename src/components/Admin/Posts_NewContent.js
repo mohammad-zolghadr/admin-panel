@@ -27,6 +27,7 @@ const PostsNewContent = () => {
     summary: summary,
     hashtag: hashtag,
   });
+  const [inputImage, setInputImage] = useState("");
   const [isShowLoading, setIsShowLoading] = useState(false);
 
   const inputHandler = (e) => {
@@ -34,7 +35,7 @@ const PostsNewContent = () => {
   };
 
   const onDrop = useCallback((acceptedFiles) => {
-    // File Choosen
+    setInputImage(acceptedFiles[0]);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -54,7 +55,7 @@ const PostsNewContent = () => {
       setIsShowLoading(true);
       if (status) {
         // Must Edit
-        uploadImage()
+        uploadImage(inputImage)
           .then((imageLink) => {
             dispatch(
               editPost({
@@ -80,7 +81,7 @@ const PostsNewContent = () => {
           });
       } else {
         // Must Add
-        uploadImage()
+        uploadImage(inputImage)
           .then((imageLink) => {
             dispatch(
               addPost({
