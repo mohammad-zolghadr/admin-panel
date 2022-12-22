@@ -17,12 +17,12 @@ module.exports = {
           "100%": { width: "240px" },
         },
         fadeInBottom: {
-          "0%": { top: "-100%", opacity: 0 },
-          "100%": { top: "32px", opacity: 1 },
+          "0%": { top: "25px", opacity: 0 },
+          "100%": { top: "48px", opacity: 1 },
         },
         fadeOutTop: {
-          "0%": { top: "32px", opacity: 1 },
-          "100%": { top: "-100%", opacity: 0 },
+          "0%": { top: "48px", opacity: 1 },
+          "100%": { top: "25px", opacity: 0 },
         },
       },
     },

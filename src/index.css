@@ -41,7 +41,7 @@
     @apply hover:opacity-50 duration-300 cursor-pointer;
   }
   .responsive-menu {
-    @apply fcenter gap-6 flex-col absolute z-10 top-8 right-0 bg-white w-full p-3 shadow-md rounded-b-xl;
+    @apply fcenter gap-6 flex-col absolute z-10 top-12 right-0 bg-white w-full p-3 shadow-md rounded-b-xl;
   }
   .mtag {
     @apply bg-purple-200 text-purple-500 font-bf text-xs;

@@ -60,6 +60,10 @@ const PostsListOfPosts = () => {
     setShowSortDropDown(false);
   };
 
+  const dropdownClickHandler = () => {
+    setShowSortDropDown((prevState) => !prevState);
+  };
+
   const postsListUi = (e) => {
     return (
       <tr key={randomNumber()} className="border-b border-gray-200">
@@ -135,47 +139,49 @@ const PostsListOfPosts = () => {
             <button
               id="dropdownDefault"
               data-dropdown-toggle="dropdown"
-              className="fcenter justify-between gap-2 text-gray-600 text-xs w-full bg-gray-100 rounded-md py-3 px-3 hover:bg-gray-50 "
+              className="fcenter justify-between gap-2  text-gray-600 text-xs w-full bg-gray-100 rounded-md py-3 px-3 hover:bg-gray-50 "
               type="button"
-              onClick={(e) => {
-                setShowSortDropDown(!showSortDropDown);
-              }}
+              onClick={dropdownClickHandler}
             >
               {selectedDropDownItem
                 ? selectedDropDownItem
                 : "مرتب سازی بر اساس"}
               <img src={arrowIco} className="w-3 h-3" />
             </button>
-            {showSortDropDown && (
-              <div className="absolute top-12 w-full z-10 ">
-                <ul className=" bg-gray-100 rounded-b-lg shadow-lg shadow-purple-300 text-sm text-gray-700 py-2">
-                  <li
-                    onClick={() => dropdownHandler("publish")}
-                    className={filterItemsStyle}
-                  >
-                    <span>منتشرشده ها</span>
-                  </li>
-                  <li
-                    onClick={() => dropdownHandler("draft")}
-                    className={filterItemsStyle}
-                  >
-                    <span>پیش‌نویس ها</span>
-                  </li>
-                  <li
-                    onClick={() => dropdownHandler("newest")}
-                    className={filterItemsStyle}
-                  >
-                    <span>جدید ترین</span>
-                  </li>
-                  <li
-                    onClick={() => dropdownHandler("oldest")}
-                    className={filterItemsStyle}
-                  >
-                    <span>قدیمی ترین</span>
-                  </li>
-                </ul>
-              </div>
-            )}
+            <div
+              className={`absolute top-12 w-full z-10 transition-all  ${
+                showSortDropDown
+                  ? "animate-[fadeInBottom_0.3s]"
+                  : "animate-[fadeOutTop_0.3s] invisible"
+              }`}
+            >
+              <ul className=" bg-gray-100 rounded-b-lg shadow-lg shadow-purple-300 text-sm text-gray-700 py-2">
+                <li
+                  onClick={() => dropdownHandler("publish")}
+                  className={filterItemsStyle}
+                >
+                  <span>منتشرشده ها</span>
+                </li>
+                <li
+                  onClick={() => dropdownHandler("draft")}
+                  className={filterItemsStyle}
+                >
+                  <span>پیش‌نویس ها</span>
+                </li>
+                <li
+                  onClick={() => dropdownHandler("newest")}
+                  className={filterItemsStyle}
+                >
+                  <span>جدید ترین</span>
+                </li>
+                <li
+                  onClick={() => dropdownHandler("oldest")}
+                  className={filterItemsStyle}
+                >
+                  <span>قدیمی ترین</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -242,6 +248,6 @@ export default PostsListOfPosts;
 
 // Custom Tailwind Styles
 const filterItemsStyle =
-  "text-xs cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1";
+  "text-xs cursor-pointer hover:bg-purple-500 hover:text-white w-full px-2 py-1 ";
 const tableHeadItemStyle =
   "font-normal border-b border-gray-300 text-center text-gray-500 text-sm px-4 py-3";
