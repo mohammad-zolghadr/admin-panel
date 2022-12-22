@@ -123,15 +123,23 @@ const Navbar = () => {
           </div>
           <nav className="relative">
             <div
-              className="fcenter gap-3 px-4 py-1 rounded-md bg-gray-100 shadow-md mhover md:hidden"
+              className="fcenter gap-3 px-4 py-1 rounded-md bg-gray-100  mhover md:hidden"
               onClick={handleDropdown}
             >
               <span className="text-gray-500 font-bf text-sm">فهرست</span>
               <img className="w-4 " src={arrowIco} />
             </div>
-            {(isShowDropdown || width >= 768) && (
+            {
               <div
-                className={width >= 768 ? "fcenter gap-6" : "responsive-menu"}
+                className={
+                  width >= 768
+                    ? "fcenter gap-6"
+                    : `responsive-menu ${
+                        isShowDropdown
+                          ? "animate-[fadeInBottom_0.3s]"
+                          : "animate-[fadeOutTop_0.3s] invisible"
+                      }`
+                }
                 onClick={handleDropdown}
               >
                 {changeRoute(location).map((e, index) => {
@@ -167,7 +175,7 @@ const Navbar = () => {
                   خروج
                 </Link>
               </div>
-            )}
+            }
           </nav>
         </div>
       </div>

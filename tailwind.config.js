@@ -16,6 +16,14 @@ module.exports = {
           "0%": { width: "300px" },
           "100%": { width: "240px" },
         },
+        fadeInBottom: {
+          "0%": { top: "-100%", opacity: 0 },
+          "100%": { top: "32px", opacity: 1 },
+        },
+        fadeOutTop: {
+          "0%": { top: "32px", opacity: 1 },
+          "100%": { top: "-100%", opacity: 0 },
+        },
       },
     },
   },
