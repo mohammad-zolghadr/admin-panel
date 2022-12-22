@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 // Icons
 import profileIco from "../../assets/images/profile.svg";
@@ -97,6 +98,13 @@ const Navbar = () => {
   const data = { name: "محمد ذوالقدر", rule: RULES.main };
   let location = useLocation().pathname.split("/");
   // location = location[location.length - 1];
+  const [isShowDropdown, setIsShowDropDown] = useState(false);
+  const { width } = useWindowDimensions();
+  console.log(width);
+
+  const handleDropdown = () => {
+    setIsShowDropDown((prevState) => !prevState);
+  };
 
   return (
     <div className="bg-gray-100 p-1">
@@ -113,11 +121,53 @@ const Navbar = () => {
               </span>
             </div>
           </div>
-          <nav className="">
-            <div className="fcenter gap-3 px-3 py-1 rounded-md bg-gray-100 mhover">
+          <nav className="relative">
+            <div
+              className="fcenter gap-3 px-4 py-1 rounded-md bg-gray-100 shadow-md mhover md:hidden"
+              onClick={handleDropdown}
+            >
               <span className="text-gray-500 font-bf text-sm">فهرست</span>
               <img className="w-4 " src={arrowIco} />
             </div>
+            {(isShowDropdown || width >= 768) && (
+              <div
+                className={width >= 768 ? "fcenter gap-6" : "responsive-menu"}
+                onClick={handleDropdown}
+              >
+                {changeRoute(location).map((e, index) => {
+                  const isMainAdmin = data.rule === RULES.main;
+                  if (!isMainAdmin && index > 1) return;
+                  return (
+                    <Link
+                      key={e.url}
+                      to={e.url}
+                      className="fcenter flex-col gap-y-2 mhover text-gray-400 font-nf text-xs"
+                    >
+                      {e.image}
+                      {e.name}
+                    </Link>
+                  );
+                })}
+
+                <Link
+                  to="/login"
+                  className="fcenter flex-col gap-y-2 mhover text-gray-400 font-nf text-xs"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="fill-gray-400 w-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  خروج
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
       </div>
