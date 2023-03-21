@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
 import Home from "./components/Home";
@@ -15,6 +17,7 @@ import PostsListOfPosts from "./components/Admin/Posts_ListOfPosts";
 const App = () => {
   return (
     <div className="font-nf">
+      <ToastContainer position="bottom-left" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />

@@ -17,8 +17,6 @@ import OneField from "./dialog-editInfo/OneField";
 import TechnologyAddOrEdit from "./dialog-editInfo/TechnologyAddOrEdit";
 import TutorialDialog from "./dialog-editInfo/TutorialDialog";
 import ProjectDialog from "./dialog-editInfo/ProjectDialog";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 // Functions
 import { randomNumber } from "../../functions";
@@ -126,7 +124,6 @@ const Info = () => {
 
   return (
     <div className="mwrapper py-20">
-      <ToastContainer position="bottom-left" />
       {/* Main Info */}
       <div className="w-[90%] mx-auto fcenter flex-col mb-10">
         {showOneField && (

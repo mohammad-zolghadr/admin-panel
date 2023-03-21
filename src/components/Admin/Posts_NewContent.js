@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useLocation } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -109,7 +109,6 @@ const PostsNewContent = () => {
   return (
     <div className="w-full md:w-10/12 lg:w-2/3 mx-auto">
       {isShowLoading && <Loading data={{ full: true }} />}
-      <ToastContainer position="bottom-left" />
       <form className="fcenter flex-col gap-12">
         <div className="w-full fcenter flex-col">
           <label className="inputLabel">عنوان مقاله</label>

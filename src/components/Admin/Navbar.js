@@ -100,7 +100,6 @@ const Navbar = () => {
   // location = location[location.length - 1];
   const [isShowDropdown, setIsShowDropDown] = useState(false);
   const { width } = useWindowDimensions();
-  console.log(width);
 
   const handleDropdown = () => {
     setIsShowDropDown((prevState) => !prevState);
