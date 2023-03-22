@@ -4,7 +4,7 @@ import React from "react";
 import style from "../sass/Loading.scss";
 
 const Loading = (props) => {
-  const { full } = props.data;
+  const { full } = props.data || "";
   if (full)
     return (
       <>
