@@ -1,7 +1,4 @@
-## An Admin Panel With React.js and TailwindCss
-
-The front-end part of this project has been completed <br/><br/>
-<br/>
+# AdminPanel With React.js and TailwindCss
 
 ## What features does this project have?
 
